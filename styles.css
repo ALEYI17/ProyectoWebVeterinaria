@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Oswald', sans-serif;
+}
+
+.degra{
+    background-image: linear-gradient(-225deg, rgba(203, 186, 204, 0.698) 0%, #257fb3b2 100% ),url("gato.jpg");
+    width: 100%;
+    height: 650px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+}
+
+.Textos-degra{
+    height: 500px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Textos-degra h1{
+    font-size: 60px;
+
+}
+.Textos-degra p{
+    font-size: 25px;
+    margin-bottom: 20px;
+    
+}
+.Textos-degra a{
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 15px;
+    background: rgba(37, 127, 179, 0.699) 100%;
+    border-radius: 8px;
+    color: black;
+}
+
+.hidden{
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+    transition: all 1s;
+}
+
+.show{
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+}
+/*Curvas*/
+.custom-shape-divider-bottom-1691620405 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1691620405 svg {
+    position: relative;
+    display: block;
+    width: calc(140% + 1.3px);
+    height: 153px;
+}
+
+.custom-shape-divider-bottom-1691620405 .shape-fill {
+    fill: #FFFFFF;
+}
+
+/*Nav bar*/
+
+.Navbar{
+    background-image: linear-gradient(-225deg, rgba(203, 186, 204, 0.698) 0%, #257fb3b2 100% );
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 85px;
+    padding: 5px 10%;
+}
+.Navbar .Logo{
+    cursor: pointer;
+}
+.Navbar .Logo img{
+    height: 70px;
+    width: auto;
+    transition: all 0.2s;
+}
+.Navbar .Logo img:hover{
+    transform: scale(1.2);
+}
+.Navbar .nav-links{
+    list-style: none;
+}
+.Navbar .nav-links li{
+    display: inline-block;
+    padding: 0 20px;
+}
+.Navbar .nav-links li:hover{
+    transform: scale(1.1);
+
+}
+
+.Navbar .nav-links a{
+    font-size: 700;
+    color: black;
+    text-decoration: none;
+}
+
+.Navbar .nav-links li a:hover{
+    color: rgba(203, 186, 204, 0.698);
+}
