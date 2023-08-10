@@ -9,12 +9,42 @@ html{
 }
 body{
     font-family: 'Oswald', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.Paralax{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+#text{
+    position: absolute;
+    font-size: 5em;
+}
+.Paralax img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    height: 100%;
+}
+
+.Titulocentrado{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .degra{
     background-image: linear-gradient(-225deg, rgba(203, 186, 204, 0.698) 0%, #257fb3b2 100% ),url("img/gato.jpg");
     width: 100%;
-    height: 650px;
+
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -49,7 +79,9 @@ body{
     border-radius: 8px;
     color: black;
 }
-
+.container{
+    background-color: aliceblue;
+}
 .hidden{
     opacity: 0;
     filter: blur(5px);
