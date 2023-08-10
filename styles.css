@@ -147,7 +147,7 @@ body{
 #service-section h2::after{
     position: absolute;
     content: " ";
-    top: 8px;
+    top: 30%;
     left: -30px;
     height: 0 ;
     width: 0;
@@ -157,7 +157,7 @@ body{
 #service-section h2::before{
     position: absolute;
     content: " ";
-    top: 8px;
+    top: 30%;
     right: -30px;
     height: 0 ;
     width: 0;
@@ -184,15 +184,16 @@ body{
 }
 
 .cards .card{
-    height: 280px;
-    width: 380px;
+    min-height: 350px;
+    width: 450px;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     padding: 0 8%;
     background-color: rgb(65, 62, 105);
     position: relative;
-
+    border-radius: 10px;
+    margin: 0 10px;
 }
 .cards .card::before{
     position: absolute;
@@ -212,4 +213,36 @@ body{
 .cards .card i{
     font-size: 2.5rem;
     margin-top: 40px;
+    margin-bottom: 10px;
+}
+.cards .card h3{
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.cards .card .content p{
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+
+}
+
+@media(max-width:1100px){
+    #service-section h2{
+        margin-top: 30px;
+    }
+    .cards{
+        grid-template-columns: repeat(1,1fr);
+    }
+    #service-section #peragraph{
+        width: 80%;
+    }
+}
+@media(max-width:900px){
+    .cards .card{
+        height: 300px;
+        width: 400px;
+        margin: 20px 0 ;
+    }
 }
