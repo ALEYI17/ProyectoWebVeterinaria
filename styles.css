@@ -126,3 +126,90 @@ body{
 .Navbar .nav-links li a:hover{
     color: rgba(203, 186, 204, 0.698);
 }
+
+#service-section{
+    min-height: 700px;
+    width: 100%;
+    background: #20223a ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+#service-section h2{
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#service-section h2::after{
+    position: absolute;
+    content: " ";
+    top: 8px;
+    left: -30px;
+    height: 0 ;
+    width: 0;
+    border-top: 20px solid transparent;
+    border-left: 20px solid;
+}
+#service-section h2::before{
+    position: absolute;
+    content: " ";
+    top: 8px;
+    right: -30px;
+    height: 0 ;
+    width: 0;
+    border-top: 20px solid transparent;
+    border-right: 20px solid;
+}
+#service-section #peragraph{
+    width: 45%;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    line-height: 1.5rem;
+    white-space: 1px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+.cards{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 25px;
+    z-index: 9;
+    margin-top: 20px;
+
+}
+
+.cards .card{
+    height: 280px;
+    width: 380px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 0 8%;
+    background-color: rgb(65, 62, 105);
+    position: relative;
+
+}
+.cards .card::before{
+    position: absolute;
+    content: " ";
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    background-color: orange;
+    transform: rotate(0deg);
+    z-index: -1;
+}
+.cards .card:hover.card::before{
+    transform: rotate(10deg)
+}
+.cards .card i{
+    font-size: 2.5rem;
+    margin-top: 40px;
+}
