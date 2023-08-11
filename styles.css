@@ -12,6 +12,16 @@ body{
     min-height: 100vh;
     overflow-x: hidden;
 }
+::-webkit-scrollbar{
+    width: 8px;
+}
+::-webkit-scrollbar-thumb{
+    background: linear-gradient(rgba(0,212,255,1),#053247);
+    border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(rgba(0,212,255,1),#053247);
+}
 
 .Paralax{
     position: relative;
