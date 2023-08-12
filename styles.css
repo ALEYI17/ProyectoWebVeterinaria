@@ -325,7 +325,7 @@ body{
 .product-card{
     flex: 0 0 auto;
     width: 250px;
-    height: 480px;
+    height: 530px;
     margin-right: 40px;
 }
 
@@ -390,7 +390,7 @@ body{
 
 .product-short-description{
     width: 100%;
-    height: 20px;
+    height: 80px;
     line-height: 20px;
     overflow: hidden;
     opacity: 0.5;
