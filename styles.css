@@ -313,6 +313,7 @@ body{
     display: flex;
     overflow-x: auto;
     scroll-behavior: smooth;
+    overflow-y: hidden;
 }
 
 .product-container::-webkit-scrollbar{
