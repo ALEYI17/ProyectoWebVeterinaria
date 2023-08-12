@@ -31,3 +31,20 @@ const observer= new IntersectionObserver((entries)=>{
 });
 const hiddenElements = document.querySelectorAll('.hidden'); 
 hiddenElements.forEach((el)=> observer.observe(el));
+
+const productContainer = [...document.querySelectorAll('.product-container')];
+const nxtBtn = [...document.querySelectorAll('.nest-button')];
+const preBtn = [...document.querySelectorAll('.pre-button')];
+
+productContainer.forEach((item,i)=>{
+    let containerDimensions = item.getBoundingClientRect();
+    let containerWidth = containerDimensions.width;
+
+    nxtBtn[i].addEventListener('click',()=>{
+        item.scrollLeft += containerWidth;
+    });
+
+    preBtn[i].addEventListener('click',()=>{
+        item.scrollLeft -= containerWidth;
+    })
+});
