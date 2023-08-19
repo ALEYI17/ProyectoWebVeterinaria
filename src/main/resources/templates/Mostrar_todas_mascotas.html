@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" , xmlns:th="http://www.thymeleaf.org">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mascotas vetcare</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Todas las mascotas</h1>
+    <div style="width: 80%;"></div>
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Raza</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Enfermedad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each=" Mascota : ${Mascotas}">
+            <th th:text="${Mascota.Nombre}"></th>
+            <td th:text="${Mascota.Raza}"></td>
+            <td th:text="${Mascota.Edad}"></td>
+            <td th:text="${Mascota.Peso}"></td>
+            <td th:text="${Mascota.Enfermedad}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</body>
+</html>
