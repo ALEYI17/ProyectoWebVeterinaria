@@ -3,15 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="/script.js"></script>
     <title>Informacion mascota</title>
 </head>
-<body>
-    <h1>Informacion de mascota</h1>
-    <p th:text="${Mascota.Nombre}"></p>
-    <p th:text="${Mascota.Raza}"></p>
-    <p th:text="${Mascota.Edad}"></p>
-    <p th:text="${Mascota.Peso}"></p>
-    <p th:text="${Mascota.Enfermedad}"></p>
+<body class="fondo">
+    <header class="Navbar hidden">
+        <div class="Logo">
+            <img src="/img/GatoDoctor.jpeg" alt="un lindo gato">
+            <b>VetCare</b>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="#servicios">Services</a></li>
+                <li><a href="#doctores">Doctores</a></li>
+            </ul>
+        </nav> 
+    </header>
+    <h1>Informacion de la mascota</h1>
+    <div style="width: 80%;"></div>
+    <table class="mascotas">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Raza</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Enfermedad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th th:text="${Mascota.Nombre}"></th>
+            <td th:text="${Mascota.Raza}"></td>
+            <td th:text="${Mascota.Edad}"></td>
+            <td th:text="${Mascota.Peso}"></td>
+            <td th:text="${Mascota.Enfermedad}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     
 </body>
 </html>

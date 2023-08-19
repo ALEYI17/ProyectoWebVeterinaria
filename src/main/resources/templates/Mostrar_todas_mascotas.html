@@ -5,12 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mascotas vetcare</title>
     <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script defer src="/script.js"></script>
+    
 </head>
-<body>
+<body class="fondo">
+  <header class="Navbar hidden">
+    <div class="Logo">
+        <img src="/img/GatoDoctor.jpeg" alt="un lindo gato">
+        <b>vetCare</b>
+    </div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="#servicios">Services</a></li>
+            <li><a href="#doctores">Doctores</a></li>
+        </ul>
+    </nav>
+    
+</header>
     <h1>Todas las mascotas</h1>
     <div style="width: 80%;"></div>
-    <table class="table table-dark">
+    <table class="mascotas">
         <thead>
           <tr>
             <th scope="col">Nombre</th>
@@ -20,7 +35,7 @@
             <th scope="col">Enfermedad</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="table-group-divider">
           <tr th:each=" Mascota : ${Mascotas}">
             <th th:text="${Mascota.Nombre}"></th>
             <td th:text="${Mascota.Raza}"></td>

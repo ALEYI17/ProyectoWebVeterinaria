@@ -62,6 +62,17 @@ body{
     position: relative;
     overflow: hidden;
 }
+.fondo{
+    background-image: linear-gradient(-225deg, rgba(203, 186, 204, 0.698) 0%, #257fb3b2 100% );
+    width: 100%;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+}
 
 .Textos-degra{
     height: 500px;
@@ -144,6 +155,12 @@ body{
     width: auto;
     transition: all 0.2s;
     border-radius: 50%;
+}
+.Navbar .Logo b{
+    font-size: 2vw;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 .Navbar .Logo img:hover{
     transform: scale(1.2);
@@ -297,8 +314,8 @@ body{
     position: relative;
     overflow: hidden;
     padding: 20px;
-    background: rgb(0,212,240);
-    background: linear-gradient(180deg, rgba(0,212,240,1) 0%, rgba(253,187,45,1) 100%);
+    background:  #00d4ff;
+    
 }
 
 .Doctores{
@@ -543,5 +560,61 @@ body{
     .footer-col{
         width: 100%;
         margin-bottom: 30px;
+    }
+}
+
+table.mascotas{
+    border-collapse: collapse;
+    margin: 0;
+    width: 100%;
+}
+table.mascotas tr{
+    padding: .45em;
+}
+thead tr{
+    background-color: black;
+}
+thead th{
+    color: white;
+    font-size: 1.15em;
+}
+tbody tr:nth-child(even){
+    background-color: #074a69;
+}
+table.mascotas th, table td{
+    font-size: 1em;
+    padding: 1em;
+    text-align: center;
+}
+thead th{
+    color: white;
+    font-size: 1.15em;
+}
+@media (max-width:440px){
+    table.mascotas{
+        border: 3px solid #053247;
+    }
+    table.mascotas thead tr{
+        display: none;
+    }
+    table.mascotas tr{
+        display: block;
+    }
+    table.mascotas th,table.mascotas td{
+        padding: .5em;
+    }
+    table.mascotas td{
+        text-align: right;
+        display: block;
+        font-size: 1em;
+    }
+
+    table.mascota td::before{
+        content: attr(scope)": ";
+        float: left;
+    }
+    tbody tr:nth-child(even){
+        background-color: #053247;
+        color: black;
     }
 }
