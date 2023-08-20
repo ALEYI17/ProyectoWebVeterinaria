@@ -84,11 +84,13 @@ body{
 }
 
 .Textos-degra h1{
-    font-size: 60px;
+    font-size: 2em;
+    color: #fff;
 
 }
 .Textos-degra p{
     font-size: 25px;
+    color: #fff;
     margin-bottom: 20px;
     
 }
@@ -149,6 +151,13 @@ body{
 }
 .Navbar .Logo{
     cursor: pointer;
+}
+.Logo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
 }
 .Navbar .Logo img{
     height: 70px;
