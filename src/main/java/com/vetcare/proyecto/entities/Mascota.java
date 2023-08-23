@@ -6,11 +6,11 @@ public class Mascota {
     private int Edad;
     private Double Peso;
     private String Enfermedad;
-    private long ID;
+    private Integer ID;
 
     
 
-    public Mascota(String nombre, String raza, int edad, Double peso, String enfermedad, long iD) {
+    public Mascota(String nombre, String raza, int edad, Double peso, String enfermedad, Integer iD) {
         Nombre = nombre;
         Raza = raza;
         Edad = edad;
@@ -48,10 +48,10 @@ public class Mascota {
     public void setEnfermedad(String enfermedad) {
         Enfermedad = enfermedad;
     }
-    public long getID() {
+    public Integer getID() {
         return ID;
     }
-    public void setID(long iD) {
+    public void setID(Integer iD) {
         ID = iD;
     }
     

@@ -27,5 +27,20 @@ public class MascotaRepository {
     public Collection<Mascota> findAll(){
         return MascotasMap.values();
     }
+
+    public void add(Mascota mascota){
+        int tam = MascotasMap.size();
+        int lastId = MascotasMap.get(tam).getID();
+        mascota.setID(lastId+1);
+        MascotasMap.put(lastId+1, mascota);
+    }
+
+    public void removeById(int id){
+        MascotasMap.remove(id);
+    }
+
+    public void updateById(Mascota mascota){
+        MascotasMap.put(mascota.getID(), mascota);
+    }
     
 }

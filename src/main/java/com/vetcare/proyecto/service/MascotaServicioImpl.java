@@ -23,5 +23,20 @@ public class MascotaServicioImpl implements MascotaServicio {
         return mascotaRepository.findAll();
     }
 
+    @Override
+    public void addMascota(Mascota mascota) {
+        mascotaRepository.add(mascota);
+    }
+
+    @Override
+    public void removeMascota(int id) {
+        mascotaRepository.removeById(id);
+    }
+
+    @Override
+    public void updateMascota(Mascota mascota) {
+        mascotaRepository.updateById(mascota);
+    }
+
     
 }
