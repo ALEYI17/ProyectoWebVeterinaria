@@ -36,6 +36,16 @@ public class MascotaController {
 
         return "Mostrar_mascota_ID";
     }
+
+    @GetMapping("find/{id}")
+    public String mostrarInfoMascota2(Model model,@PathVariable("id") int id){
+        Mascota mascota = mascotaServicio.GetById(id);
+        if(mascota != null){
+            model.addAttribute("Mascota", mascota);
+        }
+
+        return "Mostrar_mascota_ID";
+    }
     
     @GetMapping("/add")
     public String Showcrear(Model model){
@@ -66,7 +76,7 @@ public class MascotaController {
     @PostMapping("/update/{id}")
     public String actualizarMascota(@PathVariable("id") int id , @ModelAttribute("mascota") Mascota mascota){
         mascotaServicio.updateMascota(mascota);
-        return "redirect:/student/all";
+        return "redirect:/Mascota/todas";
     }
     
     

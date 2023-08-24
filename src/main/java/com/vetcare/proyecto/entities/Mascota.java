@@ -3,14 +3,14 @@ package com.vetcare.proyecto.entities;
 public class Mascota {
     private String Nombre;
     private String Raza;
-    private int Edad;
+    private Integer Edad;
     private Double Peso;
     private String Enfermedad;
     private Integer ID;
 
     
 
-    public Mascota(String nombre, String raza, int edad, Double peso, String enfermedad, Integer iD) {
+    public Mascota(String nombre, String raza, Integer edad, Double peso, String enfermedad, Integer iD) {
         Nombre = nombre;
         Raza = raza;
         Edad = edad;
@@ -30,10 +30,10 @@ public class Mascota {
     public void setRaza(String raza) {
         Raza = raza;
     }
-    public int getEdad() {
+    public Integer getEdad() {
         return Edad;
     }
-    public void setEdad(int edad) {
+    public void setEdad(Integer edad) {
         Edad = edad;
     }
     public Double getPeso() {

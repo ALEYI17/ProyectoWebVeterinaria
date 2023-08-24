@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar mascota</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <form th:object="${mascota}" th:action="@{/Mascota/update/{id}(id=${mascota.ID})}" th:method="post">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input th:field="*{Nombre}" type="text" class="form-control" id="nombre" placeholder="Nombre">
+        </div>
+        <div class="form-group">
+            <label for="correo">Raza</label>
+            <input th:field="*{Raza}" type="text" class="form-control" id="correo" placeholder="Raza">
+        </div>
+        <div class="form-group">
+            <label for="carrera">Edad</label>
+            <input th:field="*{Edad}" type="number" class="form-control" id="carrera" placeholder="Edad">
+        </div>
+        <div class="form-group">
+            <label for="semestre">Peso</label>
+            <input th:field="*{Peso}" type="number" class="form-control" id="semestre" placeholder="Peso">
+        </div>
+        <div class="form-group">
+            <label for="Enfermedad">Enfermedad</label>
+            <input th:field="*{Enfermedad}" type="text" class="form-control" id="Enfermedad" placeholder="Enfermedad">
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+    
+</body>
+</html>
