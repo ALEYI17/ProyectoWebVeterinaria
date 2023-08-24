@@ -12,9 +12,9 @@ public interface ClienteServicio {
 
     public Collection<Cliente> GetAll();
 
-    public void addMascota(Cliente cliente);
+    public void addCliente(Cliente cliente);
 
-    public void removeMascota(String id);
+    public void removerCliente(String id);
 
-    public void updateMascota(Cliente cliente);
+    public void updateCliente(Cliente cliente);
 }

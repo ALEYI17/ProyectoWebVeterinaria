@@ -25,17 +25,17 @@ public class ClienteServicioImpl implements ClienteServicio {
     }
 
     @Override
-    public void addMascota(Cliente cliente) {
+    public void addCliente(Cliente cliente) {
         clienteRespositorio.add(cliente);
     }
 
     @Override
-    public void removeMascota(String id) {
+    public void removerCliente(String id) {
        clienteRespositorio.removeById(id);
     }
 
     @Override
-    public void updateMascota(Cliente cliente) {
+    public void updateCliente(Cliente cliente) {
         clienteRespositorio.updateById(cliente);
     }
     
