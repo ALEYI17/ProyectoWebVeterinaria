@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" , xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"  xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todas los clientes</title>
+    
     <link rel="stylesheet" href="/styles.css">
     <script defer src="/script.js"></script>
+    <title>Informacion mascota</title>
 </head>
 <body class="fondo">
-    
     <header class="Navbar hidden">
         <div class="Logo">
             <img src="/img/GatoDoctor.jpeg" alt="un lindo gato">
@@ -20,35 +20,32 @@
                 <li><a href="#servicios">Services</a></li>
                 <li><a href="#doctores">Doctores</a></li>
             </ul>
-        </nav>
-        
+        </nav> 
     </header>
-
-    <h1>Todas los clientes</h1>
+    <h1>Informacion de la mascota</h1>
+    <div style="width: 80%;"></div>
     <table class="mascotas">
         <thead>
           <tr>
             <th scope="col">cedula</th>
             <th scope="col">nombre</th>
-            <th scope="col">corre</th>
+            <th scope="col">correo</th>
             <th scope="col">celular</th>
-            <th scope="col">Acciones</th>
+            
           </tr>
         </thead>
-        <tbody class="table-group-divider">
-          <tr th:each=" Cliente : ${Clientes}">
-            <th th:text="${Cliente.cedula}"></th>
-            <td th:text="${Cliente.nombre}"></td>
-            <td th:text="${Cliente.corre}"></td>
-            <td th:text="${Cliente.celular}"></td>
-            <td>
-                <a class="btn btn-info" th:href="@{/Clientes/update/{id}(id=${Cliente.cedula})}">Modificar</a>
-                <a class="btn btn-danger" th:href="@{/Clientes/delete/{id}(id=${Cliente.cedula})}">Eliminar</a>
-              </td>
+        <tbody>
+          <tr>
+            <th th:text="${cliente.cedula}"></th>
+            <td th:text="${cliente.nombre}"></td>
+            <td th:text="${cliente.corre}"></td>
+            <td th:text="${cliente.celular}"></td>
+            
           </tr>
         </tbody>
       </table>
     </div>
-    <a class="btn btn-info" th:href="@{/Clientes/add}">Agregar</a>
+
+    
 </body>
 </html>

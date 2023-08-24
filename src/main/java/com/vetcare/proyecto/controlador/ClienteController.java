@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import com.vetcare.proyecto.Exepciones.NotFoundException;
 import com.vetcare.proyecto.entities.Cliente;
-import com.vetcare.proyecto.entities.Mascota;
 import com.vetcare.proyecto.service.ClienteServicio;
 
 
@@ -34,9 +33,9 @@ public class ClienteController {
         if(cliente != null){
             model.addAttribute("cliente", cliente);
         }
-        // else{
-        //     throw NotFoundException(Integer.parseInt(id));
-        // }
+        else{
+            throw new NotFoundException(Integer.parseInt(id));
+        }
 
         return "Mostrar_cliente_ID";
     }
