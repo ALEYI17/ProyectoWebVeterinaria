@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/loginstyles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <form th:object="${estudiante}" th:action="@{/student/agregar}" th:method="post">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="text" placeholder="Username" required>
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Password" required>
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <button type="submit" class="btn">log in</button>
+            <div class="logincliente">
+                <p>Encuentra tu mascota <a href="/login/cliente">Cliente</a></p>
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>

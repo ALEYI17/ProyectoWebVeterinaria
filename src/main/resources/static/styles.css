@@ -628,3 +628,31 @@ thead th{
         color: black;
     }
 }
+
+.pagination-pointed-button{
+    position: relative;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #2c3840;
+    color: #811212;
+    outline: 0;
+    text-decoration: none;
+    transition: all 0.2s linear;
+    
+}
+
+.pagination-pointed-button:hover{
+    background-color: #41525e;
+}
+
+#Loginbutton{
+    color: rgb(102, 173, 182);
+}
