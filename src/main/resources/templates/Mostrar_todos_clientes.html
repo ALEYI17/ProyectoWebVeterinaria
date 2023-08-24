@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"  xmlns:th="http://www.thymeleaf.org">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todas los clientes</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="/script.js"></script>
+</head>
+<body class="fondo">
+    
+    <header class="Navbar hidden">
+        <div class="Logo">
+            <img src="/img/GatoDoctor.jpeg" alt="un lindo gato">
+            <b>VetCare</b>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="#servicios">Services</a></li>
+                <li><a href="#doctores">Doctores</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+
+    <h1>Todas los clientes</h1>
+    <table class="mascotas">
+        <thead>
+          <tr>
+            <th scope="col">cedula</th>
+            <th scope="col">nombre</th>
+            <th scope="col">corre</th>
+            <th scope="col">celular</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr th:each=" Cliente : ${Clientes}">
+            <th th:text="${Cliente.cedula}"></th>
+            <td th:text="${Cliente.nombre}"></td>
+            <td th:text="${Cliente.corre}"></td>
+            <td th:text="${Cliente.celular}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</body>
+</html>
