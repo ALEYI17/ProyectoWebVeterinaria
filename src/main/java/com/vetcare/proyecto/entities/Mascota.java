@@ -3,20 +3,20 @@ package com.vetcare.proyecto.entities;
 public class Mascota {
     private String Nombre;
     private String Raza;
-    private int Edad;
+    private Integer Edad;
     private Double Peso;
     private String Enfermedad;
-    private long ID;
+    private Integer ID;
 
     
 
-    public Mascota(String nombre, String raza, int edad, Double peso, String enfermedad, long iD) {
+    public Mascota(String nombre, String raza, Integer edad, Double peso, String enfermedad, Integer ID) {
         Nombre = nombre;
         Raza = raza;
         Edad = edad;
         Peso = peso;
         Enfermedad = enfermedad;
-        ID = iD;
+        this.ID = ID;
     }
     public String getNombre() {
         return Nombre;
@@ -30,10 +30,10 @@ public class Mascota {
     public void setRaza(String raza) {
         Raza = raza;
     }
-    public int getEdad() {
+    public Integer getEdad() {
         return Edad;
     }
-    public void setEdad(int edad) {
+    public void setEdad(Integer edad) {
         Edad = edad;
     }
     public Double getPeso() {
@@ -48,10 +48,10 @@ public class Mascota {
     public void setEnfermedad(String enfermedad) {
         Enfermedad = enfermedad;
     }
-    public long getID() {
+    public Integer getID() {
         return ID;
     }
-    public void setID(long iD) {
+    public void setID(Integer iD) {
         ID = iD;
     }
     
