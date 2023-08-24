@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.vetcare.proyecto.Exepciones.NotFoundException;
 import com.vetcare.proyecto.entities.Mascota;
 import com.vetcare.proyecto.service.MascotaServicio;
 
@@ -32,6 +33,9 @@ public class MascotaController {
         Mascota mascota = mascotaServicio.GetById(id);
         if(mascota != null){
             model.addAttribute("Mascota", mascota);
+        } 
+        else{
+            throw new NotFoundException(id);
         }
 
         return "Mostrar_mascota_ID";
@@ -42,6 +46,9 @@ public class MascotaController {
         Mascota mascota = mascotaServicio.GetById(id);
         if(mascota != null){
             model.addAttribute("Mascota", mascota);
+        }
+        else{
+            throw new NotFoundException(id);
         }
 
         return "Mostrar_mascota_ID";
