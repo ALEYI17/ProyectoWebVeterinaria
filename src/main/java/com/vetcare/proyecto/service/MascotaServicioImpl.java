@@ -36,6 +36,7 @@ public class MascotaServicioImpl implements MascotaServicio {
     @Override
     public void updateMascota(Mascota mascota) {
         mascotaRepository.updateById(mascota);
+        
     }
 
     

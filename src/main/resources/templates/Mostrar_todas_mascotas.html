@@ -33,6 +33,7 @@
             <th scope="col">Edad</th>
             <th scope="col">Peso</th>
             <th scope="col">Enfermedad</th>
+            <th scope="col">ID</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
@@ -43,6 +44,7 @@
             <td th:text="${Mascota.Edad}"></td>
             <td th:text="${Mascota.Peso}"></td>
             <td th:text="${Mascota.Enfermedad}"></td>
+            <td th:text="${Mascota.ID}"></td>
             <td>
               <a class="btn btn-info" th:href="@{/Mascota/update/{id}(id=${Mascota.ID})}">Modificar</a>
               <a class="btn btn-danger" th:href="@{/Mascota/delete/{id}(id=${Mascota.ID})}">Eliminar</a>

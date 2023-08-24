@@ -10,13 +10,13 @@ public class Mascota {
 
     
 
-    public Mascota(String nombre, String raza, Integer edad, Double peso, String enfermedad, Integer iD) {
+    public Mascota(String nombre, String raza, Integer edad, Double peso, String enfermedad, Integer ID) {
         Nombre = nombre;
         Raza = raza;
         Edad = edad;
         Peso = peso;
         Enfermedad = enfermedad;
-        ID = iD;
+        this.ID = ID;
     }
     public String getNombre() {
         return Nombre;
