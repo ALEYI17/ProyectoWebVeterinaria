@@ -111,3 +111,10 @@ body{
 .input-box input:not(:placeholder-shown) + i {
     color: #fff; /* Change to your desired icon color when filled */
 }
+.error-message {
+    color: red;            /* Text color for the error message */
+    font-size: 1.5em;       /* Font size for the error message */
+    margin-top: 10px;      /* Spacing from the form fields */
+    font-weight: 600px;
+    text-align: center;
+}

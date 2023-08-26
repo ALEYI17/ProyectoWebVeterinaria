@@ -12,12 +12,16 @@
     <div class="wrapper">
         <form th:object="${cliente}" th:action="@{/clientelogin}" th:method="post">
             <h1>Login cliente</h1>
+            <div th:if="${errorMessage}" class="error-message">
+                <p th:text="${errorMessage}"></p>
+            </div>
             <div class="input-box">
                 <input type="password" th:name="cedula" placeholder="Cedula" required>
                 <i class="fa-solid fa-user"></i>
             </div>
             <button type="submit" class="btn">log in</button>
         </form>
+
 
     </div>
 
