@@ -28,8 +28,8 @@
     <table class="mascotas">
         <thead>
           <tr>
-            <th scope="col">cedula</th>
             <th scope="col">nombre</th>
+            <th scope="col">cedula</th>
             <th scope="col">corre</th>
             <th scope="col">celular</th>
             <th scope="col">Acciones</th>
@@ -37,8 +37,8 @@
         </thead>
         <tbody class="table-group-divider">
           <tr th:each=" Cliente : ${Clientes}">
+            <td> <a th:href="@{/Clientes/find/{id}(id=${Cliente.cedula})}" th:text="${Cliente.nombre}"></a></td>
             <th th:text="${Cliente.cedula}"></th>
-            <td th:text="${Cliente.nombre}"></td>
             <td th:text="${Cliente.corre}"></td>
             <td th:text="${Cliente.celular}"></td>
             <td>

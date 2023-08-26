@@ -39,7 +39,7 @@
         </thead>
         <tbody class="table-group-divider">
           <tr th:each=" Mascota : ${Mascotas}">
-            <th th:text="${Mascota.Nombre}"></th>
+            <th> <a th:href="@{/Mascota/find/{id}(id=${Mascota.ID})}" th:text="${Mascota.Nombre}"></a></th>
             <td th:text="${Mascota.Raza}"></td>
             <td th:text="${Mascota.Edad}"></td>
             <td th:text="${Mascota.Peso}"></td>
