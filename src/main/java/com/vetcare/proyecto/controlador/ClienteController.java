@@ -1,5 +1,7 @@
 package com.vetcare.proyecto.controlador;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,13 +38,13 @@ public class ClienteController {
         else{
             throw new NotFoundException(Integer.parseInt(id));
         }
-
+        
         return "Mostrar_cliente_ID";
     }
 
     @GetMapping("/add")
     public String showCrear(Model model){
-        Cliente cliente = new Cliente(" ", " ", " ", " ");
+        Cliente cliente = new Cliente(" ", " ", " ", " ",new ArrayList<Integer>(null));
 
         model.addAttribute("cliente", cliente);
         return "crear_cliente";
