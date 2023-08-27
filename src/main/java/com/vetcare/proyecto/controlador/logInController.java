@@ -28,7 +28,7 @@ public class logInController {
 
     
     @GetMapping("/login/cliente")
-    public String mostrarPaginaLoginCliente(Model model){
+    public String mostrarPaginaLoginCliente(){
 
         return "LoginCliente";
     }
@@ -43,8 +43,8 @@ public class logInController {
             model.addAttribute("errorMessage", "Invalid login credentials");
             return "LoginCliente"; // Return to the login page with an error message
         }
-        // Perform necessary business logic using cedula
+
         
-        return "redirect:/cliente"; // Redirect to a success page after processing
+        return "redirect:/cliente/" + clienteLogIn.getCedula();
     }
 }

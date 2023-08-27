@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cliente Dashboard</title>
+    <link rel="stylesheet" href="/DashBoardCliente.css">
+</head>
+<body>
+    <h1>Welcome, <span th:text="${cliente.nombre}"></span>!</h1>
+    
+    <div class="separardeltitulo">
+        <h2>Mis Mascotas:</h2>
+        <div class="container">
+
+
+
+            <a class="cardclik" th:each="pet : ${pets}" th:href="@{/Mascota/find/{id}(id=${pet.ID})}">
+                <div class="card" >
+                    <img src="/img/gato.jpg" alt="foto mascotas">
+                    <div class="contenido">
+                        <p th:text="${pet.Nombre}"></p>
+                    </div>
+                </div>
+
+            </a>
+
+
+
+
+        </div>
+    </div>
+ 
+    <!-- You can add more sections or content as needed -->
+</body>
+</html>

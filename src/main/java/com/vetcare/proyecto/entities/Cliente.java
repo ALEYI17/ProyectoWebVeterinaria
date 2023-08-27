@@ -1,17 +1,30 @@
 package com.vetcare.proyecto.entities;
 
+import java.util.ArrayList;
+
 public class Cliente {
     String cedula;
+
     String nombre;
     String corre;
     String celular;
+    ArrayList<Integer> MisMascotas;
+    
+    public Cliente(String cedula, String nombre, String corre, String celular, ArrayList<Integer> misMascotas) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.corre = corre;
+        this.celular = celular;
+        MisMascotas = misMascotas;
+    }
 
-    public Cliente(String cedula, String nombre, String corre, String celular) {
+        public Cliente(String cedula, String nombre, String corre, String celular) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.corre = corre;
         this.celular = celular;
     }
+    
     public String getNombre() {
         return nombre;
     }
@@ -36,5 +49,11 @@ public class Cliente {
     public void setCelular(String celular) {
         this.celular = celular;
     }
-    
+    public ArrayList<Integer> getMisMascotas() {
+        return MisMascotas;
+    }
+
+    public void setMisMascotas(ArrayList<Integer> misMascotas) {
+        MisMascotas = misMascotas;
+    }
 }
