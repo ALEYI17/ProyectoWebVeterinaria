@@ -1,5 +1,6 @@
 package com.vetcare.proyecto.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import com.vetcare.proyecto.entities.Mascota;
@@ -14,4 +15,6 @@ public interface MascotaServicio {
     public void removeMascota(int id);
 
     public void updateMascota(Mascota mascota);
+
+    public ArrayList<Mascota> GetVariousById(ArrayList<Integer> ids);
 }

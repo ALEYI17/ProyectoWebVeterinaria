@@ -1,5 +1,6 @@
 package com.vetcare.proyecto.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,25 @@ public class MascotaServicioImpl implements MascotaServicio {
         mascotaRepository.updateById(mascota);
         
     }
+
+    @Override
+    public ArrayList<Mascota> GetVariousById(ArrayList<Integer> ids) {
+        ArrayList<Mascota> mascotas = new ArrayList<>();
+
+
+        for(Integer id : ids){
+
+            Mascota mascota = GetById(id);
+            if (mascota != null) {
+                mascotas.add(mascota);
+            }
+
+        }
+
+        return mascotas;
+    }
+
+
 
     
 }
