@@ -12,6 +12,7 @@ body{
     background: url(img/gatologin.jpg)no-repeat;
     background-size: cover;
     background-position: center;
+    font-family: 'Oswald', sans-serif;
 }
 .wrapper{
     width: 420px;
