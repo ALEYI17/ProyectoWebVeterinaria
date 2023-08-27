@@ -17,6 +17,13 @@ public class Cliente {
         this.celular = celular;
         MisMascotas = misMascotas;
     }
+
+        public Cliente(String cedula, String nombre, String corre, String celular) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.corre = corre;
+        this.celular = celular;
+    }
     
     public String getNombre() {
         return nombre;
