@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
+}
+body{
+    display:flex ;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(-225deg, rgba(203, 186, 204, 0.698) 0%, #257fb3b2 100% ) ;
+}
+
+.titulo{
+    display: block;
+    font-size: 7em;
+    padding: 100px;
+}
+.container{
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    cursor: pointer;
+    padding: 25px 30px;
+    border-radius: 5px;
+}
+.container .title{
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+}
+.container .title::before{
+    content: ' ';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background: linear-gradient(-225deg, rgba(203, 186, 204, 0.698) 0%, #257fb3b2 100% );
+}
+
+.container   .user-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+
+.user-details .input-box{
+    margin-bottom: 15px;
+    width: calc(100%/2 - 20px);
+}
+
+.user-details .input-box p{
+    display: inline-block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+@media(max-width: 584px){
+    .container{
+        max-width: 100%;
+    }
+    form .user-details.input-box{
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    .container form .user-details{
+        max-width: 300px;
+        overflow-y: scroll;
+    }
+    .user-details::-webkit-scrollbar{
+        width: 0;
+    }
+}
