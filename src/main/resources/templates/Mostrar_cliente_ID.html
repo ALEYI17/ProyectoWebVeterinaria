@@ -4,15 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" href="/Table_CRUD.css">
+    <link rel="stylesheet" href="/find_id.css">
     <script defer src="/script.js"></script>
-    <title>Informacion mascota</title>
+    <title>Informacion cliente</title>
 </head>
 <body class="fondo">
+
+  
+  <h1 class="titulo">VetCare</h1>
+
+  <div class="container">
+    <div class="title"><h1>Informacion del cliente</h1></div>
+    <div class="user-details">
+      <div class="input-box">
+        <h3>Cedula:</h3>
+        <p th:text="${cliente.cedula}" ></p>
+      </div>
+      <div class="input-box">
+        <h3>Nombre:</h3>
+        <p th:text="${cliente.nombre}" ></p>
+      </div>
+      <div class="input-box">
+        <h3>Correo:</h3>
+        <p th:text="${cliente.corre}" ></p>
+      </div>
+      <div class="input-box">
+        <h3>Celular:</h3>
+        <p th:text="${cliente.celular}" ></p>
+      </div>
+    </div>
+  </div>
     
-    <h1>Informacion del cliente</h1>
     
-    <div class="tabla-center">
+    
+    <!-- <div class="tabla-center">
       <table class="mascotas">
         <thead>
           <tr>
@@ -33,7 +58,7 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    </div> -->
     
 
     
