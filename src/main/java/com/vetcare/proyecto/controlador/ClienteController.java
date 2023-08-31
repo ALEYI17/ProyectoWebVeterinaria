@@ -44,7 +44,7 @@ public class ClienteController {
 
     @GetMapping("/add")
     public String showCrear(Model model){
-        Cliente cliente = new Cliente(" ", " ", " ", " ",new ArrayList<Integer>(null));
+        Cliente cliente = new Cliente(" ", " ", " ", " ",new ArrayList<Integer>(0));
 
         model.addAttribute("cliente", cliente);
         return "crear_cliente";
