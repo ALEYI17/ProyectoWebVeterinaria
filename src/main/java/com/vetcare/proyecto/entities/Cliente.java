@@ -1,6 +1,7 @@
 package com.vetcare.proyecto.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,8 +17,9 @@ public class Cliente {
     @Id
     @GeneratedValue
     private Long id;
+
     @OneToMany(mappedBy = "cliente")
-    ArrayList<Mascota> MisMascotas = new ArrayList<>();
+    List<Mascota> MisMascotas = new ArrayList<>();
     
     public Cliente(String cedula, String nombre, String corre, String celular) {
         this.cedula = cedula;
@@ -53,11 +55,11 @@ public class Cliente {
     public void setCelular(String celular) {
         this.celular = celular;
     }
-    public ArrayList<Mascota> getMisMascotas() {
+    public List<Mascota> getMisMascotas() {
         return MisMascotas;
     }
 
-    public void setMisMascotas(ArrayList<Mascota> misMascotas) {
+    public void setMisMascotas(List<Mascota> misMascotas) {
         MisMascotas = misMascotas;
     }
 

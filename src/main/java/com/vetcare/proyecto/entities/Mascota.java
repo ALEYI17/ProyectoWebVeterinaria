@@ -16,11 +16,18 @@ public class Mascota {
     @Id
     @GeneratedValue
     private Long ID;
+    
     @ManyToOne
     private Cliente cliente;
 
     
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
     public Mascota(String nombre, String raza, Integer edad, Double peso, String enfermedad) {
         Nombre = nombre;
         Raza = raza;

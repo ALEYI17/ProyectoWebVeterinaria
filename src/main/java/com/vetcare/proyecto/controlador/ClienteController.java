@@ -1,6 +1,6 @@
 package com.vetcare.proyecto.controlador;
 
-import java.util.ArrayList;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,14 +29,14 @@ public class ClienteController {
     }
 
     @GetMapping("/find/{id}")
-    public String MostrarClienteXId(Model model , @PathVariable("id") Long id){
-        Cliente cliente = clienteServicio.GetById(id);
+    public String MostrarClienteXId(Model model , @PathVariable("id") String id){
+        Cliente cliente = clienteServicio.getByCedula(id);
         
         if(cliente != null){
             model.addAttribute("cliente", cliente);
         }
         else{
-            throw new NotFoundException(id);
+            throw new NotFoundException(Long.parseLong(id));
         }
         
         return "Mostrar_cliente_ID";

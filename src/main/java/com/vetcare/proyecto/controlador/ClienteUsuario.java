@@ -1,6 +1,7 @@
 package com.vetcare.proyecto.controlador;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,9 +25,9 @@ public class ClienteUsuario {
     MascotaServicio  mascotaServicio;
 
     @GetMapping("/{id}")
-    public String mostrarPaginaCliente(@PathVariable("id") Long id,Model model){
-        Cliente cliente = clienteServicio.GetById(id);
-        ArrayList<Mascota> pets = mascotaServicio.GetVariousById(cliente.getMisMascotas());
+    public String mostrarPaginaCliente(@PathVariable("id") String id,Model model){
+        Cliente cliente = clienteServicio.getByCedula(id);
+        List<Mascota> pets = cliente.getMisMascotas();
         model.addAttribute("cliente", cliente);
         model.addAttribute("pets", pets);
         return "Mostrar_DashBoard_Cliente";

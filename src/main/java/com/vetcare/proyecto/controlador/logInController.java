@@ -39,7 +39,9 @@ public class logInController {
         String cedula = cliente.getCedula();
         log.info(cedula);
         Cliente clienteLogIn = clienteServicio.getByCedula(cedula);
+    
         if(clienteLogIn == null){
+            
             model.addAttribute("errorMessage", "Invalid login credentials");
             return "LoginCliente"; // Return to the login page with an error message
         }
