@@ -32,7 +32,7 @@ body{
     background-position: center;
     background-attachment: fixed;
     position: relative;
-    overflow: hidden;
+    
 }
 table.mascotas{
     border-collapse: collapse;
