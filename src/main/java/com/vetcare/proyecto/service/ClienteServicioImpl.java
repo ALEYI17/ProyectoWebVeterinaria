@@ -12,31 +12,38 @@ import com.vetcare.proyecto.repository.ClienteRepositorio;
 public class ClienteServicioImpl implements ClienteServicio {
 
     @Autowired
-    ClienteRepositorio clienteRespositorio;
+    ClienteRepositorio clienteRepositorio;
 
     @Override
-    public Cliente GetById(String id) {
-        return clienteRespositorio.SearchById(id);
+    public Cliente GetById(Long id) {
+        return clienteRepositorio.findById(id).get();
     }
 
     @Override
     public Collection<Cliente> GetAll() {
-        return clienteRespositorio.findAll();
+        return clienteRepositorio.findAll();
     }
 
     @Override
     public void addCliente(Cliente cliente) {
-        clienteRespositorio.add(cliente);
+        clienteRepositorio.save(cliente);
     }
 
     @Override
-    public void removerCliente(String id) {
-       clienteRespositorio.removeById(id);
+    public void removerCliente(Long id) {
+       clienteRepositorio.deleteById(id);
     }
 
     @Override
     public void updateCliente(Cliente cliente) {
-        clienteRespositorio.updateById(cliente);
+        clienteRepositorio.save(cliente);
     }
+
+    @Override
+    public Cliente getByCedula(String cedula) {
+        return clienteRepositorio.findByCedula(cedula);
+    }
+
+    
     
 }

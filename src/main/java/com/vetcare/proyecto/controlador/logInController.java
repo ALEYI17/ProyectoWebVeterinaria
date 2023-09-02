@@ -38,7 +38,7 @@ public class logInController {
         // Now you can access the cedula attribute of the cliente object
         String cedula = cliente.getCedula();
         log.info(cedula);
-        Cliente clienteLogIn = clienteServicio.GetById(cedula);
+        Cliente clienteLogIn = clienteServicio.getByCedula(cedula);
         if(clienteLogIn == null){
             model.addAttribute("errorMessage", "Invalid login credentials");
             return "LoginCliente"; // Return to the login page with an error message

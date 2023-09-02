@@ -29,14 +29,14 @@ public class ClienteController {
     }
 
     @GetMapping("/find/{id}")
-    public String MostrarClienteXId(Model model , @PathVariable("id") String id){
+    public String MostrarClienteXId(Model model , @PathVariable("id") Long id){
         Cliente cliente = clienteServicio.GetById(id);
         
         if(cliente != null){
             model.addAttribute("cliente", cliente);
         }
         else{
-            throw new NotFoundException(Integer.parseInt(id));
+            throw new NotFoundException(id);
         }
         
         return "Mostrar_cliente_ID";
@@ -44,7 +44,7 @@ public class ClienteController {
 
     @GetMapping("/add")
     public String showCrear(Model model){
-        Cliente cliente = new Cliente(" ", " ", " ", " ",new ArrayList<Integer>(null));
+        Cliente cliente = new Cliente(" ", " ", " ", " ");
 
         model.addAttribute("cliente", cliente);
         return "crear_cliente";
@@ -57,13 +57,13 @@ public class ClienteController {
     }
 
     @GetMapping("/delete/{id}")
-    public String eliminarEstudiante(@PathVariable("id") String id , Model model){
+    public String eliminarEstudiante(@PathVariable("id") Long id , Model model){
         clienteServicio.removerCliente(id);
         return "redirect:/Clientes/todos";
     }
 
     @GetMapping("/update/{id}")
-    public String actualizarMascota(@PathVariable("id")String id , Model model){
+    public String actualizarMascota(@PathVariable("id")Long id , Model model){
         Cliente cliente = clienteServicio.GetById(id);
         model.addAttribute("cliente",cliente);
         return "actualizar_cliente";

@@ -15,8 +15,8 @@ public class MascotaServicioImpl implements MascotaServicio {
     MascotaRepository mascotaRepository;
 
     @Override
-    public Mascota GetById(int id) {
-        return mascotaRepository.SeracrhById(id);
+    public Mascota GetById(Long id) {
+        return mascotaRepository.findById(id).get();
     }
 
     @Override
@@ -26,26 +26,26 @@ public class MascotaServicioImpl implements MascotaServicio {
 
     @Override
     public void addMascota(Mascota mascota) {
-        mascotaRepository.add(mascota);
+        mascotaRepository.save(mascota);
     }
 
     @Override
-    public void removeMascota(int id) {
-        mascotaRepository.removeById(id);
+    public void removeMascota(Long id) {
+        mascotaRepository.deleteById(id);
     }
 
     @Override
     public void updateMascota(Mascota mascota) {
-        mascotaRepository.updateById(mascota);
+        mascotaRepository.save(mascota);
         
     }
 
     @Override
-    public ArrayList<Mascota> GetVariousById(ArrayList<Integer> ids) {
+    public ArrayList<Mascota> GetVariousById(ArrayList<Long> ids) {
         ArrayList<Mascota> mascotas = new ArrayList<>();
 
 
-        for(Integer id : ids){
+        for(Long id : ids){
 
             Mascota mascota = GetById(id);
             if (mascota != null) {

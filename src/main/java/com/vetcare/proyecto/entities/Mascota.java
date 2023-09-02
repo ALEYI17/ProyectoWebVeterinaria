@@ -1,23 +1,34 @@
 package com.vetcare.proyecto.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Mascota {
     private String Nombre;
     private String Raza;
     private Integer Edad;
     private Double Peso;
     private String Enfermedad;
-    private Integer ID;
+
+    @Id
+    @GeneratedValue
+    private Long ID;
+    @ManyToOne
+    private Cliente cliente;
 
     
 
-    public Mascota(String nombre, String raza, Integer edad, Double peso, String enfermedad, Integer ID) {
+    public Mascota(String nombre, String raza, Integer edad, Double peso, String enfermedad) {
         Nombre = nombre;
         Raza = raza;
         Edad = edad;
         Peso = peso;
         Enfermedad = enfermedad;
-        this.ID = ID;
     }
+    public Mascota (){}
     public String getNombre() {
         return Nombre;
     }
@@ -48,10 +59,10 @@ public class Mascota {
     public void setEnfermedad(String enfermedad) {
         Enfermedad = enfermedad;
     }
-    public Integer getID() {
+    public Long getID() {
         return ID;
     }
-    public void setID(Integer iD) {
+    public void setID(Long iD) {
         ID = iD;
     }
     

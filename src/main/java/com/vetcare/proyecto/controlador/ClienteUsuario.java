@@ -24,7 +24,7 @@ public class ClienteUsuario {
     MascotaServicio  mascotaServicio;
 
     @GetMapping("/{id}")
-    public String mostrarPaginaCliente(@PathVariable("id") String id,Model model){
+    public String mostrarPaginaCliente(@PathVariable("id") Long id,Model model){
         Cliente cliente = clienteServicio.GetById(id);
         ArrayList<Mascota> pets = mascotaServicio.GetVariousById(cliente.getMisMascotas());
         model.addAttribute("cliente", cliente);

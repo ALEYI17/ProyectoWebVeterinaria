@@ -28,7 +28,7 @@ public class MascotaController {
     }
 
     @GetMapping("/find")
-    public String MostrarMascotaXId(Model model, @RequestParam("id") int id){
+    public String MostrarMascotaXId(Model model, @RequestParam("id") Long id){
 
         Mascota mascota = mascotaServicio.GetById(id);
         if(mascota != null){
@@ -42,7 +42,7 @@ public class MascotaController {
     }
 
     @GetMapping("find/{id}")
-    public String mostrarInfoMascota2(Model model,@PathVariable("id") int id){
+    public String mostrarInfoMascota2(Model model,@PathVariable("id") Long id){
         Mascota mascota = mascotaServicio.GetById(id);
         if(mascota != null){
             model.addAttribute("Mascota", mascota);
@@ -56,7 +56,7 @@ public class MascotaController {
     
     @GetMapping("/add")
     public String Showcrear(Model model){
-        Mascota mascota = new Mascota(" ", " ", 0, 0.0, " ", 0);
+        Mascota mascota = new Mascota(" ", " ", 0, 0.0, " ");
         model.addAttribute("mascota", mascota);
         return "crear_Mascota";
     }
@@ -68,13 +68,13 @@ public class MascotaController {
     }
 
     @GetMapping("/delete/{id}")
-    public String eliminarEstudiante(@PathVariable("id") int id , Model model){
+    public String eliminarEstudiante(@PathVariable("id") Long id , Model model){
         mascotaServicio.removeMascota(id);
         return "redirect:/Mascota/todas";
     }
 
     @GetMapping("/update/{id}")
-    public String actualizarMascota(@PathVariable("id")int id , Model model){
+    public String actualizarMascota(@PathVariable("id")Long id , Model model){
         Mascota mascota = mascotaServicio.GetById(id);
         model.addAttribute("mascota",mascota);
         return "actualizar_mascota";
