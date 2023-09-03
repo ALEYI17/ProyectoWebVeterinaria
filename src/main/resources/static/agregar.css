@@ -10,20 +10,26 @@ body{
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(-225deg, rgba(203, 186, 204, 0.698) 0%, #257fb3b2 100% );
+    background: linear-gradient(180deg, #05324780 0%, rgba(5, 50, 71, 0.5) 100%), url(img/6213932.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .container{
     max-width: 700px;
     width: 100%;
-    background: #fff;
+    background: #ffffff00;
     padding: 25px 30px;
     border-radius: 5px;
+    border: solid 2px;
 }
 .container .title{
     font-size: 25px;
     font-weight: 500;
     position: relative;
+    color: #000;
 }
 .container .title::before{
     content: ' ';
@@ -51,6 +57,7 @@ form .user-details .input-box{
     display: block;
     font-weight: 500;
     margin-bottom: 5px;
+    color: #fff;
 }
 
 .user-details .input-box input{
@@ -63,10 +70,20 @@ form .user-details .input-box{
     font-size: 16px;
     border-bottom-width:2px ;
     transition: all 0.3 ease;
+    background-color: #fff;
+    color: #000;
+    
+}
+
+.user-details .input-box input::placeholder{
+    color: #fff;
+}
+.user-details .input-box input::-ms-fill{
+    background: #000;
 }
 .user-details .input-box input::focus,
 .user-details .input-box input::valid{
-    border-color: aqua;
+    border-color: #fff;
 }
 
 form .button{
