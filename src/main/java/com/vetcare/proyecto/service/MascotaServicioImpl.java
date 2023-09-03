@@ -2,6 +2,7 @@ package com.vetcare.proyecto.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,8 @@ public class MascotaServicioImpl implements MascotaServicio {
 
     @Override
     public Mascota GetById(Long id) {
-        return mascotaRepository.findById(id).get();
+        Optional<Mascota> optionalMascota = mascotaRepository.findById(id);
+        return optionalMascota.orElse(null);
     }
 
     @Override

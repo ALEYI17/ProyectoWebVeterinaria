@@ -1,5 +1,7 @@
 package com.vetcare.proyecto.controlador;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,6 +46,7 @@ public class MascotaController {
     @GetMapping("find/{id}")
     public String mostrarInfoMascota2(Model model,@PathVariable("id") Long id){
         Mascota mascota = mascotaServicio.GetById(id);
+        
         if(mascota != null){
             model.addAttribute("Mascota", mascota);
         }
