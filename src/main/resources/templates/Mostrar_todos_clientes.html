@@ -26,7 +26,7 @@
         </thead>
         <tbody class="table-group-divider">
           <tr th:each=" Cliente : ${Clientes}">
-            <td> <a th:href="@{/Clientes/find/{id}(id=${Cliente.cedula})}" th:text="${Cliente.nombre}"></a></td>
+            <th> <a th:href="@{/Clientes/find/{id}(id=${Cliente.cedula})}" th:text="${Cliente.nombre}"></a></th>
             <th th:text="${Cliente.cedula}"></th>
             <td th:text="${Cliente.corre}"></td>
             <td th:text="${Cliente.celular}"></td>
