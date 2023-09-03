@@ -11,7 +11,9 @@ public class Mascota {
     private String Raza;
     private Integer Edad;
     private Double Peso;
+
     private String Enfermedad;
+    private String Foto;
 
     @Id
     @GeneratedValue
@@ -28,13 +30,15 @@ public class Mascota {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    public Mascota(String nombre, String raza, Integer edad, Double peso, String enfermedad) {
+    public Mascota(String nombre, String raza, Integer edad, Double peso, String enfermedad, String foto) {
         Nombre = nombre;
         Raza = raza;
         Edad = edad;
         Peso = peso;
         Enfermedad = enfermedad;
+        Foto = foto;
     }
+
     public Mascota (){}
     public String getNombre() {
         return Nombre;
@@ -71,6 +75,12 @@ public class Mascota {
     }
     public void setID(Long iD) {
         ID = iD;
+    }
+        public String getFoto() {
+        return Foto;
+    }
+    public void setFoto(String foto) {
+        Foto = foto;
     }
     
     

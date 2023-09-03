@@ -1,10 +1,9 @@
 package com.vetcare.proyecto.service;
 
-import java.util.ArrayList;
+
 import java.util.Collection;
 
 import com.vetcare.proyecto.entities.Cliente;
-import com.vetcare.proyecto.entities.Mascota;
 
 
 

@@ -17,7 +17,7 @@
 
             <a class="cardclik" th:each="pet : ${pets}" th:href="@{/Mascota/find/{id}(id=${pet.ID})}">
                 <div class="card" >
-                    <img src="/img/gato.jpg" alt="foto mascotas">
+                    <img th:src="${pet.Foto}" alt="foto mascotas">
                     <div class="contenido">
                         <p th:text="${pet.Nombre}"></p>
                     </div>
