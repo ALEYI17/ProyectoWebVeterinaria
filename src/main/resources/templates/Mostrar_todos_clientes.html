@@ -13,6 +13,7 @@
     <h1 class="Titulo">Todos los clientes</h1>
 
     <div class="tabla-center">
+      <a class="btn btn-success agregar" th:href="@{/Clientes/add}"><i class="fa-solid fa-plus"></i></a>
       <table class="mascotas">
         <thead>
           <tr>
@@ -30,13 +31,13 @@
             <td th:text="${Cliente.corre}"></td>
             <td th:text="${Cliente.celular}"></td>
             <td>
-                <a th:href="@{/Clientes/update/{id}(id=${Cliente.cedula})}"><i class="far fa-edit" style="color: #fc981c;"></i></a>
-                <a th:href="@{/Clientes/delete/{id}(id=${Cliente.cedula})}"><i class="far fa-trash-alt" style="color: #ff5a66;"></i></a>
+                <a class="modificar-button" th:href="@{/Clientes/update/{id}(id=${Cliente.cedula})}"><i class="far fa-edit" ></i></a>
+                <a class="delete-button" th:href="@{/Clientes/delete/{id}(id=${Cliente.cedula})}"><i class="far fa-trash-alt"></i></a>
               </td>
           </tr>
         </tbody>
       </table>
-      <a class="btn btn-success agregar" th:href="@{/Clientes/add}">Agregar</a>
+      
     </div>
     
     
