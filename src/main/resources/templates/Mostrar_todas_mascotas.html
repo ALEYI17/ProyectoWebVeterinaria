@@ -11,8 +11,26 @@
     
 </head>
 <body class="fondo">
+
+  <header class="Navbar hidden">
+    <div class="Logo">
+        <img src="/img/GatoDoctor.jpeg" alt="un lindo gato">
+        <b>VetCare</b>
+    </div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="/Mascota/todas" class="pagination-pointed-button">Mascotas</a></li>
+            <li><a href="/Clientes/todos">Clientes</a></li>
+            
+            
+        </ul>
+    </nav>
+    
+</header>
   
-    <h1 class="Titulo">Todas las mascotas</h1>
+    <h1 class="Titulo" id="Top">Todas las mascotas</h1>
+    <a href="#Top" class="Go-top"> <i class="fa-solid fa-chevron-up"></i></a>
+    <a href="#down" class="Go-down"> <i class="fa-solid fa-chevron-down"></i></a>
     
     <div class="tabla-center">
       <a class="btn btn-success agregar" th:href="@{/Mascota/add}"><i class="fa-solid fa-plus"></i></a>
@@ -47,6 +65,7 @@
       
 
     </div>
+    <div id="down"></div>
     
     
     
