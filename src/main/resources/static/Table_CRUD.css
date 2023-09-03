@@ -12,7 +12,10 @@ body{
     min-height: 100vh;
     overflow-x: hidden;
 }
-
+.Titulo{
+    font-size: 5em;
+    color: aliceblue;
+}
 
 ::-webkit-scrollbar{
     width: 8px;
@@ -25,7 +28,7 @@ body{
     background: linear-gradient(rgba(0,212,255,1),#053247);
 }
 .fondo{
-    background-image: linear-gradient(-225deg, rgba(203, 186, 204, 0.698) 0%, #257fb3b2 100% );
+    background-image:  url(img/montannas3.png);
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -51,21 +54,30 @@ thead tr{
 thead th{
     color: white;
     font-size: 1.15em;
+    
 }
-tbody tr:nth-child(even){
-    background-color: #074a69;
-    color: #bbbbbb;
+tbody tr:nth-child(even){   
+    background-color: #A3BAC3;
+    color: #fff;
+    
+}
+
+th a{
+    color: #000000;
+}
+
+tbody tr:nth-child(odd){   
+    background-color: #335d818c;
+    color: #fff;
     
 }
 table.mascotas th, table td{
     font-size: 1em;
     padding: 1em;
     text-align: center;
+    
 }
-thead th{
-    color: white;
-    font-size: 1.15em;
-}
+
 @media (max-width:440px){
     table.mascotas{
         border: 3px solid #053247;
@@ -109,4 +121,49 @@ h1{
 
 .agregar{
     font-size: 2em;
+    margin-right: 10%; /* Set margin to 20% of the page width */
+    align-self: flex-end;
+    margin-bottom: 10px;
+}
+
+
+.modificar-button,
+.delete-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #000000;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Add a smooth transition for background color change */
+}
+
+.modificar-button i {
+    color: #fc981c;
+    transition: color 0.3s; /* Add a smooth transition for icon color change */
+}
+
+.modificar-button:hover {
+    background-color: #fc981c; /* Change the button background color on hover */
+}
+
+.modificar-button:hover i {
+    color: #000000; /* Change the icon color on hover */
+}
+
+
+
+.delete-button i {
+    color: #ff5a66;
+    transition: color 0.3s; /* Add a smooth transition for icon color change */
+}
+
+.delete-button:hover {
+    background-color: #ff5a66; /* Change the button background color on hover */
+}
+
+.delete-button:hover i {
+    color: #000000; /* Change the icon color on hover */
 }
