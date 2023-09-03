@@ -108,6 +108,10 @@ form .button button:hover{
     background: linear-gradient(225deg, rgba(203, 186, 204, 0.698) 0%, #257fb3b2 100% );
     cursor: pointer;
 }
+.error{
+    color: red;
+    display: none;
+}
 @media(max-width: 584px){
     .container{
         max-width: 100%;
