@@ -9,34 +9,42 @@
     <title>Informacion mascota</title>
 </head>
 <body class="fondo">
-
-  <h1 class="titulo">VetCare</h1>
-
   <div class="container">
+    
     <div class="title"><h1>Informacion mascota</h1></div>
+    
     <div class="user-details">
-      <div class="input-box">
-        <h3>Nombre:</h3>
-        <p th:text="${Mascota.Nombre}" ></p>
+      <div class="image-box">
+        <img th:src="${Mascota.Foto}" alt="Foto de la mascota">
       </div>
-      <div class="input-box">
-        <h3>Raza:</h3>
-        <p th:text="${Mascota.Raza}" ></p>
-      </div>
-      <div class="input-box">
-        <h3>Edad:</h3>
-        <p th:text="${Mascota.Edad}" ></p>
-      </div>
-      <div class="input-box">
-        <h3>Peso:</h3>
-        <p th:text="${Mascota.Peso}" ></p>
-      </div>
-      <div class="input-box">
-        <h3>Enfermedad:</h3>
-        <p th:text="${Mascota.Enfermedad}" ></p>
-      </div>
+      
+        <div class="input-box">
+          <h2>Nombre:</h2>
+          <p th:text="${Mascota.Nombre}"></p>
+        </div>
+        <div class="input-box">
+          <h2>Raza:</h2>
+          <p th:text="${Mascota.Raza}"></p>
+        </div>
+        <div class="input-box">
+          <h2>Edad:</h2>
+          <p th:text="${Mascota.Edad}"></p>
+        </div>
+        <div class="input-box">
+          <h2>Peso:</h2>
+          <p th:text="${Mascota.Peso}"></p>
+        </div>
+        <div class="input-box">
+          <h2>Enfermedad:</h2>
+          <p th:text="${Mascota.Enfermedad}"></p>
+        </div>
+
     </div>
+    
+    
   </div>
+
+
 
     <!-- <div class="tabla-center">
       <div style="width: 80%;"></div>
