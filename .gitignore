@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### base de datos ###
+
+mydatabase.mv.db
