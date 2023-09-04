@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/Table_CRUD.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script defer src="/script.js"></script>
+    <script defer src="/scriptSearchbar.js"></script>
 </head>
 <body class="fondo">
 
@@ -16,23 +16,33 @@
         <img src="/img/GatoDoctor.jpeg" alt="un lindo gato">
         <b>VetCare</b>
     </div>
-    <nav>
+    <div  class="botonesnav">
         <ul class="nav-links">
             <li><a href="/Mascota/todas" >Mascotas</a></li>
             <li><a href="/Clientes/todos" class="pagination-pointed-button">Clientes</a></li>
             
             
         </ul>
-    </nav>
+    </div>
     
 </header>
 
     <h1 class="Titulo">Todos los clientes</h1>
+
+
     <a href="#Top" class="Go-top"> <i class="fa-solid fa-chevron-up"></i></a>
     <a href="#down" class="Go-down"> <i class="fa-solid fa-chevron-down"></i></a>
+    
     <div class="tabla-center">
-      <a class="btn btn-success agregar" th:href="@{/Clientes/add}"><i class="fa-solid fa-plus"></i></a>
-      <table class="mascotas">
+
+      <div class="annadidos">
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Buscar clientes">
+        </div>
+        <a class="btn btn-success agregar" th:href="@{/Clientes/add}"><i class="fa-solid fa-plus"></i></a>
+      </div>
+
+      <table class="mascotas" id="clientTable">
         <thead>
           <tr>
             <th scope="col">nombre</th>
@@ -60,6 +70,6 @@
     <div id="down"></div>
     
     
-    
+
 </body>
 </html>
