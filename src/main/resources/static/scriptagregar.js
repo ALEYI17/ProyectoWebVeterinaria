@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const errorRaza = document.getElementById("errorRaza");
     const errorEdad = document.getElementById("errorEdad");
     const errorPeso = document.getElementById("errorPeso");
-
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     form.addEventListener("submit", function (event) {
         let isValid = true;
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const carreraValue = parseFloat(carreraInput.value);
         const semestreValue = parseFloat(semestreInput.value);
 
-        if (isNaN(carreraValue) || carreraValue === 0) {
+        if (isNaN(carreraValue) || carreraValue === 0 ) {
             isValid = false;
             // alert("Edad must be a non-zero number.");
             errorEdad.style.display = 'block'
