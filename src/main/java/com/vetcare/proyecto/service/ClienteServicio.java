@@ -21,4 +21,5 @@ public interface ClienteServicio {
 
     public Cliente getByCedula(String cedula);
 
+    public void removerClienteByCedula(String Cedula);
 }

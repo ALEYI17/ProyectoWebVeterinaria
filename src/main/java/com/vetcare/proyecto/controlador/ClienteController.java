@@ -57,8 +57,9 @@ public class ClienteController {
     }
 
     @GetMapping("/delete/{id}")
-    public String eliminarEstudiante(@PathVariable("id") Long id , Model model){
-        clienteServicio.removerCliente(id);
+    public String eliminarEstudiante(@PathVariable("id") String id , Model model){
+        
+        clienteServicio.removerClienteByCedula(id);
         return "redirect:/Clientes/todos";
     }
 

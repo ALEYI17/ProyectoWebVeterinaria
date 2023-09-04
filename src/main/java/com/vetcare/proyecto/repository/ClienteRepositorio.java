@@ -14,4 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface ClienteRepositorio extends JpaRepository<Cliente,Long>{
     public Cliente findByCedula(String cedula);
+    public void deleteByCedula(String Cedula);
 }

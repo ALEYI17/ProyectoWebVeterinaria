@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.vetcare.proyecto.entities.Cliente;
 import com.vetcare.proyecto.repository.ClienteRepositorio;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ClienteServicioImpl implements ClienteServicio {
 
@@ -42,6 +44,14 @@ public class ClienteServicioImpl implements ClienteServicio {
     @Override
     public Cliente getByCedula(String cedula) {
         return clienteRepositorio.findByCedula(cedula);
+    }
+
+    @Override
+    @Transactional
+    public void removerClienteByCedula(String Cedula){
+
+        clienteRepositorio.deleteByCedula(Cedula);
+
     }
 
     
