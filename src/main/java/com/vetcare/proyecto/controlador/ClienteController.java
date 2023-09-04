@@ -63,8 +63,8 @@ public class ClienteController {
     }
 
     @GetMapping("/update/{id}")
-    public String actualizarMascota(@PathVariable("id")Long id , Model model){
-        Cliente cliente = clienteServicio.GetById(id);
+    public String actualizarMascota(@PathVariable("id")String id , Model model){
+        Cliente cliente = clienteServicio.getByCedula(id);
         model.addAttribute("cliente",cliente);
         return "actualizar_cliente";
     }
