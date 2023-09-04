@@ -121,9 +121,7 @@ h1{
 
 .agregar{
     font-size: 2em;
-    margin-right: 10%; /* Set margin to 20% of the page width */
-    align-self: flex-end;
-    margin-bottom: 10px;
+
 }
 
 
@@ -267,4 +265,43 @@ h1{
     text-decoration: none;
     transition: all 0.2s linear;
     
+}
+
+.annadidos{
+    display: flex;
+    margin-right: 10%; /* Set margin to 20% of the page width */
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+}
+
+
+.search-bar {
+    margin: 20px 0;
+    text-align: center;
+  }
+  
+  #searchInput {
+    padding: 10px;
+    width: 300px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  #searchInput::placeholder {
+    color: #999;
+  }
+  
+  #searchInput:focus {
+    border-color: #007bff;
+  }
+
+.botonesnav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
