@@ -59,27 +59,28 @@ body{
     margin-bottom: 20px;
     width: calc(100%/2 - 20px);
 }
-
 .user-details {
     display: flex;
     text-align: center;
     margin: 20px 0 12px 0;
   }
-  
-  .user-details .image-box {
-     /* Move the image-box to the top */
-    text-align: center; /* Center the image horizontally */
-  }
-  
-  .container img {
-    max-width: 70%; /* Adjust the image size as needed */
-    height: auto;
+.container .image-box {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    height: 378px; /* Set a fixed height for the image box */
+}
+
+.container .image-box img {
+    max-width: 100%; /* Ensure the image fits within the container */
+    max-height: 100%; /* Ensure the image fits within the container */
     object-fit: cover;
     border-radius: 30px; /* Add border radius to the top corners */
-    padding-bottom: 10px;
-  }
+}
 
-
+.image-box {
+    align-self: center;
+}
 .user-details .input-box p{
     display: inline-block;
     font-weight: 500;

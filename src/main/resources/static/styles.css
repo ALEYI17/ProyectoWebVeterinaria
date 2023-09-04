@@ -278,7 +278,9 @@ body{
     z-index: -1;
 }
 .cards .card:hover.card::before{
-    transform: rotate(10deg)
+    transform: rotate(10deg);
+    transition: transform 0.8s ease;
+    
 }
 .cards .card i{
     font-size: 2.5rem;
@@ -442,7 +444,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(90deg,rgba(255,255,255,0)0%,#fff 100%);
+    background: #00d4ff;
     cursor: pointer;
     z-index: 9;
 }
