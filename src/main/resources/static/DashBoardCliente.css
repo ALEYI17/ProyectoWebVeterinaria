@@ -9,11 +9,13 @@ body{
     font-family: 'Oswald', sans-serif;
     min-height: 100vh;
     width: 100%;
-    background-image: linear-gradient(-225deg, rgba(203, 186, 204, 0.698) 0%, #257fb3b2 100% );
+    background-image: linear-gradient(180deg, rgba(5, 50, 71, 0.5) 0%, rgba(5, 50, 71, 0.5) 100%),url(img/montanas1.png);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-size: cover;
+    background-position: center;
 }
 
 .card {
@@ -65,4 +67,12 @@ body{
 }
 .cardclik{
     text-decoration: none;
+}
+
+
+.Titulo{
+    font-size: 3em;
+}
+.mismascotas{
+    font-size: 2em;
 }
