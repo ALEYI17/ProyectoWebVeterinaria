@@ -1,6 +1,5 @@
 package com.vetcare.proyecto.controlador;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +23,14 @@ public class ClienteUsuario {
     @Autowired
     MascotaServicio  mascotaServicio;
 
+    // Mostrar la página de un cliente y sus mascotas
+    //http://localhost:8090/cliente/cedula
     @GetMapping("/{id}")
-    public String mostrarPaginaCliente(@PathVariable("id") String id,Model model){
+    public String mostrarPaginaCliente(@PathVariable("id") String id, Model model) {
         Cliente cliente = clienteServicio.getByCedula(id);
         List<Mascota> pets = cliente.getMisMascotas();
         model.addAttribute("cliente", cliente);
         model.addAttribute("pets", pets);
         return "Clientes/Mostrar_DashBoard_Cliente";
     }
-    
 }
