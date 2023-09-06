@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 
 import com.vetcare.proyecto.repository.ClienteRepositorio;
 import com.vetcare.proyecto.repository.MascotaRepository;
+import com.vetcare.proyecto.repository.VeterinarioRepositorio;
 
 import jakarta.transaction.Transactional;
 
@@ -24,9 +25,14 @@ public class databaseInit implements ApplicationRunner{
     @Autowired
     MascotaRepository mascotaRepository;
 
+    @Autowired
+    VeterinarioRepositorio veterinarioRepositorio;
+
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
+        veterinarioRepositorio.save(new Veterinario("123", "123", "Nose", "Nose", 3));
 
         clienteRepositorio.save(new Cliente("5602222623501237","Crin Dottridge","cdottridge0@bravesites.com","184-683-8032"));
         clienteRepositorio.save(new Cliente("5610426064728825","Meghan Vain","mvain1@indiegogo.com","253-723-4589"));

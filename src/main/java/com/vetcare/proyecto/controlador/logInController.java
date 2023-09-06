@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.vetcare.proyecto.entities.Cliente;
+import com.vetcare.proyecto.entities.Veterinario;
 import com.vetcare.proyecto.service.ClienteServicio;
+import com.vetcare.proyecto.service.VeterinarioServicio;
 
 @Controller
 public class logInController {
@@ -18,13 +20,32 @@ public class logInController {
     @Autowired
     ClienteServicio clienteServicio;
 
+    @Autowired
+    VeterinarioServicio veterinarioServicio;
+
     Logger log = LoggerFactory.getLogger(getClass());
 
     // Mostrar la página de inicio de sesión general
     //http://localhost:8090/login
     @GetMapping("/login")
     public String mostrarPaginaLogin() {
+
         return "Login/Login";
+    }
+
+    @PostMapping("/Veterinariologin")
+    public String handleVeterinarioLoginForm(@ModelAttribute("veterinario") Veterinario veterinario, Model model){
+        String cedula = veterinario.getCedula();
+        String contrasena = veterinario.getContrasena();
+        log.info(cedula);
+        log.info(contrasena);
+        Veterinario veterinarioLogin = veterinarioServicio.VeterianarioByCedulaYContrasena(cedula, contrasena);
+
+        if(veterinarioLogin == null){
+            model.addAttribute("errorMessage", "Credenciales de inicio de sesión no válidas");
+            return "Login/login";
+        }
+        return "redirect:Mascota/todas";
     }
 
     // Mostrar la página de inicio de sesión de cliente
@@ -33,6 +54,8 @@ public class logInController {
     public String mostrarPaginaLoginCliente() {
         return "Login/LoginCliente";
     }
+
+  
 
     // Manejar el formulario de inicio de sesión de cliente
     @PostMapping("/clientelogin")

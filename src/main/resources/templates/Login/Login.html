@@ -9,14 +9,17 @@
 </head>
 <body>
     <div class="wrapper">
-        <form th:object="${Todo}" th:action="@{Todo}" th:method="post">
+        <form th:object="${veterinario}" th:action="@{/Veterinariologin}" th:method="post">
             <h1>Login</h1>
+            <div th:if="${errorMessage}" class="error-message">
+                <p th:text="${errorMessage}"></p>
+            </div>
             <div class="input-box">
-                <input type="text" placeholder="Username" required>
+                <input type="text" placeholder="Username" th:field="*{cedula}" required>
                 <i class="fa-solid fa-user"></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Password" th:field="*{contrasena}" required>
                 <i class="fa-solid fa-lock"></i>
             </div>
             <button type="submit" class="btn">log in</button>
