@@ -7,6 +7,7 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Mascota {
+    // Atributos de la clase Mascota
     private String Nombre;
     private String Raza;
     private Integer Edad;
@@ -15,21 +16,16 @@ public class Mascota {
     private String Enfermedad;
     private String Foto;
 
+    // Identificador único de la entidad Mascota
     @Id
     @GeneratedValue
     private Long ID;
     
+    // Relación Muchos a Uno con la entidad Cliente
     @ManyToOne
     private Cliente cliente;
 
-    
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
+    // Constructor de la clase Mascota que recibe parámetros
     public Mascota(String nombre, String raza, Integer edad, Double peso, String enfermedad, String foto) {
         Nombre = nombre;
         Raza = raza;
@@ -39,7 +35,10 @@ public class Mascota {
         Foto = foto;
     }
 
+    // Constructor vacío necesario para JPA
     public Mascota (){}
+
+    // Métodos getter y setter para los atributos de la clase
     public String getNombre() {
         return Nombre;
     }
@@ -76,13 +75,18 @@ public class Mascota {
     public void setID(Long iD) {
         ID = iD;
     }
-        public String getFoto() {
+    public String getFoto() {
         return Foto;
     }
     public void setFoto(String foto) {
         Foto = foto;
     }
-    
-    
-    
+
+    // Métodos getter y setter para la relación con Cliente
+    public Cliente getCliente() {
+        return cliente;
+    }
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }

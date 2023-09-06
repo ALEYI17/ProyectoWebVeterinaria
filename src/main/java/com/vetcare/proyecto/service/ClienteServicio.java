@@ -9,17 +9,24 @@ import com.vetcare.proyecto.entities.Cliente;
 
 public interface ClienteServicio {
     
-    public Cliente GetById(Long id);
+   // Obtener un cliente por su ID
+   public Cliente GetById(Long id);
 
-    public Collection<Cliente> GetAll();
+   // Obtener todos los clientes
+   public Collection<Cliente> GetAll();
 
-    public void addCliente(Cliente cliente);
+   // Agregar un nuevo cliente
+   public void addCliente(Cliente cliente);
 
-    public void removerCliente(Long id);
+   // Eliminar un cliente por su ID
+   public void removerCliente(Long id);
 
-    public void updateCliente(Cliente cliente);
+   // Actualizar la información de un cliente
+   public void updateCliente(Cliente cliente);
 
-    public Cliente getByCedula(String cedula);
+   // Obtener un cliente por su número de cédula
+   public Cliente getByCedula(String cedula);
 
-    public void removerClienteByCedula(String Cedula);
+   // Eliminar un cliente por su número de cédula
+   public void removerClienteByCedula(String cedula);
 }

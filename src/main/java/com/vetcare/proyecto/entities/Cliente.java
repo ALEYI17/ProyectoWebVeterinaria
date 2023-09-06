@@ -10,17 +10,22 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Cliente {
+    // Atributos de la clase Cliente
     String cedula;
     String nombre;
     String corre;
     String celular;
+    
+    // Identificador único de la entidad Cliente
     @Id
     @GeneratedValue
     private Long id;
 
+    // Relación Uno a Muchos con la entidad Mascota
     @OneToMany(mappedBy = "cliente")
     List<Mascota> MisMascotas = new ArrayList<>();
     
+    // Constructor de la clase Cliente que recibe parámetros
     public Cliente(String cedula, String nombre, String corre, String celular) {
         this.cedula = cedula;
         this.nombre = nombre;
@@ -28,9 +33,10 @@ public class Cliente {
         this.celular = celular;
     }
 
+    // Constructor vacío necesario para JPA
     public Cliente (){}
 
-    
+    // Métodos getter y setter para los atributos de la clase
     public String getNombre() {
         return nombre;
     }
@@ -55,6 +61,8 @@ public class Cliente {
     public void setCelular(String celular) {
         this.celular = celular;
     }
+    
+    // Métodos getter y setter para la lista de Mascotas
     public List<Mascota> getMisMascotas() {
         return MisMascotas;
     }
@@ -63,6 +71,7 @@ public class Cliente {
         MisMascotas = misMascotas;
     }
 
+    // Métodos getter y setter para el ID
     public Long getId() {
         return id;
     }

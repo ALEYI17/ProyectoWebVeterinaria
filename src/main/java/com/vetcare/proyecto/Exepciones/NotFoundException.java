@@ -1,17 +1,21 @@
 package com.vetcare.proyecto.Exepciones;
 
-public class NotFoundException extends RuntimeException{
-    private Long id;
+// Declaración de una excepción personalizada llamada NotFoundException
+public class NotFoundException extends RuntimeException {
+    private Long id; // Un atributo privado que almacena el identificador relacionado con la excepción
 
-    public NotFoundException(Long id){
+    // Constructor que recibe un identificador (id) como argumento
+    public NotFoundException(Long id) {
         this.id = id;
     }
 
-    public Long getId(){
+    // Método getter para obtener el identificador (id)
+    public Long getId() {
         return id;
     }
-    public void setId(Long id){
+
+    // Método setter para establecer el identificador (id)
+    public void setId(Long id) {
         this.id = id;
     }
-    
 }
