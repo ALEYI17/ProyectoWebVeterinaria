@@ -15,7 +15,7 @@
         <form th:object="${cliente}" th:action="@{/Clientes/update/{id}(id=${cliente.cedula})}" th:method="post">
             <div class="user-details">
                 <div class="input-box">
-                    <label for="nombre">Cedula</label>
+                    <label for="nombre">Cédula</label>
                     <input th:field="*{cedula}" type="text" class="form-control" id="nombre" placeholder="Nombre" readonly>
                 </div>
                 <div class="input-box">

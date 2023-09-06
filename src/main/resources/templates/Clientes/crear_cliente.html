@@ -16,14 +16,14 @@
         <form th:object="${cliente}" th:action="@{/Clientes/agregar}" th:method="post">
             <div class="user-details">
                 <div class="input-box">
-                    <label for="nombre">Cedula</label>
+                    <label for="nombre">Cédula</label>
                     <input th:field="*{cedula}" type="text" class="form-control" id="nombre" placeholder="Nombre">
-                    <p class="error" id="errorRaza">Cedula no puede estar vacio.</p>
+                    <p class="error" id="errorRaza">Cédula no puede estar vació.</p>
                 </div>
                 <div class="input-box">
                     <label for="correo">Nombre</label>
                     <input th:field="*{nombre}" type="text" class="form-control" id="correo" placeholder="Raza">
-                    <p class="error" id="errorNombre">Nombre no puede estar vacio.</p>
+                    <p class="error" id="errorNombre">Nombre no puede estar vació.</p>
                 </div>
                 <div class="input-box">
                     <label for="carrera">Correo</label>
@@ -33,7 +33,7 @@
                 <div class="input-box">
                     <label for="semestre">celular</label>
                     <input th:field="*{celular}" type="text" class="form-control" id="semestre" placeholder="Peso">
-                    <p class="error" id="errorPeso">Celular no puede estar vacio.</p>
+                    <p class="error" id="errorPeso">Celular no puede estar vació.</p>
                 </div>
             </div>
             <div class="button">
