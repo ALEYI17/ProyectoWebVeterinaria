@@ -23,14 +23,14 @@ public class logInController {
     public String mostrarPaginaLogin(){
 
 
-        return "Login";
+        return "Login/Login";
     }
 
     
     @GetMapping("/login/cliente")
     public String mostrarPaginaLoginCliente(){
 
-        return "LoginCliente";
+        return "Login/LoginCliente";
     }
 
     @PostMapping("/clientelogin")
@@ -43,7 +43,7 @@ public class logInController {
         if(clienteLogIn == null){
             
             model.addAttribute("errorMessage", "Invalid login credentials");
-            return "LoginCliente"; // Return to the login page with an error message
+            return "Login/LoginCliente"; // Return to the login page with an error message
         }
 
         

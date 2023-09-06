@@ -30,7 +30,7 @@ public class ClienteUsuario {
         List<Mascota> pets = cliente.getMisMascotas();
         model.addAttribute("cliente", cliente);
         model.addAttribute("pets", pets);
-        return "Mostrar_DashBoard_Cliente";
+        return "Clientes/Mostrar_DashBoard_Cliente";
     }
     
 }
