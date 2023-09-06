@@ -1,10 +1,15 @@
 package com.vetcare.proyecto.entities;
-
+// Importa las anotaciones de JPA para marcar esta clase como entidad
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
+// Importa la clase de la relación uno a muchos con Tratamiento
+import java.util.List;
+
+// Marca esta clase como una entidad de JPA
 @Entity
 public class Mascota {
     // Atributos de la clase Mascota
@@ -24,6 +29,10 @@ public class Mascota {
     // Relación Muchos a Uno con la entidad Cliente
     @ManyToOne
     private Cliente cliente;
+
+    // Relación Uno a Muchos con la entidad Tratamiento, mapeada por el atributo "mascota" en Tratamiento
+    @OneToMany(mappedBy = "mascota")
+    private List<Tratamiento> tratamientos;
 
     // Constructor de la clase Mascota que recibe parámetros
     public Mascota(String nombre, String raza, Integer edad, Double peso, String enfermedad, String foto) {
@@ -88,5 +97,13 @@ public class Mascota {
     }
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    // Métodos getter y setter para la relación con Tratamiento
+    public List<Tratamiento> getTratamientos() {
+        return tratamientos;
+    }
+    public void setTratamientos(List<Tratamiento> tratamientos) {
+        this.tratamientos = tratamientos;
     }
 }
