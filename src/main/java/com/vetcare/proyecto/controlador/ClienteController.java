@@ -25,7 +25,7 @@ public class ClienteController {
     @GetMapping("/todos")
     public String MostrarClientes(Model model){
         model.addAttribute("Clientes", clienteServicio.GetAll());
-        return "Mostrar_todos_clientes";
+        return "Clientes/Mostrar_todos_clientes";
     }
 
     @GetMapping("/find/{id}")
@@ -39,7 +39,7 @@ public class ClienteController {
             throw new NotFoundException(Long.parseLong(id));
         }
         
-        return "Mostrar_cliente_ID";
+        return "Clientes/Mostrar_cliente_ID";
     }
 
     @GetMapping("/add")
@@ -47,7 +47,7 @@ public class ClienteController {
         Cliente cliente = new Cliente(" ", " ", " ", " ");
 
         model.addAttribute("cliente", cliente);
-        return "crear_cliente";
+        return "Clientes/crear_cliente";
     }
 
     @PostMapping("/agregar")
@@ -67,7 +67,7 @@ public class ClienteController {
     public String actualizarMascota(@PathVariable("id")String id , Model model){
         Cliente cliente = clienteServicio.getByCedula(id);
         model.addAttribute("cliente",cliente);
-        return "actualizar_cliente";
+        return "Clientes/actualizar_cliente";
     }
 
     @PostMapping("/update/{id}")

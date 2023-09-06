@@ -26,7 +26,7 @@ public class MascotaController {
     @GetMapping("/todas")
     public String MostrarMascotas(Model model){
         model.addAttribute("Mascotas",mascotaServicio.GetAll());
-        return "Mostrar_todas_mascotas";
+        return "Mascotas/Mostrar_todas_mascotas";
     }
 
     @GetMapping("/find")
@@ -40,7 +40,7 @@ public class MascotaController {
             throw new NotFoundException(id);
         }
 
-        return "Mostrar_mascota_ID";
+        return "Mascotas/Mostrar_mascota_ID";
     }
 
     @GetMapping("find/{id}")
@@ -54,14 +54,14 @@ public class MascotaController {
             throw new NotFoundException(id);
         }
 
-        return "Mostrar_mascota_ID";
+        return "Mascotas/Mostrar_mascota_ID";
     }
     
     @GetMapping("/add")
     public String Showcrear(Model model){
         Mascota mascota = new Mascota(" ", " ", 0, 0.0, " ","");
         model.addAttribute("mascota", mascota);
-        return "crear_Mascota";
+        return "Mascotas/crear_Mascota";
     }
 
     @PostMapping("/agregar")
@@ -80,7 +80,7 @@ public class MascotaController {
     public String actualizarMascota(@PathVariable("id")Long id , Model model){
         Mascota mascota = mascotaServicio.GetById(id);
         model.addAttribute("mascota",mascota);
-        return "actualizar_mascota";
+        return "Mascotas/actualizar_mascota";
     }
 
     @PostMapping("/update/{id}")
