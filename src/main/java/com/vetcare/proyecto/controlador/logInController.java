@@ -27,6 +27,7 @@ public class logInController {
 
     // Mostrar la página de inicio de sesión general
     //http://localhost:8090/login
+    
     @GetMapping("/login")
     public String mostrarPaginaLogin() {
 
