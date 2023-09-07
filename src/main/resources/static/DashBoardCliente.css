@@ -76,3 +76,9 @@ body{
 .mismascotas{
     font-size: 2em;
 }
+.logodashboard{
+    align-self: flex-start;
+    height: 3em;
+    width: auto;
+    margin-left: 2em;
+}
