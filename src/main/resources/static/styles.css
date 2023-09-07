@@ -237,7 +237,7 @@ body{
 #service-section #peragraph{
     width: 45%;
     font-size: 1rem;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.849);
     text-align: center;
     line-height: 1.5rem;
     white-space: 1px;
@@ -293,7 +293,7 @@ body{
     margin-bottom: 10px;
 }
 .cards .card .content p{
-    color: #FAF9F6;
+    color: #597B7D;
     font-size: 1.05rem;
     margin-bottom: 20px;
     font-weight: 500;
@@ -332,7 +332,7 @@ body{
 .Doctores{
     text-align: center;
     padding: 0 10vw;
-    font-size: 30px;
+    font-size: 45px;
     font-weight: 500;
     margin-bottom: 40px;
     text-transform: capitalize;
