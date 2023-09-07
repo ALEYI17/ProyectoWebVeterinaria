@@ -163,7 +163,7 @@ body{
     height: 70px;
     width: auto;
     transition: all 0.2s;
-    border-radius: 50%;
+    /* border-radius: 50%; */
 }
 .Navbar .Logo b{
     font-size: 2vw;

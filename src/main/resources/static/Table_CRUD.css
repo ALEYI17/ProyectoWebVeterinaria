@@ -214,7 +214,7 @@ h1{
     height: 70px;
     width: auto;
     transition: all 0.2s;
-    border-radius: 50%;
+    /* border-radius: 50%; */
 }
 .Navbar .Logo b{
     font-size: 2vw;
@@ -239,12 +239,12 @@ h1{
 
 .Navbar .nav-links a{
     font-size: 700;
-    color: black;
+    color: rgba(203, 186, 204, 0.698);
     text-decoration: none;
 }
 
 .Navbar .nav-links li a:hover{
-    color: rgba(203, 186, 204, 0.698);
+    color: rgba(240, 235, 240, 0.698);
 }
 
 .pagination-pointed-button{
