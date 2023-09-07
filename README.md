@@ -1,6 +1,6 @@
 # VetCare - Veterinaria de Gatos
 
-![VetCare Logo](link_to_logo.png)
+![VetCare Logo]([link_to_logo.png](https://github.com/ALEYI17/ProyectoWebVeterinaria/blob/main/src/main/resources/static/img/logovetcare.png))
 
 Bienvenido al repositorio de VetCare, una plataforma para la gestión de una veterinaria especializada en gatos. Aquí encontrarás información sobre cómo configurar y ejecutar el proyecto.
 
