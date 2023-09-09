@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.vetcare.proyecto.Exepciones.NotFoundException;
+import com.vetcare.proyecto.entities.Cliente;
 import com.vetcare.proyecto.entities.Mascota;
 import com.vetcare.proyecto.service.MascotaServicio;
 
@@ -47,8 +48,11 @@ public class MascotaController {
     @GetMapping("find/{id}")
     public String mostrarInfoMascota2(Model model, @PathVariable("id") Long id){
         Mascota mascota = mascotaServicio.GetById(id);
+        
         if(mascota != null){
+            Cliente dueno = mascota.getCliente();
             model.addAttribute("Mascota", mascota);
+            model.addAttribute("dueno", dueno);
         }
         else{
             throw new NotFoundException(id);
