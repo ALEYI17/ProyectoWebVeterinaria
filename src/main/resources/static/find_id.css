@@ -16,6 +16,7 @@ body{
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    flex-direction: column;
     /* background-color: #7dd4ff; */
 }
 
@@ -105,3 +106,82 @@ body{
         width: 0;
     }
 }
+
+table.mascotas{
+    border-collapse: collapse;
+    margin: 0;
+    width: 60%;
+    border: solid #053247;
+    box-shadow: 6px 7px 26px -1px rgba(7,74,105,1);
+    margin-bottom: 5vh;
+    margin-top: 30px;
+}
+table.mascotas tr{
+    padding: .45em;
+}
+thead tr{
+    background-color: black;
+}
+thead th{
+    color: white;
+    font-size: 1.15em;
+    
+}
+tbody tr:nth-child(even){   
+    background-color: #A3BAC3;
+    color: #fff;
+    
+}
+
+th a{
+    color: #000000;
+}
+
+tbody tr:nth-child(odd){   
+    background-color: #335d818c;
+    color: #fff;
+    
+}
+table.mascotas th, table td{
+    font-size: 1em;
+    padding: 1em;
+    text-align: center;
+    
+}
+
+@media (max-width:440px){
+    table.mascotas{
+        border: 3px solid #053247;
+    }
+    table.mascotas thead tr{
+        display: none;
+    }
+    table.mascotas tr{
+        display: block;
+    }
+    table.mascotas th,table.mascotas td{
+        padding: .5em;
+    }
+    table.mascotas td{
+        text-align: right;
+        display: block;
+        font-size: 1em;
+    }
+
+    table.mascota td::before{
+        content: attr(scope)": ";
+        float: left;
+    }
+    tbody tr:nth-child(even){
+        background-color: #053247;
+        color: black;
+    }
+}
+
+.tabla-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
