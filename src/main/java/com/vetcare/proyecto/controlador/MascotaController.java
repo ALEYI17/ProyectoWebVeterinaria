@@ -111,7 +111,13 @@ public class MascotaController {
 
     // Actualizar una mascota
     @PostMapping("/update/{id}")
-    public String actualizarMascota(@PathVariable("id") int id , @ModelAttribute("mascota") Mascota mascota){
+    public String actualizarMascota(@PathVariable("id") Long id, 
+                                     @ModelAttribute("mascota") Mascota mascota,
+                                     @RequestParam("cliente.id") Long clienteId){
+        Cliente duenno = clienteServicio.GetById(clienteId);
+        if (duenno != null) {
+            mascota.setCliente(duenno);
+        }
         mascotaServicio.updateMascota(mascota);
         return "redirect:/Mascota/todas";
     }
