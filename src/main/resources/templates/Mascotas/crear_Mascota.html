@@ -7,6 +7,7 @@
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="/agregar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script defer src="/scriptagregar.js"></script>
 </head>
 <body>
@@ -49,6 +50,28 @@
                     <input th:field="*{Foto}" type="text" class="form-control" id="Foto" placeholder="Foto" required>
                 </div>
                 
+                <div class="input-box wrapper">
+                    <label for="Foto">Dueño</label>
+                    <div class="select-btn">
+                        <span>Selecciona Dueño:</span>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </div>
+                    <p class="error" id="errorCliente">Escoja un dueño</p>
+                    <div class="content">
+                        <div class="search">
+                            <input type="text" placeholder="Buscar" id="searchInput">
+                        </div>
+                        <ul class="options" id="clientList">
+
+                            <li th:each="cliente : ${clientes}" th:attr="data-client-id=${cliente.id}" th:text="${cliente.nombre}" onclick="selectClient(this)"></li>
+
+                        </ul>
+                        <input type="hidden" id="clientId" name="clientId" value="">
+                    </div>
+                </div>
+                
+
+
             </div>
             <div class="button">
                 <button type="submit" >Enviar</button>
