@@ -39,7 +39,7 @@
           <h2>Enfermedad:</h2>
           <p th:text="${Mascota.Enfermedad}"></p>
         </div>
-        <div class="input-box">
+        <div th:if ="${dueno != null}" class="input-box">
           <h2>Dueño:</h2>
           <p th:text="${dueno.nombre}"></p>
         </div>

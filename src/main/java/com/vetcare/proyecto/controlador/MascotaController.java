@@ -52,7 +52,10 @@ public class MascotaController {
         if(mascota != null){
             Cliente dueno = mascota.getCliente();
             model.addAttribute("Mascota", mascota);
-            model.addAttribute("dueno", dueno);
+            if(dueno != null){
+                model.addAttribute("dueno", dueno);
+            }
+            
         }
         else{
             throw new NotFoundException(id);
