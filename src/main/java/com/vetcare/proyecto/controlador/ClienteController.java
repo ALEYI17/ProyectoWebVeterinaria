@@ -1,5 +1,7 @@
 package com.vetcare.proyecto.controlador;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.vetcare.proyecto.Exepciones.NotFoundException;
 import com.vetcare.proyecto.entities.Cliente;
+import com.vetcare.proyecto.entities.Mascota;
 import com.vetcare.proyecto.service.ClienteServicio;
 
 @Controller
@@ -32,9 +35,12 @@ public class ClienteController {
     @GetMapping("/find/{id}")
     public String MostrarClienteXId(Model model, @PathVariable("id") String id) {
         Cliente cliente = clienteServicio.getByCedula(id);
+       
 
         if (cliente != null) {
+            List<Mascota> mascotas = cliente.getMisMascotas();
             model.addAttribute("cliente", cliente);
+            model.addAttribute("pets", mascotas);
         } else {
             throw new NotFoundException(Long.parseLong(id));
         }

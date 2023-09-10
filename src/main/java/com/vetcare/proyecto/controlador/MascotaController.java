@@ -1,5 +1,7 @@
 package com.vetcare.proyecto.controlador;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.vetcare.proyecto.Exepciones.NotFoundException;
+import com.vetcare.proyecto.entities.Cliente;
 import com.vetcare.proyecto.entities.Mascota;
+import com.vetcare.proyecto.service.ClienteServicio;
 import com.vetcare.proyecto.service.MascotaServicio;
 
 @Controller
@@ -19,6 +23,9 @@ import com.vetcare.proyecto.service.MascotaServicio;
 public class MascotaController {
     @Autowired
     MascotaServicio  mascotaServicio;
+
+    @Autowired
+    ClienteServicio clienteServicio;
 
     // Mostrar todas las mascotas
     // http://localhost:8090/Mascota/todas
@@ -47,8 +54,14 @@ public class MascotaController {
     @GetMapping("find/{id}")
     public String mostrarInfoMascota2(Model model, @PathVariable("id") Long id){
         Mascota mascota = mascotaServicio.GetById(id);
+        
         if(mascota != null){
+            Cliente dueno = mascota.getCliente();
             model.addAttribute("Mascota", mascota);
+            if(dueno != null){
+                model.addAttribute("dueno", dueno);
+            }
+            
         }
         else{
             throw new NotFoundException(id);
@@ -62,12 +75,20 @@ public class MascotaController {
     public String Showcrear(Model model){
         Mascota mascota = new Mascota(" ", " ", 0, 0.0, " ","");
         model.addAttribute("mascota", mascota);
+        Collection<Cliente> clientes = clienteServicio.GetAll();
+        model.addAttribute("clientes", clientes);
         return "Mascotas/crear_Mascota";
     }
 
     // Agregar una nueva mascota
     @PostMapping("/agregar")
-    public String agregarmascota(@ModelAttribute("mascota") Mascota mascota){
+    public String agregarmascota(@ModelAttribute("mascota") Mascota mascota,@RequestParam("clientId") String clientId){
+
+        Cliente duenno = clienteServicio.GetById(Long.valueOf(clientId));
+        if(duenno != null){
+            mascota.setCliente(duenno);
+        }
+
         mascotaServicio.addMascota(mascota);
         return "redirect:/Mascota/todas";
     }
@@ -90,7 +111,13 @@ public class MascotaController {
 
     // Actualizar una mascota
     @PostMapping("/update/{id}")
-    public String actualizarMascota(@PathVariable("id") int id , @ModelAttribute("mascota") Mascota mascota){
+    public String actualizarMascota(@PathVariable("id") Long id, 
+                                     @ModelAttribute("mascota") Mascota mascota,
+                                     @RequestParam("cliente.id") Long clienteId){
+        Cliente duenno = clienteServicio.GetById(clienteId);
+        if (duenno != null) {
+            mascota.setCliente(duenno);
+        }
         mascotaServicio.updateMascota(mascota);
         return "redirect:/Mascota/todas";
     }
