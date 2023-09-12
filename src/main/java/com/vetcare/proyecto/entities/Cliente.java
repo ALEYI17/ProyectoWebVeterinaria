@@ -23,7 +23,7 @@ public class Cliente {
     private Long id;
 
     // Relación Uno a Muchos con la entidad Mascota
-    @OneToMany(mappedBy = "cliente" , cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = { CascadeType.MERGE, CascadeType.REMOVE })
     List<Mascota> MisMascotas = new ArrayList<>();
     
     // Constructor de la clase Cliente que recibe parámetros
