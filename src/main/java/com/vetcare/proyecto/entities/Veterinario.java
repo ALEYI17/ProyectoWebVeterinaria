@@ -11,11 +11,28 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Veterinario {
     // Atributos de la clase
+    private String Nombre;
     private String cedula; // Cédula del veterinario
     private String contrasena; // Contraseña del veterinario
     private String especialidad; // Especialidad del veterinario
     private String foto; // Ruta de la foto del veterinario
-    private Integer numeroDeAtenciones; // Número de atenciones que ha realizado el veterinario
+   
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String nombre) {
+        Nombre = nombre;
+    }
+
+    public List<Tratamiento> getTratamientos() {
+        return tratamientos;
+    }
+
+    public void setTratamientos(List<Tratamiento> tratamientos) {
+        this.tratamientos = tratamientos;
+    }
 
     // Identificador único generado automáticamente por JPA
     @Id
@@ -33,12 +50,12 @@ public class Veterinario {
     }
 
     // Constructor con parámetros para inicializar los atributos
-    public Veterinario(String cedula, String contrasena, String especialidad, String foto, int numeroDeAtenciones) {
+    public Veterinario(String Nombre,String cedula, String contrasena, String especialidad, String foto) {
+        this.Nombre = Nombre;
         this.cedula = cedula;
         this.contrasena = contrasena;
         this.especialidad = especialidad;
         this.foto = foto;
-        this.numeroDeAtenciones = numeroDeAtenciones;
     }
 
     // Métodos getter y setter para cada atributo
@@ -83,15 +100,6 @@ public class Veterinario {
         this.foto = foto;
     }
 
-    // Getter para obtener el número de atenciones del veterinario
-    public Integer getNumeroDeAtenciones() {
-        return numeroDeAtenciones;
-    }
-
-    // Setter para establecer el número de atenciones del veterinario
-    public void setNumeroDeAtenciones(Integer numeroDeAtenciones) {
-        this.numeroDeAtenciones = numeroDeAtenciones;
-    }
 
     // Getter para obtener el identificador único del veterinario
     public Long getId() {
