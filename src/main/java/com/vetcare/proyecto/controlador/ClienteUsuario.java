@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.vetcare.proyecto.Exepciones.NotFoundException;
 import com.vetcare.proyecto.entities.Cliente;
 import com.vetcare.proyecto.entities.Mascota;
 import com.vetcare.proyecto.service.ClienteServicio;
@@ -28,6 +29,9 @@ public class ClienteUsuario {
     @GetMapping("/{id}")
     public String mostrarPaginaCliente(@PathVariable("id") String id, Model model) {
         Cliente cliente = clienteServicio.getByCedula(id);
+        if(cliente == null){
+            throw new NotFoundException(Long.parseLong(id));
+        }
         List<Mascota> pets = cliente.getMisMascotas();
         model.addAttribute("cliente", cliente);
         model.addAttribute("pets", pets);

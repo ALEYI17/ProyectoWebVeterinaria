@@ -26,8 +26,9 @@ public class Cliente {
 
     
     // Relación Uno a Muchos con la entidad Mascota
+
     @JsonIgnore
-    @OneToMany(mappedBy = "cliente" , cascade = CascadeType.MERGE, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = { CascadeType.MERGE, CascadeType.REMOVE })
     List<Mascota> MisMascotas = new ArrayList<>();
     
     // Constructor de la clase Cliente que recibe parámetros
