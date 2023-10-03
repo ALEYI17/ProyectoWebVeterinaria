@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,8 @@ import com.vetcare.proyecto.entities.Cliente;
 import com.vetcare.proyecto.entities.Mascota;
 import com.vetcare.proyecto.service.ClienteServicio;
 import com.vetcare.proyecto.service.MascotaServicio;
+
+
 
 @RestController
 @RequestMapping("/Mascota")
@@ -86,8 +89,22 @@ public class MascotaController {
     // }
 
     // Agregar una nueva mascota
+    // @PostMapping("/agregar")
+    // public String agregarmascota(@ModelAttribute("mascota") Mascota mascota,@RequestParam("clientId") String clientId){
+
+    //     Cliente duenno = clienteServicio.GetById(Long.valueOf(clientId));
+    //     if(duenno != null){
+    //         mascota.setCliente(duenno);
+    //     }
+
+    //     mascotaServicio.addMascota(mascota);
+    //     return "redirect:/Mascota/todas";
+    // }
+
+
+
     @PostMapping("/agregar")
-    public String agregarmascota(@ModelAttribute("mascota") Mascota mascota,@RequestParam("clientId") String clientId){
+    public void agregarmascota(@RequestBody Mascota mascota, @RequestParam("clientId") String clientId){
 
         Cliente duenno = clienteServicio.GetById(Long.valueOf(clientId));
         if(duenno != null){
@@ -95,7 +112,6 @@ public class MascotaController {
         }
 
         mascotaServicio.addMascota(mascota);
-        return "redirect:/Mascota/todas";
     }
 
     // Eliminar una mascota por su ID
