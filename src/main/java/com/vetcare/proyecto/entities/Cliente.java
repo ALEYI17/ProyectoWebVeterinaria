@@ -3,6 +3,8 @@ package com.vetcare.proyecto.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,8 +24,10 @@ public class Cliente {
     @GeneratedValue
     private Long id;
 
+    
     // Relación Uno a Muchos con la entidad Mascota
-    @OneToMany(mappedBy = "cliente" , cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    @OneToMany(mappedBy = "cliente" , cascade = CascadeType.MERGE, orphanRemoval = true)
     List<Mascota> MisMascotas = new ArrayList<>();
     
     // Constructor de la clase Cliente que recibe parámetros

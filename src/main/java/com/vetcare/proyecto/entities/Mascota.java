@@ -9,6 +9,8 @@ import jakarta.persistence.OneToMany;
 // Importa la clase de la relación uno a muchos con Tratamiento
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 // Marca esta clase como una entidad de JPA
 @Entity
 public class Mascota {
@@ -26,11 +28,15 @@ public class Mascota {
     @GeneratedValue
     private Long ID;
     
+   
     // Relación Muchos a Uno con la entidad Cliente
+    @JsonIgnore
     @ManyToOne
     private Cliente cliente;
 
+   
     // Relación Uno a Muchos con la entidad Tratamiento, mapeada por el atributo "mascota" en Tratamiento
+    @JsonIgnore
     @OneToMany(mappedBy = "mascota")
     private List<Tratamiento> tratamientos;
 

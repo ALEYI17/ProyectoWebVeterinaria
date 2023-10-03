@@ -1,7 +1,8 @@
 package com.vetcare.proyecto.service;
 
 
-import java.util.Collection;
+
+import java.util.List;
 
 import com.vetcare.proyecto.entities.Cliente;
 
@@ -13,7 +14,7 @@ public interface ClienteServicio {
    public Cliente GetById(Long id);
 
    // Obtener todos los clientes
-   public Collection<Cliente> GetAll();
+   public List<Cliente> GetAll();
 
    // Agregar un nuevo cliente
    public void addCliente(Cliente cliente);
