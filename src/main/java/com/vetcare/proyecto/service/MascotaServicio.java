@@ -2,6 +2,7 @@ package com.vetcare.proyecto.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import com.vetcare.proyecto.entities.Mascota;
 
@@ -10,7 +11,7 @@ public interface MascotaServicio {
     public Mascota GetById(Long id);
 
     // Obtener todas las mascotas
-    public Collection<Mascota> GetAll();
+    public List<Mascota> GetAll();
 
     // Agregar una nueva mascota
     public void addMascota(Mascota mascota);

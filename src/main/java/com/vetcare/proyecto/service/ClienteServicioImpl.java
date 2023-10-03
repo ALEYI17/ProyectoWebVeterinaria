@@ -1,6 +1,7 @@
 package com.vetcare.proyecto.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class ClienteServicioImpl implements ClienteServicio {
 
     // Obtener todos los clientes
     @Override
-    public Collection<Cliente> GetAll() {
+    public List<Cliente> GetAll() {
         return clienteRepositorio.findAll();
     }
 

@@ -3,6 +3,8 @@ package com.vetcare.proyecto.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +24,10 @@ public class Cliente {
     @GeneratedValue
     private Long id;
 
+    
     // Relación Uno a Muchos con la entidad Mascota
+
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente", cascade = { CascadeType.MERGE, CascadeType.REMOVE })
     List<Mascota> MisMascotas = new ArrayList<>();
     

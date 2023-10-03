@@ -2,6 +2,7 @@ package com.vetcare.proyecto.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class MascotaServicioImpl implements MascotaServicio {
 
     // Obtener todas las mascotas
     @Override
-    public Collection<Mascota> GetAll() {
+    public List<Mascota> GetAll() {
         return mascotaRepository.findAll();
     }
 
