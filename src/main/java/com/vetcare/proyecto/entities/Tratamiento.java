@@ -23,8 +23,8 @@ public class Tratamiento {
     private Integer precio;
 
     // Relación Uno a Muchos con la entidad Medicamento
-    @OneToMany(mappedBy = "tratamiento")
-    private List<Medicamento> medicamentos;
+    @ManyToOne
+    private Medicamento medicamentos;
 
     // Relación Muchos a Uno con la entidad Mascota
     @ManyToOne
@@ -73,11 +73,11 @@ public class Tratamiento {
     }
 
     // Métodos getter y setter para la relación con la entidad Medicamento
-    public List<Medicamento> getMedicamentos() {
+    public Medicamento getMedicamentos() {
         return medicamentos;
     }
 
-    public void setMedicamentos(List<Medicamento> medicamentos) {
+    public void setMedicamentos(Medicamento medicamentos) {
         this.medicamentos = medicamentos;
     }
 

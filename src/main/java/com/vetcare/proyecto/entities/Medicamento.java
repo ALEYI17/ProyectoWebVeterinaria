@@ -1,9 +1,12 @@
 package com.vetcare.proyecto.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Medicamento {
@@ -17,8 +20,8 @@ public class Medicamento {
     private int unidadesDisponibles;
     private int unidadesVendidas;
 
-    @ManyToOne
-    private Tratamiento tratamiento;
+    @OneToMany(mappedBy = "medicamentos")
+    private List<Tratamiento> tratamiento;
 
     public Medicamento() {
     }
@@ -79,11 +82,11 @@ public class Medicamento {
         this.unidadesVendidas = unidadesVendidas;
     }
 
-    public Tratamiento getTratamiento() {
+    public List<Tratamiento> getTratamiento() {
         return tratamiento;
     }
 
-    public void setTratamiento(Tratamiento tratamiento) {
+    public void setTratamiento(List<Tratamiento> tratamiento) {
         this.tratamiento = tratamiento;
     }
 }

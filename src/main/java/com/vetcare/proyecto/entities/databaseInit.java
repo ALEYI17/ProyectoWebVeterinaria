@@ -383,19 +383,19 @@ public class databaseInit implements ApplicationRunner{
 
         List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
         List<Medicamento> medicamentos = medicamentoRepositorio.findAll();
-        j = 0;
-        for(int i = 0 ; i <medicamentos.size(); i ++){
-            if(tratamientos.get(j).getId() == 10){
-                medicamentos.get(i).setTratamiento(tratamientos.get(j));
-                j = 0;
-            }
-            else{
-                medicamentos.get(i).setTratamiento(tratamientos.get(j));
-                j++;
-            }
+        // j = 0;
+        // for(int i = 0 ; i <medicamentos.size(); i ++){
+        //     if(tratamientos.get(j).getId() == 10){
+        //         medicamentos.get(i).setTratamiento(tratamientos.get(j));
+        //         j = 0;
+        //     }
+        //     else{
+        //         medicamentos.get(i).setTratamiento(tratamientos.get(j));
+        //         j++;
+        //     }
             
             
-        }
+        // }
     }
 
 
