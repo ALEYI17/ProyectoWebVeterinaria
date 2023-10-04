@@ -1,39 +1,36 @@
 package com.vetcare.proyecto.entities;
 
-// Importa las anotaciones de JPA para marcar esta clase como entidad
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
-// Marca esta clase como una entidad de JPA
 @Entity
 public class Medicamento {
-    // Identificador único generado automáticamente por JPA
     @Id
     @GeneratedValue
     private Long id;
+    
+    private String nombre;
+    private double precioVenta; // Cambiado a double para representar valores en dólares
+    private double precioCompra; // Cambiado a double para representar valores en dólares
+    private int unidadesDisponibles;
+    private int unidadesVendidas;
 
-    // Atributos de la clase
-    private String Nombre;
-    private Integer Precio;
-
-    // Relación Muchos a Uno con la entidad Tratamiento
     @ManyToOne
     private Tratamiento tratamiento;
 
-    // Constructor vacío necesario para JPA
     public Medicamento() {
-        // Constructor vacío
     }
 
-    // Constructor de la clase Medicamento que recibe parámetros
-    public Medicamento(String Nombre, Integer Precio) {
-        this.Nombre = Nombre;
-        this.Precio = Precio;
+    public Medicamento(String nombre, double precioVenta, double precioCompra, int unidadesDisponibles, int unidadesVendidas) {
+        this.nombre = nombre;
+        this.precioVenta = precioVenta;
+        this.precioCompra = precioCompra;
+        this.unidadesDisponibles = unidadesDisponibles;
+        this.unidadesVendidas = unidadesVendidas;
     }
 
-    // Métodos getter y setter para el identificador único
     public Long getId() {
         return id;
     }
@@ -42,25 +39,46 @@ public class Medicamento {
         this.id = id;
     }
 
-    // Métodos getter y setter para el atributo "Nombre"
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    // Métodos getter y setter para el atributo "Precio"
-    public Integer getPrecio() {
-        return Precio;
+    public double getPrecioVenta() {
+        return precioVenta;
     }
 
-    public void setPrecio(Integer Precio) {
-        this.Precio = Precio;
+    public void setPrecioVenta(double precioVenta) {
+        this.precioVenta = precioVenta;
     }
 
-    // Métodos getter y setter para la relación con la entidad Tratamiento
+    public double getPrecioCompra() {
+        return precioCompra;
+    }
+
+    public void setPrecioCompra(double precioCompra) {
+        this.precioCompra = precioCompra;
+    }
+
+    public int getUnidadesDisponibles() {
+        return unidadesDisponibles;
+    }
+
+    public void setUnidadesDisponibles(int unidadesDisponibles) {
+        this.unidadesDisponibles = unidadesDisponibles;
+    }
+
+    public int getUnidadesVendidas() {
+        return unidadesVendidas;
+    }
+
+    public void setUnidadesVendidas(int unidadesVendidas) {
+        this.unidadesVendidas = unidadesVendidas;
+    }
+
     public Tratamiento getTratamiento() {
         return tratamiento;
     }

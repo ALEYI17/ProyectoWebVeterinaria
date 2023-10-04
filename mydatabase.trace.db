@@ -1615,3 +1615,63 @@ The connection was not closed by the application and is garbage collected [90018
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:678)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
 	... 94 more
+2023-10-03 18:56:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]
+2023-10-03 18:56:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]
+2023-10-03 18:56:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]
+2023-10-03 18:56:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]
+2023-10-03 18:56:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]
+2023-10-03 18:56:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]
+2023-10-03 18:56:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]
+2023-10-03 18:56:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]
+2023-10-03 18:56:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]
+2023-10-03 18:56:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]
+2023-10-03 18:56:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]
+2023-10-03 18:56:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]
+2023-10-03 18:56:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]
+2023-10-03 18:56:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]
+2023-10-03 18:57:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]

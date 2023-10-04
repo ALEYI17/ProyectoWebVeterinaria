@@ -1,6 +1,10 @@
 package com.vetcare.proyecto.entities;
 
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +14,14 @@ import org.springframework.stereotype.Controller;
 
 import com.vetcare.proyecto.repository.ClienteRepositorio;
 import com.vetcare.proyecto.repository.MascotaRepository;
+import com.vetcare.proyecto.repository.MedicamentoRepositorio;
+import com.vetcare.proyecto.repository.TratamientoRepositorio;
 import com.vetcare.proyecto.repository.VeterinarioRepositorio;
 
 import jakarta.transaction.Transactional;
+
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 @Controller
 @Transactional
@@ -27,6 +36,12 @@ public class databaseInit implements ApplicationRunner{
 
     @Autowired
     VeterinarioRepositorio veterinarioRepositorio;
+
+    @Autowired
+    MedicamentoRepositorio medicamentoRepositorio;
+
+    @Autowired
+    TratamientoRepositorio tratamientoRepositorio;
 
 
     @Override
@@ -359,6 +374,59 @@ public class databaseInit implements ApplicationRunner{
 
         }
 
+        for (int i = 0; i < 10; i++) {
+            Tratamiento tratamiento = new Tratamiento(new Date(), 100); // Debes proporcionar la fecha y el precio correctos aquí
+            tratamientoRepositorio.save(tratamiento);
+        }
+
+        leerMedicamentosDesdeExcel();
+
+        List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
+        List<Medicamento> medicamentos = medicamentoRepositorio.findAll();
+        j = 0;
+        for(int i = 0 ; i <medicamentos.size(); i ++){
+            if(tratamientos.get(j).getId() == 10){
+                medicamentos.get(i).setTratamiento(tratamientos.get(j));
+                j = 0;
+            }
+            else{
+                medicamentos.get(i).setTratamiento(tratamientos.get(j));
+                j++;
+            }
+            
+            
+        }
+    }
+
+
+    public void leerMedicamentosDesdeExcel() throws IOException {
+        
+
+        try (FileInputStream archivo = new FileInputStream("MEDICAMENTOS_VETERINARIA.xlsx");
+             Workbook workbook = new XSSFWorkbook(archivo)) {
+
+            Sheet hoja = workbook.getSheetAt(0); // Suponiendo que los datos están en la primera hoja
+
+            Iterator<Row> filaIterator = hoja.iterator();
+            filaIterator.next(); // Saltar la primera fila (encabezados)
+
+            while (filaIterator.hasNext()) {
+                Row fila = filaIterator.next();
+                Iterator<Cell> celdaIterator = fila.iterator();
+
+                String nombre = celdaIterator.next().getStringCellValue();
+                double precioVenta = celdaIterator.next().getNumericCellValue();
+                double precioCompra = celdaIterator.next().getNumericCellValue();
+                int unidadesDisponibles = (int) celdaIterator.next().getNumericCellValue();
+                int unidadesVendidas = (int) celdaIterator.next().getNumericCellValue();
+
+                // Crea un nuevo objeto Medicamento y agrégalo a la lista
+                Medicamento medicamento = new Medicamento(nombre, precioVenta, precioCompra, unidadesDisponibles, unidadesVendidas);
+                medicamentoRepositorio.save(medicamento);
+            }
+        }
+
+        
     }
     
 }

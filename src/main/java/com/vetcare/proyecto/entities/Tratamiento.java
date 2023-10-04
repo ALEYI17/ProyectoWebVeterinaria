@@ -7,7 +7,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 // Importa la clase java.sql.Date para trabajar con fechas
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 // Marca esta clase como una entidad de JPA
