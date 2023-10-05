@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -383,19 +384,16 @@ public class databaseInit implements ApplicationRunner{
 
         List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
         List<Medicamento> medicamentos = medicamentoRepositorio.findAll();
-        // j = 0;
-        // for(int i = 0 ; i <medicamentos.size(); i ++){
-        //     if(tratamientos.get(j).getId() == 10){
-        //         medicamentos.get(i).setTratamiento(tratamientos.get(j));
-        //         j = 0;
-        //     }
-        //     else{
-        //         medicamentos.get(i).setTratamiento(tratamientos.get(j));
-        //         j++;
-        //     }
-            
-            
-        // }
+        List<Veterinario> veterinarios = veterinarioRepositorio.findAll();
+        Random random = new Random();
+
+        // Generar un número aleatorio entre 1 y 200
+       
+        for(int i = 0 ; i<tratamientos.size(); i ++){
+            tratamientos.get(i).setMascota(mascotas.get( random.nextInt(200) ));
+            tratamientos.get(i).setMedicamentos(medicamentos.get( random.nextInt(523) ));
+            tratamientos.get(i).setVeterinario(veterinarios.get(  random.nextInt(12) ));
+        }
     }
 
 
