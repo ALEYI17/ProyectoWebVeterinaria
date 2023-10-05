@@ -1675,3 +1675,7 @@ insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values
 org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
 Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
 insert into mascota (edad,enfermedad,foto,nombre,peso,raza,cliente_id,id) values (?,?,?,?,?,?,?,?) [22001-214]
+2023-10-04 21:38:49 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"
+Value too long for column "FOTO CHARACTER VARYING(255)": "'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elconfidencial.com%2Falma... (287)"; SQL statement:
+update mascota set edad=?,enfermedad=?,foto=?,nombre=?,peso=?,raza=?,cliente_id=? where id=? [22001-214]

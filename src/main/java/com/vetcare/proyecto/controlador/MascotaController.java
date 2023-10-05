@@ -76,6 +76,24 @@ public class MascotaController {
         }
         return mascota;
     }
+
+    @GetMapping("find/{id}/dueno")
+    public Long mostrarInfoMascotaConDueno( @PathVariable("id") Long id){
+        Mascota mascota = mascotaServicio.GetById(id);
+        if(mascota != null){
+            Cliente dueno = mascota.getCliente();
+            
+            if(dueno != null){
+                return dueno.getId();
+            }
+            
+        }
+       else{
+            throw new NotFoundException(id);
+        }
+
+        return 1L;
+    }
     
     // Mostrar el formulario para agregar una nueva mascota
     //http://localhost:8090/Mascota/add
@@ -122,23 +140,23 @@ public class MascotaController {
 
     // Mostrar el formulario para actualizar una mascota
     //http://localhost:8090/Mascota/update/id
-    @GetMapping("/update/{id}")
-    public String actualizarMascota(@PathVariable("id")Long id , Model model){
-        Mascota mascota = mascotaServicio.GetById(id);
-        model.addAttribute("mascota",mascota);
-        return "Mascotas/actualizar_mascota";
-    }
+    // @GetMapping("/update/{id}")
+    // public String actualizarMascota(@PathVariable("id")Long id , Model model){
+    //     Mascota mascota = mascotaServicio.GetById(id);
+    //     model.addAttribute("mascota",mascota);
+    //     return "Mascotas/actualizar_mascota";
+    // }
 
     // Actualizar una mascota
     @PostMapping("/update/{id}")
-    public String actualizarMascota(@PathVariable("id") Long id, 
-                                     @ModelAttribute("mascota") Mascota mascota,
-                                     @RequestParam("cliente.id") Long clienteId){
-        Cliente duenno = clienteServicio.GetById(clienteId);
+    public void actualizarMascota(@PathVariable("id") Long id, 
+                                     @RequestBody Mascota mascota,
+                                     @RequestParam("cliente.id") String clienteId){
+        Cliente duenno = clienteServicio.GetById(Long.parseLong(clienteId));
         if (duenno != null) {
             mascota.setCliente(duenno);
         }
         mascotaServicio.updateMascota(mascota);
-        return "redirect:/Mascota/todas";
+       
     }
 }
