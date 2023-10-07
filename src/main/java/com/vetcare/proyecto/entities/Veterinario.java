@@ -1,6 +1,8 @@
 package com.vetcare.proyecto.entities;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 // Importa las anotaciones de JPA para marcar esta clase como entidad
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,6 +41,7 @@ public class Veterinario {
     @GeneratedValue
     private Long id; // Identificador único del veterinario
 
+    @JsonIgnore
     @OneToMany(mappedBy = "veterinario")
     List<Tratamiento> tratamientos; // Lista de tratamientos relacionados con este veterinario
 
