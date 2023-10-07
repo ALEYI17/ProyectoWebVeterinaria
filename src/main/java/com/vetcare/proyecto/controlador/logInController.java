@@ -64,7 +64,7 @@ public class logInController {
 
     // Manejar el formulario de inicio de sesión de cliente
     @PostMapping("/clientelogin")
-    public String handleClienteLoginForm(@RequestBody Cliente cliente) {
+    public Cliente handleClienteLoginForm(@RequestBody Cliente cliente) {
         // Ahora puedes acceder al atributo cedula del objeto cliente
         String cedula = cliente.getCedula();
         log.info(cedula);
@@ -72,9 +72,9 @@ public class logInController {
 
         if (clienteLogIn == null) {
             // model.addAttribute("errorMessage", "Credenciales de inicio de sesión no válidas");
-            return "invalid"; // Volver a la página de inicio de sesión con un mensaje de error
+            return clienteLogIn = new Cliente("invalid","","",""); // Volver a la página de inicio de sesión con un mensaje de error
         }
 
-        return clienteLogIn.getCedula();
+        return clienteLogIn;
     }
 }
