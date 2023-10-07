@@ -1,5 +1,7 @@
 package com.vetcare.proyecto.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class VeterinarioServicioImpl implements VeterinarioServicio{
     @Override
     public Veterinario VeterianarioByCedulaYContrasena(String Cedula, String contrasena) {
         return veterinarioRepositorio.findVeterinarioByNombreAndContrasena(Cedula, contrasena);
+    }
+
+    @Override
+    public List<Veterinario> GetAll() {
+        return veterinarioRepositorio.findAll();
     }
     
 }

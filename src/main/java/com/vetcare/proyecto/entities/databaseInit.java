@@ -48,7 +48,7 @@ public class databaseInit implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        veterinarioRepositorio.save(new Veterinario("prueba","123", "123", "Nose", "Nose"));
+        //veterinarioRepositorio.save(new Veterinario("prueba","123", "123", "Nose", "Nose"));
         veterinarioRepositorio.save(new Veterinario("Lynelle Charsley", "9045730128", "nH6?tI)#e", "Imagenología", "https://images.ecestaticos.com/ciN9hN7qsu5JOcrGdMngWhCHs8Y=/0x70:1716x1040/1200x1200/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F8db%2F8b6%2Faa5%2F8db8b6aa54b585253e15f79a68447aeb.jpg"));
         veterinarioRepositorio.save(new Veterinario("Ianthe Jordine", "1443103554", "iB7,*K+Pi6a1q", "Rehabilitación", "https://drsaludcompany.cl/wp-content/uploads/elementor/thumbs/Javiera-2-scaled-pmum1xcvznx9anbzo274xlnjldwwsf2p2usg9ra89k.jpg"));
         veterinarioRepositorio.save(new Veterinario("Jayme Novotne", "3844360055", "zF1%7D9~f", "Oncología", "https://yt3.googleusercontent.com/ytc/APkrFKYQtHv2GYhbAQkrTRknWk6YVrDLLZk1YovsUcT0Aw=s900-c-k-c0x00ffffff-no-rj"));
@@ -392,7 +392,7 @@ public class databaseInit implements ApplicationRunner{
         for(int i = 0 ; i<tratamientos.size(); i ++){
             tratamientos.get(i).setMascota(mascotas.get( random.nextInt(200) ));
             tratamientos.get(i).setMedicamentos(medicamentos.get( random.nextInt(523) ));
-            tratamientos.get(i).setVeterinario(veterinarios.get(  random.nextInt(12) ));
+            tratamientos.get(i).setVeterinario(veterinarios.get(  random.nextInt(11) ));
         }
     }
 
