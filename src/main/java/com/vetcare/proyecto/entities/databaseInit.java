@@ -50,7 +50,7 @@ public class databaseInit implements ApplicationRunner{
 
         //veterinarioRepositorio.save(new Veterinario("prueba","123", "123", "Nose", "Nose"));
         veterinarioRepositorio.save(new Veterinario("Lynelle Charsley", "9045730128", "nH6?tI)#e", "Imagenología", "https://images.ecestaticos.com/ciN9hN7qsu5JOcrGdMngWhCHs8Y=/0x70:1716x1040/1200x1200/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F8db%2F8b6%2Faa5%2F8db8b6aa54b585253e15f79a68447aeb.jpg"));
-        veterinarioRepositorio.save(new Veterinario("Ianthe Jordine", "1443103554", "iB7,*K+Pi6a1q", "Rehabilitación", "https://drsaludcompany.cl/wp-content/uploads/elementor/thumbs/Javiera-2-scaled-pmum1xcvznx9anbzo274xlnjldwwsf2p2usg9ra89k.jpg"));
+        veterinarioRepositorio.save(new Veterinario("Ianthe Jordine", "1443103554", "iB7,*K+Pi6a1q", "Rehabilitación", "https://amigodoctor.com/inicio/drs/adrian.jpg"));
         veterinarioRepositorio.save(new Veterinario("Jayme Novotne", "3844360055", "zF1%7D9~f", "Oncología", "https://yt3.googleusercontent.com/ytc/APkrFKYQtHv2GYhbAQkrTRknWk6YVrDLLZk1YovsUcT0Aw=s900-c-k-c0x00ffffff-no-rj"));
         veterinarioRepositorio.save(new Veterinario("Harrietta Wheatcroft", "9928747656", "fV5.}6BrqQ+Ma&+", "Rehabilitación", "https://ic.c4assets.com/brands/the-good-doctor/b24d15b7-bba0-4939-bf45-e893dd5d46fa.jpg?interpolation=progressive-bicubic&output-format=jpeg&output-quality=90{&resize}"));
         veterinarioRepositorio.save(new Veterinario("Clem Brewers", "3306814411", "oK6*e`jYxEC=T}O@", "Oncología", "https://i.pinimg.com/originals/11/97/09/119709a6e0e53e358a6b783c300885eb.jpg"));
