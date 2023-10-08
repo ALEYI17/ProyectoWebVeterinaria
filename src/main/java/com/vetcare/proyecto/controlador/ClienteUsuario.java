@@ -27,14 +27,11 @@ public class ClienteUsuario {
     // Mostrar la página de un cliente y sus mascotas
     //http://localhost:8090/cliente/cedula
     @GetMapping("/{id}")
-    public String mostrarPaginaCliente(@PathVariable("id") String id, Model model) {
+    public Cliente mostrarPaginaCliente(@PathVariable("id") String id) {
         Cliente cliente = clienteServicio.getByCedula(id);
         if(cliente == null){
             throw new NotFoundException(Long.parseLong(id));
         }
-        List<Mascota> pets = cliente.getMisMascotas();
-        model.addAttribute("cliente", cliente);
-        model.addAttribute("pets", pets);
-        return "Clientes/Mostrar_DashBoard_Cliente";
+        return cliente;
     }
 }
