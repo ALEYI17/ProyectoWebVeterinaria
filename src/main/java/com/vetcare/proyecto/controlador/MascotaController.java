@@ -159,4 +159,23 @@ public class MascotaController {
         mascotaServicio.updateMascota(mascota);
        
     }
+
+    @GetMapping("find/{id}/duenocompleto")
+        public Cliente mostrarInfoMascotaConDuenoCompleto( @PathVariable("id") Long id){
+        Mascota mascota = mascotaServicio.GetById(id);
+        if(mascota != null){
+            Cliente dueno = mascota.getCliente();
+            
+            if(dueno != null){
+                return dueno;
+            }
+            
+        }
+       else{
+            throw new NotFoundException(id);
+        }
+
+        return null;
+    }
+
 }
