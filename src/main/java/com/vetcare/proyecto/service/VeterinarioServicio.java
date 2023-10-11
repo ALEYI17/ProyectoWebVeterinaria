@@ -8,4 +8,12 @@ public interface VeterinarioServicio {
     public Veterinario VeterianarioByCedulaYContrasena(String Cedula , String contrasena);
 
     public List<Veterinario> GetAll();
+
+    public Veterinario findVeterinarioById(Long id);
+
+    public void addVeterinario(Veterinario veterinario);
+
+    public void removerVeterinario(Long id);
+
+    public void updateVeterinario(Veterinario veterinario );
 }

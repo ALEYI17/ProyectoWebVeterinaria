@@ -12,6 +12,7 @@ import jakarta.persistence.OneToMany;
 // Marca esta clase como una entidad de JPA
 @Entity
 public class Veterinario {
+
     // Atributos de la clase
     private String Nombre;
     private String cedula; // Cédula del veterinario

@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vetcare.proyecto.Exepciones.NotFoundException;
 import com.vetcare.proyecto.entities.Cliente;
-import com.vetcare.proyecto.entities.Mascota;
 import com.vetcare.proyecto.service.ClienteServicio;
 
 

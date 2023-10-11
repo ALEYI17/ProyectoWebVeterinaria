@@ -23,5 +23,27 @@ public class VeterinarioServicioImpl implements VeterinarioServicio{
     public List<Veterinario> GetAll() {
         return veterinarioRepositorio.findAll();
     }
+
+    @Override
+    public Veterinario findVeterinarioById(Long id) {
+
+        return veterinarioRepositorio.findById(id).get();
+
+    }
+
+    @Override
+    public void addVeterinario(Veterinario veterinario) {
+        veterinarioRepositorio.save(veterinario);
+    }
+
+    @Override
+    public void removerVeterinario(Long id) {
+       veterinarioRepositorio.deleteById(id);
+    }
+
+    @Override
+    public void updateVeterinario(Veterinario veterinario) {
+        veterinarioRepositorio.save(veterinario);
+    }
     
 }
