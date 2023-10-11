@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 // Importa las anotaciones de JPA para marcar esta clase como entidad
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,7 +44,7 @@ public class Veterinario {
     private Long id; // Identificador único del veterinario
 
     @JsonIgnore
-    @OneToMany(mappedBy = "veterinario")
+    @OneToMany(mappedBy = "veterinario" , cascade = { CascadeType.MERGE, CascadeType.REMOVE })
     List<Tratamiento> tratamientos; // Lista de tratamientos relacionados con este veterinario
 
      // Constructores
