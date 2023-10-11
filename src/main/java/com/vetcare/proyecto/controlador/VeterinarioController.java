@@ -23,11 +23,13 @@ public class VeterinarioController {
     @Autowired
     VeterinarioServicio veterinarioServicio;
 
+    // Obtener todos los veterinarios
     @GetMapping("/todos")
     public List<Veterinario>  MostrarVeterinarios(){
         return veterinarioServicio.GetAll();
     }
 
+    // Buscar un veterinario por su ID
     @GetMapping("/find/{id}")
     public Veterinario mosVeterinarioById(@PathVariable("id")Long id){
         Veterinario veterinario = veterinarioServicio.findVeterinarioById(id);
@@ -40,16 +42,19 @@ public class VeterinarioController {
         return veterinario;
     }
 
+     // Agregar un nuevo veterinario
     @PostMapping("/add")
     public void anadirVeterinario(@RequestBody Veterinario veterinario){
         veterinarioServicio.addVeterinario(veterinario);
     }
 
+    // Eliminar un veterinario por su ID
     @DeleteMapping("/delete/{id}")
     public void  eliminarVeterinario(@PathVariable("id") Long id){
         veterinarioServicio.removerVeterinario(id);
     }
 
+    // Actualizar la información de un veterinario
     @PostMapping("update/{id}")
     public void actualizarVeterinario(@PathVariable("id") Long id ,@RequestBody Veterinario veterinario){
         veterinarioServicio.updateVeterinario(veterinario);
