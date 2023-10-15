@@ -26,7 +26,7 @@ public class VeterinarioController {
     // Obtener todos los veterinarios
     @GetMapping("/todos")
     public List<Veterinario>  MostrarVeterinarios(){
-        return veterinarioServicio.GetAll();
+        return veterinarioServicio.GetAllVeterinariosActivos();
     }
 
     // Buscar un veterinario por su ID
@@ -51,7 +51,7 @@ public class VeterinarioController {
     // Eliminar un veterinario por su ID
     @DeleteMapping("/delete/{id}")
     public void  eliminarVeterinario(@PathVariable("id") Long id){
-        veterinarioServicio.removerVeterinario(id);
+        veterinarioServicio.desactivarVeterinarioByID(id);
     }
 
     // Actualizar la información de un veterinario

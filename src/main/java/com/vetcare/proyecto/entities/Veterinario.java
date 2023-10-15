@@ -20,7 +20,7 @@ public class Veterinario {
     private String contrasena; // Contraseña del veterinario
     private String especialidad; // Especialidad del veterinario
     private String foto; // Ruta de la foto del veterinario
-   
+   private boolean activo;
 
     public String getNombre() {
         return Nombre;
@@ -55,12 +55,13 @@ public class Veterinario {
     }
 
     // Constructor con parámetros para inicializar los atributos
-    public Veterinario(String Nombre,String cedula, String contrasena, String especialidad, String foto) {
+    public Veterinario(String Nombre,String cedula, String contrasena, String especialidad, String foto,boolean activo) {
         this.Nombre = Nombre;
         this.cedula = cedula;
         this.contrasena = contrasena;
         this.especialidad = especialidad;
         this.foto = foto;
+        this.activo = activo;
     }
 
     // Métodos getter y setter para cada atributo
@@ -114,6 +115,14 @@ public class Veterinario {
     // Setter para establecer el identificador único del veterinario
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
    

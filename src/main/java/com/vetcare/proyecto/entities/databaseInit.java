@@ -48,18 +48,18 @@ public class databaseInit implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        veterinarioRepositorio.save(new Veterinario("prueba","123", "123", "Nose", "Nose"));
-        veterinarioRepositorio.save(new Veterinario("Lynelle Charsley", "9045730128", "nH6?tI)#e", "Imagenología", "https://images.ecestaticos.com/ciN9hN7qsu5JOcrGdMngWhCHs8Y=/0x70:1716x1040/1200x1200/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F8db%2F8b6%2Faa5%2F8db8b6aa54b585253e15f79a68447aeb.jpg"));
-        veterinarioRepositorio.save(new Veterinario("Ianthe Jordine", "1443103554", "iB7,*K+Pi6a1q", "Rehabilitación", "https://amigodoctor.com/inicio/drs/adrian.jpg"));
-        veterinarioRepositorio.save(new Veterinario("Jayme Novotne", "3844360055", "zF1%7D9~f", "Oncología", "https://yt3.googleusercontent.com/ytc/APkrFKYQtHv2GYhbAQkrTRknWk6YVrDLLZk1YovsUcT0Aw=s900-c-k-c0x00ffffff-no-rj"));
-        veterinarioRepositorio.save(new Veterinario("Harrietta Wheatcroft", "9928747656", "fV5.}6BrqQ+Ma&+", "Rehabilitación", "https://ic.c4assets.com/brands/the-good-doctor/b24d15b7-bba0-4939-bf45-e893dd5d46fa.jpg?interpolation=progressive-bicubic&output-format=jpeg&output-quality=90{&resize}"));
-        veterinarioRepositorio.save(new Veterinario("Clem Brewers", "3306814411", "oK6*e`jYxEC=T}O@", "Oncología", "https://i.pinimg.com/originals/11/97/09/119709a6e0e53e358a6b783c300885eb.jpg"));
-        veterinarioRepositorio.save(new Veterinario("Corry Yannoni", "8286795345", "sE4>f<r}Vrv", "Oncología", "https://tecolotito.elsiglodetorreon.com.mx/cdn-cgi/image/format=auto,width=1024/i/2009/07/139879.jpeg"));
-        veterinarioRepositorio.save(new Veterinario("Xavier Brislen", "9640373723", "rY1@yb'~", "Oncología", "https://media.istockphoto.com/id/1468678629/photo/portrait-healthcare-and-tablet-with-a-doctor-woman-at-work-in-a-hospital-for-research-or.webp?b=1&s=170667a&w=0&k=20&c=H9w4bMoP3WXY178SVYmZsZsSCaTJoVLRMnSLPd3L3OE="));
-        veterinarioRepositorio.save(new Veterinario("Pooh Geindre", "2352482910", "fE6@?)q~~_", "Fisioterapia", "https://www.leasurgery.co.uk/media/content/images/doctor.jpg"));
-        veterinarioRepositorio.save(new Veterinario("Nobe Larter", "2064009404", "vG5(4c~Np`qYZ0", "Rehabilitación", "https://www.beaumont.org/images/default-source/primary-care/getting-to-know-doctor.jpg?sfvrsn=cc08ede2_0"));
-        veterinarioRepositorio.save(new Veterinario("Yves Chittem", "6817346042", "eK3})<d`fC", "Fisioterapia", "https://www.pasadenahealthcenter.com/site/wp-content/uploads/2018/01/doctor.jpg"));
-        veterinarioRepositorio.save(new Veterinario("Casie Gawkes", "7280532372", "uB8!1!c)fNh7Phe", "Cirugía", "https://medimap.ca/wp-content/uploads/2022/10/iStock-1193303828.jpg"));
+        veterinarioRepositorio.save(new Veterinario("prueba","123", "123", "Nose", "Nose",true));
+        veterinarioRepositorio.save(new Veterinario("Lynelle Charsley", "9045730128", "nH6?tI)#e", "Imagenología", "https://images.ecestaticos.com/ciN9hN7qsu5JOcrGdMngWhCHs8Y=/0x70:1716x1040/1200x1200/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F8db%2F8b6%2Faa5%2F8db8b6aa54b585253e15f79a68447aeb.jpg",true));
+        veterinarioRepositorio.save(new Veterinario("Ianthe Jordine", "1443103554", "iB7,*K+Pi6a1q", "Rehabilitación", "https://amigodoctor.com/inicio/drs/adrian.jpg",true));
+        veterinarioRepositorio.save(new Veterinario("Jayme Novotne", "3844360055", "zF1%7D9~f", "Oncología", "https://yt3.googleusercontent.com/ytc/APkrFKYQtHv2GYhbAQkrTRknWk6YVrDLLZk1YovsUcT0Aw=s900-c-k-c0x00ffffff-no-rj",true));
+        veterinarioRepositorio.save(new Veterinario("Harrietta Wheatcroft", "9928747656", "fV5.}6BrqQ+Ma&+", "Rehabilitación", "https://ic.c4assets.com/brands/the-good-doctor/b24d15b7-bba0-4939-bf45-e893dd5d46fa.jpg?interpolation=progressive-bicubic&output-format=jpeg&output-quality=90{&resize}",true));
+        veterinarioRepositorio.save(new Veterinario("Clem Brewers", "3306814411", "oK6*e`jYxEC=T}O@", "Oncología", "https://i.pinimg.com/originals/11/97/09/119709a6e0e53e358a6b783c300885eb.jpg",true));
+        veterinarioRepositorio.save(new Veterinario("Corry Yannoni", "8286795345", "sE4>f<r}Vrv", "Oncología", "https://tecolotito.elsiglodetorreon.com.mx/cdn-cgi/image/format=auto,width=1024/i/2009/07/139879.jpeg",true));
+        veterinarioRepositorio.save(new Veterinario("Xavier Brislen", "9640373723", "rY1@yb'~", "Oncología", "https://media.istockphoto.com/id/1468678629/photo/portrait-healthcare-and-tablet-with-a-doctor-woman-at-work-in-a-hospital-for-research-or.webp?b=1&s=170667a&w=0&k=20&c=H9w4bMoP3WXY178SVYmZsZsSCaTJoVLRMnSLPd3L3OE=",true));
+        veterinarioRepositorio.save(new Veterinario("Pooh Geindre", "2352482910", "fE6@?)q~~_", "Fisioterapia", "https://www.leasurgery.co.uk/media/content/images/doctor.jpg",true));
+        veterinarioRepositorio.save(new Veterinario("Nobe Larter", "2064009404", "vG5(4c~Np`qYZ0", "Rehabilitación", "https://www.beaumont.org/images/default-source/primary-care/getting-to-know-doctor.jpg?sfvrsn=cc08ede2_0",true));
+        veterinarioRepositorio.save(new Veterinario("Yves Chittem", "6817346042", "eK3})<d`fC", "Fisioterapia", "https://www.pasadenahealthcenter.com/site/wp-content/uploads/2018/01/doctor.jpg",true));
+        veterinarioRepositorio.save(new Veterinario("Casie Gawkes", "7280532372", "uB8!1!c)fNh7Phe", "Cirugía", "https://medimap.ca/wp-content/uploads/2022/10/iStock-1193303828.jpg",true));
 
 
         clienteRepositorio.save(new Cliente("5602222623501237","Crin Dottridge","cdottridge0@bravesites.com","184-683-8032"));

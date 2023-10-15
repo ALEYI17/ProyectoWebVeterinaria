@@ -16,4 +16,8 @@ public interface VeterinarioServicio {
     public void removerVeterinario(Long id);
 
     public void updateVeterinario(Veterinario veterinario );
+
+    public void desactivarVeterinarioByID(Long id);
+    
+    List<Veterinario> GetAllVeterinariosActivos();
 }

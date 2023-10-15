@@ -45,5 +45,17 @@ public class VeterinarioServicioImpl implements VeterinarioServicio{
     public void updateVeterinario(Veterinario veterinario) {
         veterinarioRepositorio.save(veterinario);
     }
+
+    @Override
+    public void desactivarVeterinarioByID(Long id) {
+        
+        veterinarioRepositorio.desactivarVeterinarioPorId(id);
+
+    }
+
+    @Override
+    public List<Veterinario> GetAllVeterinariosActivos() {
+        return veterinarioRepositorio.findByActivoTrue();
+    }
     
 }
