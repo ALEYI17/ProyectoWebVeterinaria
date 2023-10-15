@@ -60,4 +60,9 @@ public class MascotaServicioImpl implements MascotaServicio {
 
         return mascotas;
     }
+
+    @Override
+    public Long CountMascotas() {
+        return mascotaRepository.countAll();
+    }
 }

@@ -57,5 +57,15 @@ public class VeterinarioServicioImpl implements VeterinarioServicio{
     public List<Veterinario> GetAllVeterinariosActivos() {
         return veterinarioRepositorio.findByActivoTrue();
     }
+
+    @Override
+    public Long CountVeterinariosActivos() {
+         return veterinarioRepositorio.countByActivoTrue();
+    }
+
+    @Override
+    public Long CountVeterinariosInactivos() {
+         return veterinarioRepositorio.countByActivoFalse();
+    }
     
 }

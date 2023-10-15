@@ -23,4 +23,6 @@ public interface MascotaServicio {
 
     // Obtener varias mascotas por sus IDs
     public ArrayList<Mascota> GetVariousById(ArrayList<Long> ids);
+
+    Long CountMascotas();
 }

@@ -20,4 +20,8 @@ public interface VeterinarioServicio {
     public void desactivarVeterinarioByID(Long id);
     
     List<Veterinario> GetAllVeterinariosActivos();
+
+    Long CountVeterinariosActivos();
+
+    Long CountVeterinariosInactivos();
 }

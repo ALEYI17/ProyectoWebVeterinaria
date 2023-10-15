@@ -23,4 +23,8 @@ public interface VeterinarioRepositorio extends JpaRepository<Veterinario,Long> 
     
 
     List<Veterinario> findByActivoTrue();
+
+    long countByActivoTrue();
+
+    long countByActivoFalse();
 }
