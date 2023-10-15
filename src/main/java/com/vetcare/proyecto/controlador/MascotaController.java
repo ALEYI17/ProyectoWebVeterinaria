@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vetcare.proyecto.Exepciones.NotFoundException;
 import com.vetcare.proyecto.entities.Cliente;
 import com.vetcare.proyecto.entities.Mascota;
+import com.vetcare.proyecto.entities.Tratamiento;
 import com.vetcare.proyecto.service.ClienteServicio;
 import com.vetcare.proyecto.service.MascotaServicio;
 
@@ -174,6 +175,21 @@ public class MascotaController {
             throw new NotFoundException(id);
         }
 
+        return null;
+    }
+
+    @GetMapping("find/{id}/tratamientos")
+    public List<Tratamiento> mostrarTratamientosDeMascota(@PathVariable("id") Long id){
+        Mascota mascota = mascotaServicio.GetById(id);
+        if(mascota!= null){
+            List<Tratamiento> tratamientos = mascota.getTratamientos();
+            if(tratamientos != null){
+                return tratamientos;
+            }
+        }
+        else{
+            throw new NotFoundException(id);
+        }
         return null;
     }
 

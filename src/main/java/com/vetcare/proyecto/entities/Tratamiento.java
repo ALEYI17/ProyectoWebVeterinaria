@@ -8,6 +8,8 @@ import jakarta.persistence.ManyToOne;
 // Importa la clase java.sql.Date para trabajar con fechas
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 // Marca esta clase como una entidad de JPA
 @Entity
 public class Tratamiento {
@@ -19,16 +21,22 @@ public class Tratamiento {
     // Atributos de la clase
     private Date Fecha;
     private Integer precio;
+    private Boolean activo;
+
+ 
 
     // Relación Uno a Muchos con la entidad Medicamento
+    @JsonIgnore
     @ManyToOne
     private Medicamento medicamentos;
 
     // Relación Muchos a Uno con la entidad Mascota
+    @JsonIgnore
     @ManyToOne
     private Mascota mascota;
 
     // Relación Muchos a Uno con la entidad Veterinario
+    @JsonIgnore
     @ManyToOne
     private Veterinario veterinario;
 
@@ -41,6 +49,7 @@ public class Tratamiento {
     public Tratamiento(Date Fecha, int precio) {
         this.Fecha = Fecha;
         this.precio = precio;
+        this.activo = true;
     }
 
     // Métodos getter y setter para el identificador único
@@ -95,5 +104,13 @@ public class Tratamiento {
 
     public void setVeterinario(Veterinario veterinario) {
         this.veterinario = veterinario;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 }

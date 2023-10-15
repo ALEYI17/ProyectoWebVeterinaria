@@ -23,6 +23,8 @@ public class Mascota {
     private String Enfermedad;
     private String Foto;
 
+
+
     // Identificador único de la entidad Mascota
     @Id
     @GeneratedValue
@@ -48,6 +50,7 @@ public class Mascota {
         Peso = peso;
         Enfermedad = enfermedad;
         Foto = foto;
+    
     }
 
     // Constructor vacío necesario para JPA

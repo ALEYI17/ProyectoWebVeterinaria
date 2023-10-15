@@ -2,6 +2,8 @@ package com.vetcare.proyecto.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,7 +20,7 @@ public class Medicamento {
     private double precioCompra; // Cambiado a double para representar valores en dólares
     private int unidadesDisponibles;
     private int unidadesVendidas;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "medicamentos")
     private List<Tratamiento> tratamiento;
 
