@@ -63,6 +63,6 @@ public class MascotaServicioImpl implements MascotaServicio {
 
     @Override
     public Long CountMascotas() {
-        return mascotaRepository.countAll();
+        return mascotaRepository.count();
     }
 }
