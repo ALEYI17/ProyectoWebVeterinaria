@@ -44,7 +44,9 @@ public class TratamientoController {
         tratamiento.setMascota(mascota);
         tratamiento.setVeterinario(veterinario);
         tratamiento.setMedicamentos(medicamento);
+        medicamentoServicio.actualizarUnidadesDisponiblesYVendidas(Long.parseLong(MedicamentoId), 1);
         tratamientoServicio.anadirTratamiento(tratamiento);
+        
     }
     
 }

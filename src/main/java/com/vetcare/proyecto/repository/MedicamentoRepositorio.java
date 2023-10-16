@@ -3,7 +3,9 @@ package com.vetcare.proyecto.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.domain.Pageable;
 
@@ -26,5 +28,10 @@ public interface MedicamentoRepositorio extends JpaRepository<Medicamento,Long> 
     @Query("SELECT m FROM Medicamento m ORDER BY m.unidadesVendidas DESC")
     public List<Medicamento> top3Medicamentos(Pageable pageable);
 
-    
+    @Modifying
+    @Query("UPDATE Medicamento m " +
+           "SET m.unidadesDisponibles = m.unidadesDisponibles - :cantidad, " +
+           "    m.unidadesVendidas = m.unidadesVendidas + :cantidad " +
+           "WHERE m.id = :medicamentoId")
+    void actualizarUnidadesDisponiblesYVendidas(@Param("medicamentoId") Long medicamentoId, @Param("cantidad") int cantidad);
 }

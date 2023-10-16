@@ -19,4 +19,6 @@ public interface MedicamentoServicio {
 
     public List<Medicamento> fiandAll();
 
+    public void actualizarUnidadesDisponiblesYVendidas(Long medicamentoId, int cantidad);
+
 }
