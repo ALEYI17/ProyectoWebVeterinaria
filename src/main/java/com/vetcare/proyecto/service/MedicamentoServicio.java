@@ -17,4 +17,6 @@ public interface MedicamentoServicio {
 
     public Medicamento findById(Long id);
 
+    public List<Medicamento> fiandAll();
+
 }

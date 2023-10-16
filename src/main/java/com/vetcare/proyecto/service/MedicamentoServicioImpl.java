@@ -44,5 +44,12 @@ public class MedicamentoServicioImpl implements MedicamentoServicio{
        return medicamentoRepositorio.findById(id).get();
 
     }
+
+    @Override
+    public List<Medicamento> fiandAll() {
+       return medicamentoRepositorio.findAll();
+    }
+
+    
     
 }
