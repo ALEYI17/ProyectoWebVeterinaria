@@ -1,0 +1,49 @@
+package com.vetcare.proyecto.controlador;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.vetcare.proyecto.entities.Mascota;
+import com.vetcare.proyecto.entities.Medicamento;
+import com.vetcare.proyecto.entities.Tratamiento;
+import com.vetcare.proyecto.entities.Veterinario;
+import com.vetcare.proyecto.service.MascotaServicio;
+import com.vetcare.proyecto.service.MedicamentoServicio;
+import com.vetcare.proyecto.service.TratamientoServicio;
+import com.vetcare.proyecto.service.VeterinarioServicio;
+
+
+
+@RestController
+@RequestMapping("/Tratamiento")
+@CrossOrigin(origins = "http://localhost:4200")
+public class TratamientoController {
+
+    @Autowired
+    TratamientoServicio tratamientoServicio;
+    @Autowired
+    MascotaServicio mascotaServicio;
+    @Autowired
+    VeterinarioServicio veterinarioServicio;
+    @Autowired
+    MedicamentoServicio medicamentoServicio;
+
+    @PostMapping("/add")
+    public void anadirTratamiento(@RequestBody Tratamiento tratamiento , @RequestParam("MascotaId") String MascotaId, @RequestParam("VeterinarioId") String VeterinarioId
+    ,@RequestParam("MedicamentoId") String MedicamentoId ){
+
+        Mascota mascota = mascotaServicio.GetById(Long.parseLong(MascotaId));
+        Veterinario veterinario = veterinarioServicio.findVeterinarioById(Long.parseLong(VeterinarioId));
+        Medicamento medicamento = medicamentoServicio.findById(Long.parseLong(MedicamentoId));
+        tratamiento.setMascota(mascota);
+        tratamiento.setVeterinario(veterinario);
+        tratamiento.setMedicamentos(medicamento);
+        tratamientoServicio.anadirTratamiento(tratamiento);
+    }
+    
+}
