@@ -375,8 +375,9 @@ public class databaseInit implements ApplicationRunner{
 
         }
 
-        for (int i = 0; i < 10; i++) {
-            Tratamiento tratamiento = new Tratamiento(new Date(), 100); // Debes proporcionar la fecha y el precio correctos aquí
+        Random random = new Random(1);
+        for (int i = 0; i < 30; i++) {
+            Tratamiento tratamiento = new Tratamiento(new Date(), random.nextInt(300000 - 10000 + 1) + 10000); // Debes proporcionar la fecha y el precio correctos aquí
             tratamientoRepositorio.save(tratamiento);
         }
 
@@ -385,14 +386,31 @@ public class databaseInit implements ApplicationRunner{
         List<Tratamiento> tratamientos = tratamientoRepositorio.findAll();
         List<Medicamento> medicamentos = medicamentoRepositorio.findAll();
         List<Veterinario> veterinarios = veterinarioRepositorio.findAll();
-        Random random = new Random();
+
 
         // Generar un número aleatorio entre 1 y 200
-       
-        for(int i = 0 ; i<tratamientos.size(); i ++){
-            tratamientos.get(i).setMascota(mascotas.get( random.nextInt(200) ));
-            tratamientos.get(i).setMedicamentos(medicamentos.get( random.nextInt(523) ));
-            tratamientos.get(i).setVeterinario(veterinarios.get(  random.nextInt(11) ));
+        for (int i = 0; i < tratamientos.size(); i++) {
+            Tratamiento tratamiento = tratamientos.get(i);
+            Mascota mascota = mascotas.get(random.nextInt(200));
+            
+            // Elegir un medicamento con unidades disponibles
+            Medicamento medicamento = elegirMedicamentoConUnidadesDisponibles(medicamentos, random);
+        
+            Veterinario veterinario = veterinarios.get(random.nextInt(11));
+        
+            tratamiento.setMascota(mascota);
+            tratamiento.setMedicamentos(medicamento);
+            tratamiento.setVeterinario(veterinario);
+        
+            // Actualizar unidades vendidas y disponibles del medicamento
+            int unidadesVendidas = tratamiento.getMedicamentos().getUnidadesVendidas() + 1;
+            int unidadesDisponibles = tratamiento.getMedicamentos().getUnidadesDisponibles() - 1;
+        
+            tratamiento.getMedicamentos().setUnidadesVendidas(unidadesVendidas);
+            tratamiento.getMedicamentos().setUnidadesDisponibles(unidadesDisponibles);
+        
+            // Guardar el tratamiento actualizado en el repositorio
+            tratamientoRepositorio.save(tratamiento);
         }
     }
 
@@ -425,6 +443,18 @@ public class databaseInit implements ApplicationRunner{
         }
 
         
+    }
+
+    private Medicamento elegirMedicamentoConUnidadesDisponibles(List<Medicamento> medicamentos, Random random) {
+        Medicamento medicamento = medicamentos.get(random.nextInt(medicamentos.size()));
+    
+        // Verificar si hay suficientes unidades disponibles (asumimos que 0 o más es suficiente)
+        while (medicamento.getUnidadesDisponibles() <= 0) {
+            // Escoger otro medicamento si el actual no tiene unidades disponibles
+            medicamento = medicamentos.get(random.nextInt(medicamentos.size()));
+        }
+    
+        return medicamento;
     }
     
 }
