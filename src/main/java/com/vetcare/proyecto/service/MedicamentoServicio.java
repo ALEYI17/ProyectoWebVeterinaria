@@ -8,9 +8,13 @@ public interface MedicamentoServicio {
     
     public void addMedicamento(Medicamento medicamento);
 
+
     public Long ventasTotales();
 
     public Long gananciasTotales();
 
     public List<Medicamento>top3medicaMentos();
+
+    public Medicamento findById(Long id);
+
 }

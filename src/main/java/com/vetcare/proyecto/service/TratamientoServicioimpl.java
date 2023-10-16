@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vetcare.proyecto.entities.Tratamiento;
 import com.vetcare.proyecto.repository.TratamientoRepositorio;
 
 @Service
@@ -39,6 +40,11 @@ public class TratamientoServicioimpl implements TratamientoServicio {
         Date fechaFin = Date.from(fechaFinMes.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
         return tratamientoRepository.countTratamientosPorTipoEnUltimoMes(fechaInicio, fechaFin);
+    }
+
+    @Override
+    public void anadirTratamiento(Tratamiento tratamiento) {
+        tratamientoRepository.save(tratamiento);
     }
     
 }

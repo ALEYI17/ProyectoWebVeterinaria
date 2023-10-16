@@ -21,6 +21,7 @@ public class MedicamentoServicioImpl implements MedicamentoServicio{
     }
 
     @Override
+
     public Long ventasTotales() {
         
         return medicamentoRepositorio.totalDeVentas();
@@ -37,6 +38,11 @@ public class MedicamentoServicioImpl implements MedicamentoServicio{
     public List<Medicamento> top3medicaMentos() {
         Pageable top3 = PageRequest.of(0, 3);
         return  medicamentoRepositorio.top3Medicamentos(top3);
+    }
+    
+    public Medicamento findById(Long id) {
+       return medicamentoRepositorio.findById(id).get();
+
     }
     
 }
