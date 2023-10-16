@@ -25,4 +25,6 @@ public interface MascotaServicio {
     public ArrayList<Mascota> GetVariousById(ArrayList<Long> ids);
 
     Long CountMascotas();
+
+    List<Object[]> MascotasTratamientosActivos();
 }

@@ -20,7 +20,7 @@ public interface VeterinarioRepositorio extends JpaRepository<Veterinario,Long> 
     @Modifying
     @Transactional
     public void desactivarVeterinarioPorId(Long id);
-    
+
 
     List<Veterinario> findByActivoTrue();
 

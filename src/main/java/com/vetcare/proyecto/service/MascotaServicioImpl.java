@@ -65,4 +65,10 @@ public class MascotaServicioImpl implements MascotaServicio {
     public Long CountMascotas() {
         return mascotaRepository.count();
     }
+
+    @Override
+    public List<Object[]> MascotasTratamientosActivos() {
+        
+        return mascotaRepository.contarTratamientosActivosPorMascota();
+    }
 }

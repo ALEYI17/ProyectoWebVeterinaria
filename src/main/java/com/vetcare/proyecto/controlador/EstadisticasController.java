@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vetcare.proyecto.entities.Medicamento;
 import com.vetcare.proyecto.service.MascotaServicio;
 import com.vetcare.proyecto.service.MedicamentoServicio;
 import com.vetcare.proyecto.service.TratamientoServicio;
@@ -47,6 +48,18 @@ public class EstadisticasController {
     public List<Object[]> obtenerCantidadTratamientosPorTipoEnUltimoMes(){
         return tratamientoservicio.tratamientomedicamento();
     }
+
+    @GetMapping("/totalventas")
+    public Long ventasTotales(){return medicamentoservicio.ventasTotales();}
+
+    @GetMapping("/gananciastotales")
+    public Long gananciasTotales(){return medicamentoservicio.gananciasTotales();}
+
+    @GetMapping("/Tratamientos")
+    public List<Object[]> mascotasConTratamientosActivos(){return mascotaservicio.MascotasTratamientosActivos();}
+
+ @GetMapping("/topmedicamentos")
+    public List<Medicamento> topMedicamentos(){return medicamentoservicio.top3medicaMentos();}
 
 
 }
