@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vetcare.proyecto.entities.Admin;
 import com.vetcare.proyecto.entities.Cliente;
 import com.vetcare.proyecto.entities.Veterinario;
+import com.vetcare.proyecto.service.AdminServicio;
 import com.vetcare.proyecto.service.ClienteServicio;
 import com.vetcare.proyecto.service.VeterinarioServicio;
 
@@ -22,6 +24,9 @@ public class logInController {
 
     @Autowired
     VeterinarioServicio veterinarioServicio;
+
+    @Autowired
+    AdminServicio adminServicio;
 
     Logger log = LoggerFactory.getLogger(getClass());
 
@@ -49,6 +54,18 @@ public class logInController {
         return true;
     }
 
+    @PostMapping("/AdminLogin")
+    public Boolean handleAdminLoginForm(@RequestBody Admin admin){
+        String usuString = admin.getUsuario();
+        String contraString= admin.getContrasena();
+        Admin admin2 = adminServicio.GetAdmin(usuString,contraString);
+
+        if(admin2 != null){
+            return true;
+        }
+        return false;
+    }
+
     // Mostrar la página de inicio de sesión de cliente
     //http://localhost:8090/login/cliente
     // @GetMapping("/login/cliente")
@@ -73,4 +90,6 @@ public class logInController {
 
         return clienteLogIn;
     }
+
+
 }

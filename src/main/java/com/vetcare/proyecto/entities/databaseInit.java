@@ -13,6 +13,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 
+import com.vetcare.proyecto.repository.AdminRepositorio;
 import com.vetcare.proyecto.repository.ClienteRepositorio;
 import com.vetcare.proyecto.repository.MascotaRepository;
 import com.vetcare.proyecto.repository.MedicamentoRepositorio;
@@ -43,6 +44,9 @@ public class databaseInit implements ApplicationRunner{
 
     @Autowired
     TratamientoRepositorio tratamientoRepositorio;
+
+    @Autowired
+    AdminRepositorio adminRepositorio;
 
 
     @Override
@@ -412,6 +416,8 @@ public class databaseInit implements ApplicationRunner{
             // Guardar el tratamiento actualizado en el repositorio
             tratamientoRepositorio.save(tratamiento);
         }
+
+        adminRepositorio.save(new Admin("123", "123"));
     }
 
 
