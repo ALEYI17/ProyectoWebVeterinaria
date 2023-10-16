@@ -13,7 +13,7 @@ import com.vetcare.proyecto.entities.Medicamento;
 public interface MedicamentoRepositorio extends JpaRepository<Medicamento,Long> {
 
         
-    @Query("SELECT SUM(m.unidadesVendidas) FROM Medicamento m")
+    @Query("SELECT SUM(m.unidadesVendidas * m.precioVenta) FROM Medicamento m")
     public Long totalDeVentas();
 
 
