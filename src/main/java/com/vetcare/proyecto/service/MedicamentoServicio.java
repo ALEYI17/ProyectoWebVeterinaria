@@ -17,4 +17,8 @@ public interface MedicamentoServicio {
 
     public Medicamento findById(Long id);
 
+    public List<Medicamento> fiandAll();
+
+    public void actualizarUnidadesDisponiblesYVendidas(Long medicamentoId, int cantidad);
+
 }

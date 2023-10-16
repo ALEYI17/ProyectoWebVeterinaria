@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.vetcare.proyecto.entities.Medicamento;
 import com.vetcare.proyecto.repository.MedicamentoRepositorio;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.data.domain.Pageable;
 
 @Service
@@ -44,5 +47,18 @@ public class MedicamentoServicioImpl implements MedicamentoServicio{
        return medicamentoRepositorio.findById(id).get();
 
     }
+
+    @Override
+    public List<Medicamento> fiandAll() {
+       return medicamentoRepositorio.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void actualizarUnidadesDisponiblesYVendidas(Long medicamentoId, int cantidad)  {
+        medicamentoRepositorio.actualizarUnidadesDisponiblesYVendidas(medicamentoId, cantidad);
+    }
+
+    
     
 }

@@ -34,16 +34,19 @@ public class TratamientoController {
     MedicamentoServicio medicamentoServicio;
 
     @PostMapping("/add")
-    public void anadirTratamiento(@RequestBody Tratamiento tratamiento , @RequestParam("MascotaId") String MascotaId, @RequestParam("VeterinarioId") String VeterinarioId
-    ,@RequestParam("MedicamentoId") String MedicamentoId ){
-
+    public void anadirTratamiento( @RequestParam("MascotaId") String MascotaId, @RequestParam("VeterinarioId") String VeterinarioId
+    ,@RequestParam("MedicamentoId") String MedicamentoId ,@RequestBody Tratamiento tratamiento ){
+        String inputId = VeterinarioId.trim(); // Trim leading and trailing spaces
+        Long veterinarioId = Long.parseLong(inputId);
         Mascota mascota = mascotaServicio.GetById(Long.parseLong(MascotaId));
-        Veterinario veterinario = veterinarioServicio.findVeterinarioById(Long.parseLong(VeterinarioId));
+        Veterinario veterinario = veterinarioServicio.findVeterinarioById(veterinarioId);
         Medicamento medicamento = medicamentoServicio.findById(Long.parseLong(MedicamentoId));
         tratamiento.setMascota(mascota);
         tratamiento.setVeterinario(veterinario);
         tratamiento.setMedicamentos(medicamento);
+        medicamentoServicio.actualizarUnidadesDisponiblesYVendidas(Long.parseLong(MedicamentoId), 1);
         tratamientoServicio.anadirTratamiento(tratamiento);
+        
     }
     
 }
