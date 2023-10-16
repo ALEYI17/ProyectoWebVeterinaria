@@ -1,5 +1,6 @@
 package com.vetcare.proyecto.repository;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,5 +15,13 @@ public interface TratamientoRepositorio extends JpaRepository <Tratamiento ,Long
 
     @Query("SELECT COUNT(t) FROM Tratamiento t WHERE t.Fecha >= :fechaInicio AND t.Fecha <= :fechaFin")
     long countTratamientosEnUltimoMes(@Param("fechaInicio") Date fechaInicio, @Param("fechaFin") Date fechaFin);
+
+    @Query("SELECT m.nombre AS nombreMedicamento, COUNT(t) AS cantidadTratamientos " +
+           "FROM Tratamiento t " +
+           "JOIN t.medicamentos m " +
+           "WHERE t.Fecha >= :fechaInicio AND t.Fecha <= :fechaFin " +
+           "GROUP BY m.nombre")
+    List<Object[]> countTratamientosPorTipoEnUltimoMes(@Param("fechaInicio") Date fechaInicio, @Param("fechaFin") Date fechaFin);
+
     
 }
