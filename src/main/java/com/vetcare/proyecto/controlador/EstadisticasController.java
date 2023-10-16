@@ -55,7 +55,7 @@ public class EstadisticasController {
     @GetMapping("/gananciastotales")
     public Long gananciasTotales(){return medicamentoservicio.gananciasTotales();}
 
-    @GetMapping("/Tratamientos")
+    @GetMapping("/TratamientosActivos")
     public List<Object[]> mascotasConTratamientosActivos(){return mascotaservicio.MascotasTratamientosActivos();}
 
  @GetMapping("/topmedicamentos")
