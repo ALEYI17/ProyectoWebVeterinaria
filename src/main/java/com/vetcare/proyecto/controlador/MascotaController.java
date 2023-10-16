@@ -134,7 +134,7 @@ public class MascotaController {
 
     // Eliminar una mascota por su ID
     @DeleteMapping("/delete/{id}")
-    public void eliminarEstudiante(@PathVariable("id") Long id , Model model){
+    public void eliminarEstudiante(@PathVariable("id") Long id ){
         mascotaServicio.removeMascota(id);
     }
 

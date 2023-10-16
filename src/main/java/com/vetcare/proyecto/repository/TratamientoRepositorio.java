@@ -3,6 +3,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -22,6 +23,10 @@ public interface TratamientoRepositorio extends JpaRepository <Tratamiento ,Long
            "WHERE t.Fecha >= :fechaInicio AND t.Fecha <= :fechaFin " +
            "GROUP BY m.nombre")
     List<Object[]> countTratamientosPorTipoEnUltimoMes(@Param("fechaInicio") Date fechaInicio, @Param("fechaFin") Date fechaFin);
+
+    @Modifying
+    @Query("UPDATE Tratamiento t SET t.activo = :activo WHERE t.id = :tratamientoId")
+    int updateActivoById(@Param("tratamientoId") Long tratamientoId, @Param("activo") boolean activo);
 
     
 }

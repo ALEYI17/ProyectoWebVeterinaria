@@ -14,5 +14,7 @@ public interface TratamientoServicio {
     public List<Object[]> tratamientomedicamento();
 
     public void anadirTratamiento(Tratamiento tratamiento);
+
+    public void cambiarEstadoActivo(Long tratamientoId, boolean nuevoEstadoActivo);
     
 }

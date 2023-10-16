@@ -48,5 +48,10 @@ public class TratamientoController {
         tratamientoServicio.anadirTratamiento(tratamiento);
         
     }
+
+    @PostMapping("/Desactivar")
+    public void DesactivarTratamiento(@RequestBody Tratamiento tratamiento){
+        tratamientoServicio.cambiarEstadoActivo(tratamiento.getId(), false);
+    }
     
 }

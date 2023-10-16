@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.vetcare.proyecto.entities.Tratamiento;
 import com.vetcare.proyecto.repository.TratamientoRepositorio;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class TratamientoServicioimpl implements TratamientoServicio {
 
@@ -45,6 +47,17 @@ public class TratamientoServicioimpl implements TratamientoServicio {
     @Override
     public void anadirTratamiento(Tratamiento tratamiento) {
         tratamientoRepository.save(tratamiento);
+    }
+
+    @Override
+    @Transactional
+    public void cambiarEstadoActivo(Long tratamientoId, boolean nuevoEstadoActivo) {
+        int updatedRows = tratamientoRepository.updateActivoById(tratamientoId, nuevoEstadoActivo);
+        if (updatedRows > 0) {
+            // Éxito: El atributo "activo" se actualizó correctamente.
+        } else {
+            // Error: No se pudo actualizar el atributo "activo".
+        }
     }
     
 }
