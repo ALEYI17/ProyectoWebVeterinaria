@@ -39,8 +39,9 @@ public class TratamientoController {
         @RequestParam("MedicamentoId") String MedicamentoId,
         @RequestBody Tratamiento tratamiento
     ) {
+        String inputId = VeterinarioId.trim();
         // Parseo de las ID a tipos numéricos
-        Long veterinarioId = Long.parseLong(VeterinarioId);
+        Long veterinarioId = Long.parseLong(inputId);
         Long mascotaId = Long.parseLong(MascotaId);
         Long medicamentoId = Long.parseLong(MedicamentoId);
 
