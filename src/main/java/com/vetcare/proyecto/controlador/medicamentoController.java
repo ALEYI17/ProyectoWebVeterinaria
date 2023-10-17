@@ -19,9 +19,11 @@ public class medicamentoController {
     @Autowired
     MedicamentoServicio medicamentoServicio;
 
+    // Este controlador maneja solicitudes relacionadas con medicamentos.
+
+    // Obtiene y devuelve una lista de todos los medicamentos disponibles.
     @GetMapping("/todos")
-    public List<Medicamento> mostrarMedicamentos(){
+    public List<Medicamento> mostrarMedicamentos() {
         return medicamentoServicio.fiandAll();
     }
-    
 }

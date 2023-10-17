@@ -10,7 +10,7 @@ public class AdminServicioImpl implements AdminServicio{
 
     @Autowired
     AdminRepositorio adminRepositorio;
-
+     // Método para obtener un administrador por usuario y contraseña
     @Override
     public Admin GetAdmin(String usuario, String contrasena) {
         return adminRepositorio.findAdmin(usuario,contrasena);

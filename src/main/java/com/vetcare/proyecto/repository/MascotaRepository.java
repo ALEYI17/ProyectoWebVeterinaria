@@ -15,9 +15,11 @@ import org.springframework.data.jpa.repository.Query;
 @Repository
 public interface MascotaRepository extends JpaRepository<Mascota, Long> {
 
+     // Consulta personalizada para contar las mascotas con tratamientos
     @Query("SELECT COUNT(m) FROM Mascota m WHERE SIZE(m.tratamientos) > 0")
     long countMascotasConTratamientos();
 
+    // Consulta personalizada para contar los tratamientos activos por mascota
     @Query("SELECT m, COUNT(t) " +
     "FROM Mascota m " +
     "LEFT JOIN m.tratamientos t " +

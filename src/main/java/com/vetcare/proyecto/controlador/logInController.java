@@ -38,7 +38,8 @@ public class logInController {
 
     //     return "Login/Login";
     // }
-
+    
+    // Maneja la solicitud de inicio de sesión de un veterinario
     @PostMapping("/Veterinariologin")
     public Boolean handleVeterinarioLoginForm(@RequestBody Veterinario veterinario){
         String cedula = veterinario.getCedula();
@@ -49,11 +50,12 @@ public class logInController {
 
         if(veterinarioLogin == null){
            
-            return false;
+            return false; // Devuelve falso si el inicio de sesión no tiene éxito
         }
-        return true;
+        return true; // Devuelve verdadero si el inicio de sesión es exitoso
     }
 
+    // Maneja la solicitud de inicio de sesión de un administrador
     @PostMapping("/AdminLogin")
     public Boolean handleAdminLoginForm(@RequestBody Admin admin){
         String usuString = admin.getUsuario();
@@ -61,9 +63,9 @@ public class logInController {
         Admin admin2 = adminServicio.GetAdmin(usuString,contraString);
 
         if(admin2 != null){
-            return true;
+            return true; // Devuelve verdadero si el inicio de sesión es exitoso
         }
-        return false;
+        return false; // Devuelve falso si el inicio de sesión no tiene éxito
     }
 
     // Mostrar la página de inicio de sesión de cliente
@@ -75,7 +77,7 @@ public class logInController {
 
   
 
-    // Manejar el formulario de inicio de sesión de cliente
+     // Maneja la solicitud de inicio de sesión de un cliente
     @PostMapping("/clientelogin")
     public Cliente handleClienteLoginForm(@RequestBody Cliente cliente) {
         // Ahora puedes acceder al atributo cedula del objeto cliente
@@ -88,7 +90,7 @@ public class logInController {
             return clienteLogIn = new Cliente("invalid","","",""); // Volver a la página de inicio de sesión con un mensaje de error
         }
 
-        return clienteLogIn;
+        return clienteLogIn;  // Devuelve el objeto Cliente si el inicio de sesión es exitoso
     }
 
 

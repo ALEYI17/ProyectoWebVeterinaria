@@ -14,9 +14,10 @@ import com.vetcare.proyecto.entities.Tratamiento;
 @Repository
 public interface TratamientoRepositorio extends JpaRepository <Tratamiento ,Long> {
 
+     // Consulta para contar tratamientos en el último mes
     @Query("SELECT COUNT(t) FROM Tratamiento t WHERE t.Fecha >= :fechaInicio AND t.Fecha <= :fechaFin")
     long countTratamientosEnUltimoMes(@Param("fechaInicio") Date fechaInicio, @Param("fechaFin") Date fechaFin);
-
+    // Consulta para contar tratamientos por tipo en el último mes
     @Query("SELECT m.nombre AS nombreMedicamento, COUNT(t) AS cantidadTratamientos " +
            "FROM Tratamiento t " +
            "JOIN t.medicamentos m " +
@@ -24,6 +25,7 @@ public interface TratamientoRepositorio extends JpaRepository <Tratamiento ,Long
            "GROUP BY m.nombre")
     List<Object[]> countTratamientosPorTipoEnUltimoMes(@Param("fechaInicio") Date fechaInicio, @Param("fechaFin") Date fechaFin);
 
+     // Operación para actualizar el estado activo de un tratamiento por ID
     @Modifying
     @Query("UPDATE Tratamiento t SET t.activo = :activo WHERE t.id = :tratamientoId")
     int updateActivoById(@Param("tratamientoId") Long tratamientoId, @Param("activo") boolean activo);

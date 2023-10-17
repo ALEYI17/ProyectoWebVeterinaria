@@ -18,6 +18,7 @@ import com.vetcare.proyecto.service.VeterinarioServicio;
 @RequestMapping("/estadisticas")
 @CrossOrigin(origins = "http://localhost:4200")
 public class EstadisticasController {
+    // Inyección de servicios necesarios
     @Autowired
     VeterinarioServicio veterinarioservicio;
 
@@ -30,36 +31,57 @@ public class EstadisticasController {
     @Autowired
     TratamientoServicio tratamientoservicio;
 
-
+    // Obtiene el número de veterinarios activos
     @GetMapping("/vetactivos")
-    public Long numeroDeVeterinariosActivos(){return veterinarioservicio.CountVeterinariosActivos();}
+    public Long numeroDeVeterinariosActivos(){
+        return veterinarioservicio.CountVeterinariosActivos();
+    }
 
+    // Obtiene el número de veterinarios inactivos
     @GetMapping("/vetinactivos")
-    public Long numeroDeVeterinariosIneactivos(){return veterinarioservicio.CountVeterinariosInactivos();}
+    public Long numeroDeVeterinariosIneactivos(){
+        return veterinarioservicio.CountVeterinariosInactivos();
+    }
 
-
+    // Obtiene el número total de mascotas
     @GetMapping("/countmascotas")
-    public Long numeroMascotas(){return mascotaservicio.CountMascotas();}
+    public Long numeroMascotas(){
+        return mascotaservicio.CountMascotas();
+    }
 
+    // Obtiene el número de tratamientos en el último mes
     @GetMapping("/tratamientosmes")
-    public Long tratamientosXmes(){return tratamientoservicio.CountTratamientosUltimoMes();}
+    public Long tratamientosXmes(){
+        return tratamientoservicio.CountTratamientosUltimoMes();
+    }
 
+    // Obtiene una lista de cantidades de tratamientos por tipo en el último mes
     @GetMapping("/tratamientomedicamento")
     public List<Object[]> obtenerCantidadTratamientosPorTipoEnUltimoMes(){
         return tratamientoservicio.tratamientomedicamento();
     }
 
+    // Obtiene el total de ventas de medicamentos
     @GetMapping("/totalventas")
-    public Long ventasTotales(){return medicamentoservicio.ventasTotales();}
+    public Long ventasTotales(){
+        return medicamentoservicio.ventasTotales();
+    }
 
+    // Obtiene el total de ganancias por ventas de medicamentos
     @GetMapping("/gananciastotales")
-    public Long gananciasTotales(){return medicamentoservicio.gananciasTotales();}
+    public Long gananciasTotales(){
+        return medicamentoservicio.gananciasTotales();
+    }
 
+    // Obtiene una lista de mascotas con tratamientos activos
     @GetMapping("/TratamientosActivos")
-    public List<Object[]> mascotasConTratamientosActivos(){return mascotaservicio.MascotasTratamientosActivos();}
+    public List<Object[]> mascotasConTratamientosActivos(){
+        return mascotaservicio.MascotasTratamientosActivos();
+    }
 
- @GetMapping("/topmedicamentos")
-    public List<Medicamento> topMedicamentos(){return medicamentoservicio.top3medicaMentos();}
-
-
+    // Obtiene una lista de los 3 medicamentos más populares
+    @GetMapping("/topmedicamentos")
+    public List<Medicamento> topMedicamentos(){
+        return medicamentoservicio.top3medicaMentos();
+    }
 }

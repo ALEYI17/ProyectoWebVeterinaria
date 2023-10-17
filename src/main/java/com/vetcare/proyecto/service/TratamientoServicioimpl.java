@@ -18,7 +18,7 @@ public class TratamientoServicioimpl implements TratamientoServicio {
 
     @Autowired
     TratamientoRepositorio tratamientoRepository;
-
+    // Método para contar los tratamientos realizados en el último mes
     @Override
     public Long CountTratamientosUltimoMes() {
         
@@ -31,7 +31,7 @@ public class TratamientoServicioimpl implements TratamientoServicio {
 
         return tratamientoRepository.countTratamientosEnUltimoMes(fechaInicio, fechaFin);
     }
-
+    // Método para obtener información sobre tratamientos y medicamentos
     @Override
     public List<Object[]> tratamientomedicamento() {
         LocalDate fechaActual = LocalDate.now();
@@ -43,12 +43,12 @@ public class TratamientoServicioimpl implements TratamientoServicio {
 
         return tratamientoRepository.countTratamientosPorTipoEnUltimoMes(fechaInicio, fechaFin);
     }
-
+    // Método para añadir un tratamiento
     @Override
     public void anadirTratamiento(Tratamiento tratamiento) {
         tratamientoRepository.save(tratamiento);
     }
-
+    // Método para cambiar el estado activo de un tratamiento por su ID
     @Override
     @Transactional
     public void cambiarEstadoActivo(Long tratamientoId, boolean nuevoEstadoActivo) {

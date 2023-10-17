@@ -14,16 +14,19 @@ public class Medicamento {
     @Id
     @GeneratedValue
     private Long id;
-    
+     // Atributos de la entidad
     private String nombre;
     private double precioVenta; // Cambiado a double para representar valores en dólares
     private double precioCompra; // Cambiado a double para representar valores en dólares
     private int unidadesDisponibles;
     private int unidadesVendidas;
+
+     // Relación uno a muchos con la entidad Tratamiento
     @JsonIgnore
     @OneToMany(mappedBy = "medicamentos")
     private List<Tratamiento> tratamiento;
 
+     // Constructores
     public Medicamento() {
     }
 
@@ -35,6 +38,8 @@ public class Medicamento {
         this.unidadesVendidas = unidadesVendidas;
     }
 
+
+     // Métodos getter y setter para los atributos de la entidad
     public Long getId() {
         return id;
     }

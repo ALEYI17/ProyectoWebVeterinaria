@@ -161,6 +161,7 @@ public class MascotaController {
        
     }
 
+    // Consigue el dueño de la mascota
     @GetMapping("find/{id}/duenocompleto")
         public Cliente mostrarInfoMascotaConDuenoCompleto( @PathVariable("id") Long id){
         Mascota mascota = mascotaServicio.GetById(id);
@@ -179,6 +180,7 @@ public class MascotaController {
         return null;
     }
 
+    // Consigue los tratamientos de la mascota
     @GetMapping("find/{id}/tratamientos")
     public List<Tratamiento> mostrarTratamientosDeMascota(@PathVariable("id") Long id){
         Mascota mascota = mascotaServicio.GetById(id);

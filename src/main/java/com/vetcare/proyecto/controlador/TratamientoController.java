@@ -17,8 +17,6 @@ import com.vetcare.proyecto.service.MedicamentoServicio;
 import com.vetcare.proyecto.service.TratamientoServicio;
 import com.vetcare.proyecto.service.VeterinarioServicio;
 
-
-
 @RestController
 @RequestMapping("/Tratamiento")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -33,25 +31,40 @@ public class TratamientoController {
     @Autowired
     MedicamentoServicio medicamentoServicio;
 
+    // Agregar un tratamiento nuevo
     @PostMapping("/add")
-    public void anadirTratamiento( @RequestParam("MascotaId") String MascotaId, @RequestParam("VeterinarioId") String VeterinarioId
-    ,@RequestParam("MedicamentoId") String MedicamentoId ,@RequestBody Tratamiento tratamiento ){
-        String inputId = VeterinarioId.trim(); // Trim leading and trailing spaces
-        Long veterinarioId = Long.parseLong(inputId);
-        Mascota mascota = mascotaServicio.GetById(Long.parseLong(MascotaId));
+    public void anadirTratamiento(
+        @RequestParam("MascotaId") String MascotaId,
+        @RequestParam("VeterinarioId") String VeterinarioId,
+        @RequestParam("MedicamentoId") String MedicamentoId,
+        @RequestBody Tratamiento tratamiento
+    ) {
+        // Parseo de las ID a tipos numéricos
+        Long veterinarioId = Long.parseLong(VeterinarioId);
+        Long mascotaId = Long.parseLong(MascotaId);
+        Long medicamentoId = Long.parseLong(MedicamentoId);
+
+        // Obtener objetos relacionados desde los servicios
+        Mascota mascota = mascotaServicio.GetById(mascotaId);
         Veterinario veterinario = veterinarioServicio.findVeterinarioById(veterinarioId);
-        Medicamento medicamento = medicamentoServicio.findById(Long.parseLong(MedicamentoId));
+        Medicamento medicamento = medicamentoServicio.findById(medicamentoId);
+
+        // Configurar las relaciones en el objeto de tratamiento
         tratamiento.setMascota(mascota);
         tratamiento.setVeterinario(veterinario);
         tratamiento.setMedicamentos(medicamento);
-        medicamentoServicio.actualizarUnidadesDisponiblesYVendidas(Long.parseLong(MedicamentoId), 1);
+
+        // Actualizar las unidades disponibles y vendidas del medicamento
+        medicamentoServicio.actualizarUnidadesDisponiblesYVendidas(medicamentoId, 1);
+
+        // Agregar el tratamiento
         tratamientoServicio.anadirTratamiento(tratamiento);
-        
     }
 
+    // Desactivar un tratamiento
     @PostMapping("/Desactivar")
-    public void DesactivarTratamiento(@RequestBody Tratamiento tratamiento){
+    public void DesactivarTratamiento(@RequestBody Tratamiento tratamiento) {
+        // Cambiar el estado del tratamiento a inactivo
         tratamientoServicio.cambiarEstadoActivo(tratamiento.getId(), false);
     }
-    
 }
