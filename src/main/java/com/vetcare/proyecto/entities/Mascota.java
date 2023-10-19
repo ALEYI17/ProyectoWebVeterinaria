@@ -1,4 +1,5 @@
 package com.vetcare.proyecto.entities;
+import jakarta.persistence.CascadeType;
 // Importa las anotaciones de JPA para marcar esta clase como entidad
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,7 +40,7 @@ public class Mascota {
    
     // Relación Uno a Muchos con la entidad Tratamiento, mapeada por el atributo "mascota" en Tratamiento
     @JsonIgnore
-    @OneToMany(mappedBy = "mascota")
+    @OneToMany(mappedBy = "mascota", cascade = { CascadeType.MERGE, CascadeType.REMOVE })
     private List<Tratamiento> tratamientos;
 
     // Constructor de la clase Mascota que recibe parámetros

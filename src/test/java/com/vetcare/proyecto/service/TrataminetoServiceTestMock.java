@@ -1,4 +1,4 @@
-package com.vetcare.proyecto.service;
+package com.vetcare.proyecto.Service;
 
 import static org.mockito.Mockito.when;
 
@@ -19,6 +19,7 @@ import org.springframework.test.context.ActiveProfiles;
 import com.vetcare.proyecto.entities.Tratamiento;
 import com.vetcare.proyecto.repository.MedicamentoRepositorio;
 import com.vetcare.proyecto.repository.TratamientoRepositorio;
+import com.vetcare.proyecto.service.TratamientoServicioimpl;
 
 
 @ActiveProfiles("test")
