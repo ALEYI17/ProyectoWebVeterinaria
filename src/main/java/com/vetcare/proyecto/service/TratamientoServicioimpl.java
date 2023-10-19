@@ -45,8 +45,8 @@ public class TratamientoServicioimpl implements TratamientoServicio {
     }
     // Método para añadir un tratamiento
     @Override
-    public void anadirTratamiento(Tratamiento tratamiento) {
-        tratamientoRepository.save(tratamiento);
+    public Tratamiento anadirTratamiento(Tratamiento tratamiento) {
+        return tratamientoRepository.save(tratamiento);
     }
     // Método para cambiar el estado activo de un tratamiento por su ID
     @Override

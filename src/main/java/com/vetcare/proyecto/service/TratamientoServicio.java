@@ -13,7 +13,7 @@ public interface TratamientoServicio {
     // Método para obtener información sobre tratamientos y medicamentos
     public List<Object[]> tratamientomedicamento();
      // Método para añadir un tratamiento
-    public void anadirTratamiento(Tratamiento tratamiento);
+    public Tratamiento anadirTratamiento(Tratamiento tratamiento);
     // Método para cambiar el estado activo de un tratamiento por su ID
     public void cambiarEstadoActivo(Long tratamientoId, boolean nuevoEstadoActivo);
     
