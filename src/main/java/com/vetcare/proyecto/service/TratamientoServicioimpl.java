@@ -4,10 +4,12 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vetcare.proyecto.entities.Medicamento;
 import com.vetcare.proyecto.entities.Tratamiento;
 import com.vetcare.proyecto.repository.TratamientoRepositorio;
 
@@ -18,6 +20,7 @@ public class TratamientoServicioimpl implements TratamientoServicio {
 
     @Autowired
     TratamientoRepositorio tratamientoRepository;
+
     // Método para contar los tratamientos realizados en el último mes
     @Override
     public Long CountTratamientosUltimoMes() {
@@ -58,6 +61,13 @@ public class TratamientoServicioimpl implements TratamientoServicio {
         } else {
             // Error: No se pudo actualizar el atributo "activo".
         }
+    }
+    @Override
+    public Medicamento getMedicamentosByTratamiento(Long id) {
+        Tratamiento tratamiento = tratamientoRepository.findById(id).get();
+        Medicamento medicamento = tratamiento.getMedicamentos();
+        return medicamento;
+
     }
     
 }

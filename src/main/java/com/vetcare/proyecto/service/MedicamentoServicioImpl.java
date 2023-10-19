@@ -1,6 +1,7 @@
 package com.vetcare.proyecto.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -57,6 +58,11 @@ public class MedicamentoServicioImpl implements MedicamentoServicio{
     @Transactional
     public void actualizarUnidadesDisponiblesYVendidas(Long medicamentoId, int cantidad)  {
         medicamentoRepositorio.actualizarUnidadesDisponiblesYVendidas(medicamentoId, cantidad);
+    }
+    @Override
+    public Medicamento findMedicamentoById(Long id) {
+        Optional<Medicamento> medicamento = medicamentoRepositorio.findById(id);
+        return medicamento.orElse(null);
     }
 
     

@@ -2,6 +2,8 @@ package com.vetcare.proyecto.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,5 +69,13 @@ public class TratamientoController {
     public void DesactivarTratamiento(@RequestBody Tratamiento tratamiento) {
         // Cambiar el estado del tratamiento a inactivo
         tratamientoServicio.cambiarEstadoActivo(tratamiento.getId(), false);
+    }
+
+    @GetMapping("/{id}/medicamento")
+    public Medicamento getMedicamentoTratamiento(@PathVariable("id") String id){
+        String id2 = id.trim();
+        Long idFinal = Long.parseLong(id2);
+        return tratamientoServicio.getMedicamentosByTratamiento(idFinal);
+
     }
 }

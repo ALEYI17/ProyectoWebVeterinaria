@@ -21,4 +21,6 @@ public interface MedicamentoServicio {
     // Método para actualizar las unidades disponibles y vendidas de un medicamento
     public void actualizarUnidadesDisponiblesYVendidas(Long medicamentoId, int cantidad);
 
+    public Medicamento findMedicamentoById(Long id);
+
 }
