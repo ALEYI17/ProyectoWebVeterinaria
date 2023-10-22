@@ -1,6 +1,8 @@
 package com.vetcare.proyecto.Repository;
 
-import java.util.List;
+
+
+import java.util.Date;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +13,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.vetcare.proyecto.entities.Mascota;
+import com.vetcare.proyecto.entities.Tratamiento;
 import com.vetcare.proyecto.repository.MascotaRepository;
+import com.vetcare.proyecto.repository.TratamientoRepositorio;
 
 @DataJpaTest
 @RunWith(SpringRunner.class)
@@ -19,6 +23,9 @@ public class mascotaRepositoryTest {
     
     @Autowired
     MascotaRepository mascotaRepository;
+
+    @Autowired
+    TratamientoRepositorio tratamientoRepositorio;
 
     @BeforeEach
     public void setUp(){
@@ -32,11 +39,14 @@ public class mascotaRepositoryTest {
     @Test
     public void mascotaRepository_mascotasTratamiento_IsCero(){
         //arrange
-        Mascota mascota =mascotaRepository.save(new Mascota("Quinta2","Siamese",14,5.0,"Cistitis","https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-superJumbo.jpg?quality=75&auto=webp"));
+        Tratamiento tratamiento = new Tratamiento(new Date(), 0);
+
         //act
+        tratamiento.setMascota(mascotaRepository.findById(1L).get());
+        tratamientoRepositorio.save(tratamiento);
         Long mascotasTratamiento = mascotaRepository.countMascotasConTratamientos();
         //assert
-        Assertions.assertThat(mascotasTratamiento).isEqualTo(0);
+        Assertions.assertThat(mascotasTratamiento).isEqualTo(1L);
     }
 
 }
