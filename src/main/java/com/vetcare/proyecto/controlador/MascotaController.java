@@ -4,7 +4,8 @@ package com.vetcare.proyecto.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,9 +40,13 @@ public class MascotaController {
     // Mostrar todas las mascotas
     // http://localhost:8090/Mascota/todas
     @GetMapping("/todas")
-    public List<Mascota> MostrarMascotas(){
+    public ResponseEntity<List<Mascota>> MostrarMascotas(){
+
+        List<Mascota> lista = mascotaServicio.GetAll();
+
+        ResponseEntity<List<Mascota>> response = new ResponseEntity<>(lista, HttpStatus.OK);
         
-        return mascotaServicio.GetAll();
+        return response;
     }
 
     // Mostrar una mascota por su ID usando el parámetro de solicitud
