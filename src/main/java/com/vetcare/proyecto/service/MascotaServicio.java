@@ -13,13 +13,13 @@ public interface MascotaServicio {
     public List<Mascota> GetAll();
 
     // Agregar una nueva mascota
-    public void addMascota(Mascota mascota);
+    public Mascota addMascota(Mascota mascota);
 
     // Eliminar una mascota por su ID
     public void removeMascota(Long id);
 
     // Actualizar la información de una mascota
-    public void updateMascota(Mascota mascota);
+    public Mascota updateMascota(Mascota mascota);
 
     // Obtener varias mascotas por sus IDs
     public ArrayList<Mascota> GetVariousById(ArrayList<Long> ids);
