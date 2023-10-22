@@ -15,7 +15,7 @@ import com.vetcare.proyecto.entities.Medicamento;
 public interface MedicamentoRepositorio extends JpaRepository<Medicamento,Long> {
 
         // Consulta para calcular el total de ventas de medicamentos
-    @Query("SELECT SUM(m.unidadesVendidas * m.precioVenta) FROM Medicamento m")
+    @Query("SELECT SUM(m.unidadesVendidas ) FROM Medicamento m")
     public Long totalDeVentas();
 
         // Consulta para calcular las ganancias totales, incluyendo el precio de tratamiento

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.vetcare.proyecto.entities.Medicamento;
 import com.vetcare.proyecto.entities.Tratamiento;
 
 @Service
@@ -16,5 +17,7 @@ public interface TratamientoServicio {
     public Tratamiento anadirTratamiento(Tratamiento tratamiento);
     // Método para cambiar el estado activo de un tratamiento por su ID
     public void cambiarEstadoActivo(Long tratamientoId, boolean nuevoEstadoActivo);
+
+    public Medicamento getMedicamentosByTratamiento(Long id);
     
 }
