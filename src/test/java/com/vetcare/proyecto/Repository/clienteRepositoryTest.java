@@ -3,7 +3,7 @@ package com.vetcare.proyecto.Repository;
 import java.util.List;
 import java.util.Optional;
 
-import javax.swing.Spring;
+
 
 import org.assertj.core.api.Assertions;
 
@@ -85,7 +85,7 @@ public class clienteRepositoryTest {
     @Test
     public void clienteRepositorio_findAll_NotEmptyList(){
         //arrange
-         Cliente cliente = new Cliente("123", "Andres", "Andres@gmail.com", "34214657685");
+        Cliente cliente = new Cliente("123", "Andres", "Andres@gmail.com", "34214657685");
         Cliente cliente2 = new Cliente("345", "Alejandro", "Alejandro@gmail.com", "3456654");
 
         //act

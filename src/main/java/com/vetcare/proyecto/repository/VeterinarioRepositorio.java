@@ -21,7 +21,7 @@ public interface VeterinarioRepositorio extends JpaRepository<Veterinario,Long> 
     @Transactional
     public void desactivarVeterinarioPorId(Long id);
 
-     // Consulta para encontrar todos los veterinarios activos
+    // Consulta para encontrar todos los veterinarios activos
     List<Veterinario> findByActivoTrue();
 
     // Consulta para contar la cantidad de veterinarios activos
