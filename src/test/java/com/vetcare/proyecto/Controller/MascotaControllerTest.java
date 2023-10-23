@@ -21,7 +21,7 @@ import com.vetcare.proyecto.entities.Mascota;
 import com.vetcare.proyecto.service.ClienteServicio;
 import com.vetcare.proyecto.service.MascotaServicio;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -100,6 +100,16 @@ public class MascotaControllerTest {
         ResultActions response = mockMvc.perform(get("/Mascota/find").param("id", "1"));
 
         response.andExpect(status().isOk()).andExpect(jsonPath("$.nombre").value("Mascota1"));
+    }
+
+    
+    @Test
+    public void MascotasController_findaById_noEncotnrado()  throws Exception{
+
+        when(mascotaService.GetById(anyLong())).thenReturn(null);
+        ResultActions response = mockMvc.perform(get("/Mascota/find/{id}", 45));
+
+        response.andExpect(status().isNotFound());
     }
 
 
