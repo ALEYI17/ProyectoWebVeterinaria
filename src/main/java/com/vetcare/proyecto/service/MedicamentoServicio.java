@@ -19,8 +19,8 @@ public interface MedicamentoServicio {
     // Método para obtener todos los medicamentos
     public List<Medicamento> fiandAll();
     // Método para actualizar las unidades disponibles y vendidas de un medicamento
-    public void actualizarUnidadesDisponiblesYVendidas(Long medicamentoId, int cantidad);
-
+    public Boolean actualizarUnidadesDisponiblesYVendidas(Long medicamentoId, int cantidad);
+    // Encuentra el medicamento por su id 
     public Medicamento findMedicamentoById(Long id);
 
 }

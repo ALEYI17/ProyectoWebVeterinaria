@@ -1,6 +1,8 @@
 package com.vetcare.proyecto.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,10 +61,14 @@ public class TratamientoController {
         tratamiento.setMedicamentos(medicamento);
 
         // Actualizar las unidades disponibles y vendidas del medicamento
-        medicamentoServicio.actualizarUnidadesDisponiblesYVendidas(medicamentoId, 1);
-
-        // Agregar el tratamiento
-        tratamientoServicio.anadirTratamiento(tratamiento);
+        Boolean resultado = medicamentoServicio.actualizarUnidadesDisponiblesYVendidas(medicamentoId, 1);
+        if(resultado != false){
+             // Agregar el tratamiento
+            tratamientoServicio.anadirTratamiento(tratamiento);
+        }
+       
+        
+       
     }
 
     // http://localhost:8090/Tratamiento/Desactivar
