@@ -33,6 +33,7 @@ public class TratamientoController {
     @Autowired
     MedicamentoServicio medicamentoServicio;
 
+    // http://localhost:8090/Tratamiento/add
     // Agregar un tratamiento nuevo
     @PostMapping("/add")
     public void anadirTratamiento(
@@ -64,6 +65,7 @@ public class TratamientoController {
         tratamientoServicio.anadirTratamiento(tratamiento);
     }
 
+    // http://localhost:8090/Tratamiento/Desactivar
     // Desactivar un tratamiento
     @PostMapping("/Desactivar")
     public void DesactivarTratamiento(@RequestBody Tratamiento tratamiento) {
@@ -71,6 +73,8 @@ public class TratamientoController {
         tratamientoServicio.cambiarEstadoActivo(tratamiento.getId(), false);
     }
 
+    // http://localhost:8090/Tratamiento/{id}/medicamento
+    // retorna el medicamento de un tratamiento por su id 
     @GetMapping("/{id}/medicamento")
     public Medicamento getMedicamentoTratamiento(@PathVariable("id") String id){
         String id2 = id.trim();

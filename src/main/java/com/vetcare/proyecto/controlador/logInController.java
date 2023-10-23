@@ -30,15 +30,8 @@ public class logInController {
 
     Logger log = LoggerFactory.getLogger(getClass());
 
-    // Mostrar la página de inicio de sesión general
-    //http://localhost:8090/login
-    
-    // @GetMapping("/login")
-    // public String mostrarPaginaLogin() {
 
-    //     return "Login/Login";
-    // }
-    
+    // http://localhost:8090/Veterinariologin
     // Maneja la solicitud de inicio de sesión de un veterinario
     @PostMapping("/Veterinariologin")
     public Veterinario handleVeterinarioLoginForm(@RequestBody Veterinario veterinario){
@@ -55,6 +48,7 @@ public class logInController {
         return veterinarioLogin; // Devuelve verdadero si el inicio de sesión es exitoso
     }
 
+    // http://localhost:8090/AdminLogin
     // Maneja la solicitud de inicio de sesión de un administrador
     @PostMapping("/AdminLogin")
     public Boolean handleAdminLoginForm(@RequestBody Admin admin){
@@ -68,16 +62,11 @@ public class logInController {
         return false; // Devuelve falso si el inicio de sesión no tiene éxito
     }
 
-    // Mostrar la página de inicio de sesión de cliente
-    //http://localhost:8090/login/cliente
-    // @GetMapping("/login/cliente")
-    // public String mostrarPaginaLoginCliente() {
-    //     return "Login/LoginCliente";
-    // }
+
 
   
-
-     // Maneja la solicitud de inicio de sesión de un cliente
+    // http://localhost:8090/clientelogin
+    // Maneja la solicitud de inicio de sesión de un cliente
     @PostMapping("/clientelogin")
     public Cliente handleClienteLoginForm(@RequestBody Cliente cliente) {
         // Ahora puedes acceder al atributo cedula del objeto cliente
