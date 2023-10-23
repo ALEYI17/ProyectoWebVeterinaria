@@ -66,21 +66,19 @@ public class MascotaController {
     // Mostrar una mascota por su ID usando una variable de ruta
     //http://localhost:8090/Mascota/find/id
     @GetMapping("find/{id}")
-    public Mascota mostrarInfoMascota2(Model model, @PathVariable("id") Long id){
+    public ResponseEntity<Mascota> mostrarInfoMascota2(Model model, @PathVariable("id") Long id){
         Mascota mascota = mascotaServicio.GetById(id);
         
         if(mascota != null){
-            // Cliente dueno = mascota.getCliente();
-            // model.addAttribute("Mascota", mascota);
-            // if(dueno != null){
-            //     model.addAttribute("dueno", dueno);
-            // }
+            ResponseEntity<Mascota> reponse = new ResponseEntity<Mascota>(mascota, HttpStatus.OK);
+            return reponse;
             
         }
         else{
-            throw new NotFoundException(id);
+            ResponseEntity<Mascota> reponse = new ResponseEntity<Mascota>(mascota, HttpStatus.NOT_FOUND);
+            return reponse;
         }
-        return mascota;
+
     }
 
     @GetMapping("find/{id}/dueno")
@@ -128,20 +126,30 @@ public class MascotaController {
 
 
     @PostMapping("/agregar")
-    public void agregarmascota(@RequestBody Mascota mascota, @RequestParam("clientId") String clientId){
+    public ResponseEntity<Mascota> agregarmascota(@RequestBody Mascota mascota, @RequestParam("clientId") String clientId){
 
         Cliente duenno = clienteServicio.GetById(Long.valueOf(clientId));
         if(duenno != null){
             mascota.setCliente(duenno);
         }
 
-        mascotaServicio.addMascota(mascota);
+        Mascota mascotaAgregada = mascotaServicio.addMascota(mascota);
+        if(mascotaAgregada == null){
+            ResponseEntity<Mascota> reponse = new ResponseEntity<Mascota>(mascotaAgregada, HttpStatus.BAD_REQUEST);
+            return reponse;
+        }
+
+        ResponseEntity<Mascota>  reponse = new ResponseEntity<Mascota>(mascotaAgregada, HttpStatus.CREATED);
+        return reponse;
+
+
     }
 
     // Eliminar una mascota por su ID
     @DeleteMapping("/delete/{id}")
-    public void eliminarEstudiante(@PathVariable("id") Long id ){
+    public ResponseEntity<String> eliminarEstudiante(@PathVariable("id") Long id ){
         mascotaServicio.removeMascota(id);
+        return new ResponseEntity<>("DELETED",HttpStatus.NO_CONTENT);
     }
 
     // Mostrar el formulario para actualizar una mascota
@@ -155,14 +163,22 @@ public class MascotaController {
 
     // Actualizar una mascota
     @PutMapping("/update/{id}")
-    public void actualizarMascota(@PathVariable("id") Long id, 
+    public ResponseEntity<Mascota> actualizarMascota(@PathVariable("id") Long id, 
                                      @RequestBody Mascota mascota,
                                      @RequestParam("cliente.id") String clienteId){
+
         Cliente duenno = clienteServicio.GetById(Long.parseLong(clienteId));
         if (duenno != null) {
             mascota.setCliente(duenno);
         }
-        mascotaServicio.updateMascota(mascota);
+        Mascota mascotaUpdate = mascotaServicio.updateMascota(mascota);
+        if(mascotaUpdate == null){
+            ResponseEntity<Mascota> reponse = new ResponseEntity<Mascota>(mascotaUpdate, HttpStatus.NOT_FOUND);
+            return reponse;
+        }
+
+        ResponseEntity<Mascota> reponse = new ResponseEntity<Mascota>(mascotaUpdate, HttpStatus.OK);
+        return reponse;
        
     }
 

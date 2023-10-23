@@ -30,8 +30,8 @@ public class MascotaServicioImpl implements MascotaServicio {
 
     // Agregar una nueva mascota
     @Override
-    public void addMascota(Mascota mascota) {
-        mascotaRepository.save(mascota);
+    public Mascota addMascota(Mascota mascota) {
+        return mascotaRepository.save(mascota);
     }
 
     // Eliminar una mascota por su ID
@@ -42,8 +42,8 @@ public class MascotaServicioImpl implements MascotaServicio {
 
     // Actualizar la información de una mascota
     @Override
-    public void updateMascota(Mascota mascota) {
-        mascotaRepository.save(mascota);
+    public Mascota updateMascota(Mascota mascota) {
+        return mascotaRepository.save(mascota);
     }
 
     // Obtener varias mascotas por sus IDs
