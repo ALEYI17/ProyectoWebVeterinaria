@@ -67,8 +67,8 @@ public class MascotaServicioImpl implements MascotaServicio {
     }
 
     @Override
-    public List<Object[]> MascotasTratamientosActivos() {
+    public Long MascotasTratamientosActivos() {
         
-        return mascotaRepository.contarTratamientosActivosPorMascota();
+        return mascotaRepository.countMascotasConTratamientos();
     }
 }

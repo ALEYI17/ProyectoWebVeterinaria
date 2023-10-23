@@ -64,12 +64,6 @@ public class TratamientoController {
         tratamientoServicio.anadirTratamiento(tratamiento);
     }
 
-    // Desactivar un tratamiento
-    @PostMapping("/Desactivar")
-    public void DesactivarTratamiento(@RequestBody Tratamiento tratamiento) {
-        // Cambiar el estado del tratamiento a inactivo
-        tratamientoServicio.cambiarEstadoActivo(tratamiento.getId(), false);
-    }
 
     @GetMapping("/{id}/medicamento")
     public Medicamento getMedicamentoTratamiento(@PathVariable("id") String id){

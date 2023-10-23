@@ -21,7 +21,6 @@ public class Tratamiento {
     // Atributos de la clase
     private Date Fecha;
     private Integer precio;
-    private Boolean activo;
 
  
 
@@ -49,7 +48,6 @@ public class Tratamiento {
     public Tratamiento(Date Fecha, int precio) {
         this.Fecha = Fecha;
         this.precio = precio;
-        this.activo = true;
     }
 
     // Métodos getter y setter para el identificador único
@@ -106,11 +104,5 @@ public class Tratamiento {
         this.veterinario = veterinario;
     }
 
-    public Boolean getActivo() {
-        return activo;
-    }
 
-    public void setActivo(Boolean activo) {
-        this.activo = activo;
-    }
 }

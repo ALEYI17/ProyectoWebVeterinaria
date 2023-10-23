@@ -75,7 +75,7 @@ public class EstadisticasController {
 
     // Obtiene una lista de mascotas con tratamientos activos
     @GetMapping("/TratamientosActivos")
-    public List<Object[]> mascotasConTratamientosActivos(){
+    public Long mascotasConTratamientosActivos(){
         return mascotaservicio.MascotasTratamientosActivos();
     }
 

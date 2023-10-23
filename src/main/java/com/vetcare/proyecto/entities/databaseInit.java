@@ -398,6 +398,9 @@ public class databaseInit implements ApplicationRunner{
         for (int i = 0; i < tratamientos.size(); i++) {
             Tratamiento tratamiento = tratamientos.get(i);
             Mascota mascota = mascotas.get(random.nextInt(200));
+            boolean activado = random.nextBoolean();
+            mascota.setMascotaTratamiento(activado);
+
             
             // Elegir un medicamento con unidades disponibles
             Medicamento medicamento = elegirMedicamentoConUnidadesDisponibles(medicamentos, random);

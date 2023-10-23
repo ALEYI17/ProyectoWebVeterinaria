@@ -19,10 +19,8 @@ public interface MedicamentoRepositorio extends JpaRepository<Medicamento,Long> 
     public Long totalDeVentas();
 
         // Consulta para calcular las ganancias totales, incluyendo el precio de tratamiento
-    @Query("SELECT SUM((m.unidadesVendidas * m.precioVenta) + t.precio) " +
-           "FROM Medicamento m " +
-           "JOIN m.tratamiento t " +
-           "WHERE t.activo = true")
+    @Query("SELECT SUM((m.unidadesVendidas * m.precioVenta)) " +
+           "FROM Medicamento m ")
     public Long gananciasTotales();
 
      // Consulta para obtener los 3 medicamentos más vendidos

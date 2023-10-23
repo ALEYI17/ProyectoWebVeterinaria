@@ -15,8 +15,7 @@ public interface TratamientoServicio {
     public List<Object[]> tratamientomedicamento();
      // Método para añadir un tratamiento
     public Tratamiento anadirTratamiento(Tratamiento tratamiento);
-    // Método para cambiar el estado activo de un tratamiento por su ID
-    public void cambiarEstadoActivo(Long tratamientoId, boolean nuevoEstadoActivo);
+
 
     public Medicamento getMedicamentosByTratamiento(Long id);
     

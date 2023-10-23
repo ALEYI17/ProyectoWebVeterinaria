@@ -26,5 +26,5 @@ public interface MascotaServicio {
 
     Long CountMascotas();
 
-    List<Object[]> MascotasTratamientosActivos();
+    Long MascotasTratamientosActivos();
 }

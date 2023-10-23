@@ -50,17 +50,8 @@ public class TratamientoServicioimpl implements TratamientoServicio {
     public Tratamiento anadirTratamiento(Tratamiento tratamiento) {
         return tratamientoRepository.save(tratamiento);
     }
-    // Método para cambiar el estado activo de un tratamiento por su ID
-    @Override
-    @Transactional
-    public void cambiarEstadoActivo(Long tratamientoId, boolean nuevoEstadoActivo) {
-        int updatedRows = tratamientoRepository.updateActivoById(tratamientoId, nuevoEstadoActivo);
-        if (updatedRows > 0) {
-            // Éxito: El atributo "activo" se actualizó correctamente.
-        } else {
-            // Error: No se pudo actualizar el atributo "activo".
-        }
-    }
+    
+
     @Override
     public Medicamento getMedicamentosByTratamiento(Long id) {
         Tratamiento tratamiento = tratamientoRepository.findById(id).get();

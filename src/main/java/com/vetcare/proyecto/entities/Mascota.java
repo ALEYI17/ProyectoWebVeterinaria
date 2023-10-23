@@ -24,6 +24,8 @@ public class Mascota {
     private String Enfermedad;
     private String Foto;
 
+    private boolean mascotaTratamiento;
+
 
 
     // Identificador único de la entidad Mascota
@@ -115,5 +117,13 @@ public class Mascota {
     }
     public void setTratamientos(List<Tratamiento> tratamientos) {
         this.tratamientos = tratamientos;
+    }
+
+    public boolean isMascotaTratamiento() {
+        return mascotaTratamiento;
+    }
+
+    public void setMascotaTratamiento(boolean mascotaTratamiento) {
+        this.mascotaTratamiento = mascotaTratamiento;
     }
 }
