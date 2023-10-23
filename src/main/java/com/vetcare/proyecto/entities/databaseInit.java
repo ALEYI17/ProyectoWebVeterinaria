@@ -28,7 +28,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 @Controller
 @Transactional
-//@Profile("default")
+@Profile("default")
 public class databaseInit implements ApplicationRunner{
 
 

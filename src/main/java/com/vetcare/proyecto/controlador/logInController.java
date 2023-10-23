@@ -41,7 +41,7 @@ public class logInController {
     
     // Maneja la solicitud de inicio de sesión de un veterinario
     @PostMapping("/Veterinariologin")
-    public Boolean handleVeterinarioLoginForm(@RequestBody Veterinario veterinario){
+    public Veterinario handleVeterinarioLoginForm(@RequestBody Veterinario veterinario){
         String cedula = veterinario.getCedula();
         String contrasena = veterinario.getContrasena();
         log.info(cedula);
@@ -50,9 +50,9 @@ public class logInController {
 
         if(veterinarioLogin == null){
            
-            return false; // Devuelve falso si el inicio de sesión no tiene éxito
+            return null; // Devuelve falso si el inicio de sesión no tiene éxito
         }
-        return true; // Devuelve verdadero si el inicio de sesión es exitoso
+        return veterinarioLogin; // Devuelve verdadero si el inicio de sesión es exitoso
     }
 
     // Maneja la solicitud de inicio de sesión de un administrador
