@@ -81,6 +81,8 @@ public class MascotaController {
 
     }
 
+    // retorna el id del dueno de la mascota
+    //http://localhost:8090/Mascota/find/id/dueno
     @GetMapping("find/{id}/dueno")
     public Long mostrarInfoMascotaConDueno( @PathVariable("id") Long id){
         Mascota mascota = mascotaServicio.GetById(id);
@@ -99,32 +101,8 @@ public class MascotaController {
         return 1L;
     }
     
-    // Mostrar el formulario para agregar una nueva mascota
-    //http://localhost:8090/Mascota/add
-    // @GetMapping("/add")
-    // public String Showcrear(Model model){
-    //     Mascota mascota = new Mascota(" ", " ", 0, 0.0, " ","");
-    //     model.addAttribute("mascota", mascota);
-    //     Collection<Cliente> clientes = clienteServicio.GetAll();
-    //     model.addAttribute("clientes", clientes);
-    //     return "Mascotas/crear_Mascota";
-    // }
-
-    // Agregar una nueva mascota
-    // @PostMapping("/agregar")
-    // public String agregarmascota(@ModelAttribute("mascota") Mascota mascota,@RequestParam("clientId") String clientId){
-
-    //     Cliente duenno = clienteServicio.GetById(Long.valueOf(clientId));
-    //     if(duenno != null){
-    //         mascota.setCliente(duenno);
-    //     }
-
-    //     mascotaServicio.addMascota(mascota);
-    //     return "redirect:/Mascota/todas";
-    // }
-
-
-
+    //agrega una mascota 
+    //http://localhost:8090/Mascota/agregar
     @PostMapping("/agregar")
     public ResponseEntity<Mascota> agregarmascota(@RequestBody Mascota mascota, @RequestParam("clientId") String clientId){
 
@@ -145,6 +123,7 @@ public class MascotaController {
 
     }
 
+    //http://localhost:8090/Mascota/delete/{id}
     // Eliminar una mascota por su ID
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> eliminarEstudiante(@PathVariable("id") Long id ){
@@ -152,15 +131,7 @@ public class MascotaController {
         return new ResponseEntity<>("DELETED",HttpStatus.NO_CONTENT);
     }
 
-    // Mostrar el formulario para actualizar una mascota
-    //http://localhost:8090/Mascota/update/id
-    // @GetMapping("/update/{id}")
-    // public String actualizarMascota(@PathVariable("id")Long id , Model model){
-    //     Mascota mascota = mascotaServicio.GetById(id);
-    //     model.addAttribute("mascota",mascota);
-    //     return "Mascotas/actualizar_mascota";
-    // }
-
+    //http://localhost:8090/Mascota/update/{id}
     // Actualizar una mascota
     @PutMapping("/update/{id}")
     public ResponseEntity<Mascota> actualizarMascota(@PathVariable("id") Long id, 
@@ -182,6 +153,7 @@ public class MascotaController {
        
     }
 
+    //http://localhost:8090/Mascota/find/{id}/duenocompleto
     // Consigue el dueño de la mascota
     @GetMapping("find/{id}/duenocompleto")
         public Cliente mostrarInfoMascotaConDuenoCompleto( @PathVariable("id") Long id){
@@ -201,6 +173,7 @@ public class MascotaController {
         return null;
     }
 
+    //http://localhost:8090/Mascota/find/{id}/tratamientos
     // Consigue los tratamientos de la mascota
     @GetMapping("find/{id}/tratamientos")
     public List<Tratamiento> mostrarTratamientosDeMascota(@PathVariable("id") Long id){

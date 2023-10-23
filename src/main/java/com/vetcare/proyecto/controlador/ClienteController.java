@@ -58,15 +58,6 @@ public class ClienteController {
         return cliente;
     }
 
-    // Mostrar el formulario para agregar un nuevo cliente
-    //http://localhost:8090/Clientes/add
-    // @GetMapping("/add")
-    // public String showCrear(Model model) {
-    //     Cliente cliente = new Cliente(" ", " ", " ", " ");
-    //     model.addAttribute("cliente", cliente);
-    //     return "Clientes/crear_cliente";
-    // }
-
     // Agregar un nuevo cliente
     @PostMapping("/add")
     public void agregarmascota(@RequestBody  Cliente cliente) {
@@ -80,15 +71,6 @@ public class ClienteController {
         clienteServicio.removerClienteByCedula(id);
         // return "redirect:/Clientes/todos";
     }
-
-    // Mostrar el formulario para actualizar un cliente
-    //http://localhost:8090/Clientes/update/cedula
-    // @GetMapping("/update/{id}")
-    // public String actualizarMascota(@PathVariable("id") String id, Model model) {
-    //     Cliente cliente = clienteServicio.getByCedula(id);
-    //     model.addAttribute("cliente", cliente);
-    //     return "Clientes/actualizar_cliente";
-    // }
 
     // Actualizar un cliente
     @PutMapping("/update/{id}")

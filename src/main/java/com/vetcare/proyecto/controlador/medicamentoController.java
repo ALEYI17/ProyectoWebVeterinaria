@@ -22,12 +22,15 @@ public class medicamentoController {
 
     // Este controlador maneja solicitudes relacionadas con medicamentos.
 
+    // http://localhost:8090/Medicamentos/todos
     // Obtiene y devuelve una lista de todos los medicamentos disponibles.
     @GetMapping("/todos")
     public List<Medicamento> mostrarMedicamentos() {
         return medicamentoServicio.fiandAll();
     }
 
+    //http://localhost:8090/Medicamentos/find/{id}
+    //devuelve un medicamento por su id
     @GetMapping("/find/{id}")
     public Medicamento getMedicamentoById(@PathVariable("id") String id){
 

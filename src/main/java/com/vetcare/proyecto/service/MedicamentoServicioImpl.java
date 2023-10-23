@@ -56,9 +56,16 @@ public class MedicamentoServicioImpl implements MedicamentoServicio{
     // Método para actualizar las unidades disponibles y vendidas de un medicamento
     @Override
     @Transactional
-    public void actualizarUnidadesDisponiblesYVendidas(Long medicamentoId, int cantidad)  {
+    public Boolean actualizarUnidadesDisponiblesYVendidas(Long medicamentoId, int cantidad)  {
+        
+        Medicamento medicamento = medicamentoRepositorio.findById(medicamentoId).get();
+        if(medicamento.getUnidadesDisponibles() <= 0){
+            return false ;
+        }
         medicamentoRepositorio.actualizarUnidadesDisponiblesYVendidas(medicamentoId, cantidad);
+        return true;
     }
+    // Encuentra el medicamento por su id 
     @Override
     public Medicamento findMedicamentoById(Long id) {
         Optional<Medicamento> medicamento = medicamentoRepositorio.findById(id);

@@ -31,54 +31,63 @@ public class EstadisticasController {
     @Autowired
     TratamientoServicio tratamientoservicio;
 
+    // http://localhost:8090/estadisticas/vetactivos
     // Obtiene el número de veterinarios activos
     @GetMapping("/vetactivos")
     public Long numeroDeVeterinariosActivos(){
         return veterinarioservicio.CountVeterinariosActivos();
     }
 
+    // http://localhost:8090/estadisticas/vetinactivos
     // Obtiene el número de veterinarios inactivos
     @GetMapping("/vetinactivos")
     public Long numeroDeVeterinariosIneactivos(){
         return veterinarioservicio.CountVeterinariosInactivos();
     }
 
+    // http://localhost:8090/estadisticas/countmascotas
     // Obtiene el número total de mascotas
     @GetMapping("/countmascotas")
     public Long numeroMascotas(){
         return mascotaservicio.CountMascotas();
     }
 
+    // http://localhost:8090/estadisticas/tratamientosmes
     // Obtiene el número de tratamientos en el último mes
     @GetMapping("/tratamientosmes")
     public Long tratamientosXmes(){
         return tratamientoservicio.CountTratamientosUltimoMes();
     }
 
+    // http://localhost:8090/estadisticas/tratamientomedicamento
     // Obtiene una lista de cantidades de tratamientos por tipo en el último mes
     @GetMapping("/tratamientomedicamento")
     public List<Object[]> obtenerCantidadTratamientosPorTipoEnUltimoMes(){
         return tratamientoservicio.tratamientomedicamento();
     }
 
+    // http://localhost:8090/estadisticas/totalventas
     // Obtiene el total de ventas de medicamentos
     @GetMapping("/totalventas")
     public Long ventasTotales(){
         return medicamentoservicio.ventasTotales();
     }
 
+    // http://localhost:8090/estadisticas/gananciastotales
     // Obtiene el total de ganancias por ventas de medicamentos
     @GetMapping("/gananciastotales")
     public Long gananciasTotales(){
         return medicamentoservicio.gananciasTotales();
     }
 
+    // http://localhost:8090/estadisticas/TratamientosActivos
     // Obtiene una lista de mascotas con tratamientos activos
     @GetMapping("/TratamientosActivos")
     public Long mascotasConTratamientosActivos(){
         return mascotaservicio.MascotasTratamientosActivos();
     }
 
+    // http://localhost:8090/estadisticas/topmedicamentos
     // Obtiene una lista de los 3 medicamentos más populares
     @GetMapping("/topmedicamentos")
     public List<Medicamento> topMedicamentos(){
