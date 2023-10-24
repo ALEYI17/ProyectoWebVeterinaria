@@ -3,8 +3,11 @@ package com.vetcare.proyecto.controlador;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,6 +34,7 @@ import com.vetcare.proyecto.service.MascotaServicio;
 @RequestMapping("/Mascota")
 @CrossOrigin(origins = "http://localhost:4200")
 public class MascotaController {
+    Logger log = LoggerFactory.getLogger(getClass());
     @Autowired
     MascotaServicio  mascotaServicio;
 
@@ -190,4 +194,17 @@ public class MascotaController {
         return null;
     }
 
+    //http://localhost:8090/Mascota/cambiarestado/{id}
+    @PutMapping("cambiarestado/{id}")
+    public Boolean cambiarEstadoMascota(@PathVariable("id") Long id, @RequestBody Boolean estado){
+        log.info("ID mascota"+id.toString());
+        log.info("estado mascota"+ estado.toString());
+        Mascota cambioMascota = mascotaServicio.GetById(id);
+        if (cambioMascota.getTratamientos().size() == 0){
+            log.info("Se retorna error");
+            return false;
+        }
+        mascotaServicio.CambiarEstadoMascota(id, estado);
+        return true;
+    }
 }

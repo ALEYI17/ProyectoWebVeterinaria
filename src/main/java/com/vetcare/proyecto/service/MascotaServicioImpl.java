@@ -71,4 +71,12 @@ public class MascotaServicioImpl implements MascotaServicio {
         
         return mascotaRepository.countMascotasConTratamientos();
     }
+
+    @Override
+    public void CambiarEstadoMascota(Long id,Boolean estado) {
+       Mascota mascota = mascotaRepository.findById(id).get();
+
+       mascota.setMascotaTratamiento(estado);
+       mascotaRepository.save(mascota);
+    }
 }

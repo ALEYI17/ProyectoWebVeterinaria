@@ -27,4 +27,6 @@ public interface MascotaServicio {
     Long CountMascotas();
 
     Long MascotasTratamientosActivos();
+
+    public void CambiarEstadoMascota(Long id,Boolean estado);
 }
