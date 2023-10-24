@@ -50,6 +50,8 @@ public class TratamientoController {
 
         // Obtener objetos relacionados desde los servicios
         Mascota mascota = mascotaServicio.GetById(mascotaId);
+        mascota.setMascotaTratamiento(true);
+        mascotaServicio.addMascota(mascota);
         Veterinario veterinario = veterinarioServicio.findVeterinarioById(veterinarioId);
         Medicamento medicamento = medicamentoServicio.findById(medicamentoId);
 
