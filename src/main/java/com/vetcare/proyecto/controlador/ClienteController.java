@@ -59,6 +59,7 @@ public class ClienteController {
     }
 
     // Agregar un nuevo cliente
+    //http://localhost:8090/Clientes/add
     @PostMapping("/add")
     public void agregarmascota(@RequestBody  Cliente cliente) {
         clienteServicio.addCliente(cliente);
@@ -66,6 +67,7 @@ public class ClienteController {
     }
 
     // Eliminar un cliente por su ID
+    //http://localhost:8090/Clientes/delete/id
     @DeleteMapping("/delete/{id}")
     public void eliminarEstudiante(@PathVariable("id") String id) {
         clienteServicio.removerClienteByCedula(id);
@@ -73,6 +75,7 @@ public class ClienteController {
     }
 
     // Actualizar un cliente
+    //http://localhost:8090/Clientes/update/id
     @PutMapping("/update/{id}")
     public void actualizarMascota(@PathVariable("id") String id, @RequestBody Cliente cliente) {
         clienteServicio.updateCliente(cliente);

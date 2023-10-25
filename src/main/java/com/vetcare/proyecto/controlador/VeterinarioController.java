@@ -49,6 +49,7 @@ public class VeterinarioController {
     // Agregar un nuevo veterinario
     @PostMapping("/add")
     public void anadirVeterinario(@RequestBody Veterinario veterinario){
+        veterinario.setActivo(true);
         veterinarioServicio.addVeterinario(veterinario);
     }
 

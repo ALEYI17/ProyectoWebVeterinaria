@@ -40,10 +40,10 @@ public class logInController {
         log.info(cedula);
         log.info(contrasena);
         Veterinario veterinarioLogin = veterinarioServicio.VeterianarioByCedulaYContrasena(cedula, contrasena);
-
-        if(veterinarioLogin == null){
-           
-            return null; // Devuelve falso si el inicio de sesión no tiene éxito
+        
+        if(veterinarioLogin == null || veterinarioLogin.isActivo() == false){
+           log.info("mal");
+            return new Veterinario("mal", "mal", "mal", "mal", "mal", false); // Devuelve falso si el inicio de sesión no tiene éxito
         }
         return veterinarioLogin; // Devuelve verdadero si el inicio de sesión es exitoso
     }
