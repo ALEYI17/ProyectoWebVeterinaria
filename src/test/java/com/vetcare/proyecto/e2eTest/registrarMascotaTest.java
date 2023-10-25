@@ -187,6 +187,19 @@ public class registrarMascotaTest {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("contenido")));
         WebElement Mascota = driver.findElement(By.className("cardclik"));
         Mascota.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("user-details")));
+        WebElement nombreMascotaAssert = driver.findElement(By.id("nombre"));
+        WebElement razaMascotaAssert = driver.findElement(By.id("raza"));
+        WebElement edadMascotaAssert = driver.findElement(By.id("edad"));
+        WebElement pesoMascotaAssert = driver.findElement(By.id("peso"));
+        WebElement enfermedadMascotaAssert = driver.findElement(By.id("enfermedad"));
+
+        Assertions.assertThat(nombreMascotaAssert.getText()).isEqualTo(nombreMascota);
+        Assertions.assertThat(razaMascotaAssert.getText()).isEqualTo(razaMascota);
+        Assertions.assertThat(edadMascotaAssert.getText()).isEqualTo(edadMascota);
+        Assertions.assertThat(pesoMascotaAssert.getText()).isEqualTo(pesoMascota);
+        Assertions.assertThat(enfermedadMascotaAssert.getText()).isEqualTo(enfermedadMascota);
         
 
 
