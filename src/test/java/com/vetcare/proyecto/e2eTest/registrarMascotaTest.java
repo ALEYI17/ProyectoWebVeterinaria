@@ -26,7 +26,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class registrarMascotaTest {
 
-
     private WebDriver driver;
 
     private WebDriverWait wait;
@@ -43,118 +42,110 @@ public class registrarMascotaTest {
         chromeoptions.addArguments("--disable-notifications");
         // chromeoptions.addArguments("--headless");
         this.driver = new ChromeDriver(chromeoptions);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(7));
     }
 
     @Test
     public void caso1() {
-        //conseguir pagina principal
+        // conseguir pagina principal
         driver.get(UrlBase + "home");
         driver.manage().window().maximize();
 
-        //oprimir el boton de login
+        // oprimir el boton de login
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("Loginbutton")));
         WebElement loginButton = driver.findElement(By.id("Loginbutton"));
         loginButton.click();
 
-        //entrar login veterinario
+        // entrar login veterinario
         WebElement loginVet = driver.findElement(By.id("loginVet"));
         loginVet.click();
 
-        //llenar el form de log in
+        // llenar el form de log in
         WebElement loginCedula = driver.findElement(By.id("cedulaLogIn"));
         WebElement loginContrasena = driver.findElement(By.id("ContrasnaLogIn"));
         WebElement buttonLogVet = driver.findElement(By.className("btn"));
-        //malas credenciales
+        // malas credenciales
         loginCedula.sendKeys("creedncial mala");
         loginContrasena.sendKeys("mal cubu");
         buttonLogVet.click();
 
-        //assert error
+        // assert error
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("errorcito")));
         WebElement errorMesagge = driver.findElement(By.id("errorcito"));
-        String expectedMessage ="Credenciales de inicio de sesión no válidas";
+        String expectedMessage = "Credenciales de inicio de sesión no válidas";
         Assertions.assertThat(errorMesagge.getText()).isEqualTo(expectedMessage);
 
-        //entrar con credenciales valdias
+        // entrar con credenciales valdias
         loginCedula.sendKeys("123");
         loginContrasena.sendKeys("123");
         buttonLogVet.click();
 
-
-        //conseguir la lista de mascotasa antes de crear macota
+        // conseguir la lista de mascotasa antes de crear macota
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("delete-button")));
         List<WebElement> nombresMascotas = driver.findElements(By.className("nombresMascotas"));
-        
-        //ir a crud de cleitnes
+
+        // ir a crud de cleitnes
         WebElement cleintesCrud = driver.findElement(By.id("crudClientes"));
         cleintesCrud.click();
 
-        //conseguir la lista de clientes antes de crear cliente
+        // conseguir la lista de clientes antes de crear cliente
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("delete-button")));
         List<WebElement> nombresClientes = driver.findElements(By.className("nombresClientes"));
 
-
-        //entrar a crear cliente
+        // entrar a crear cliente
         WebElement agregarCliente = driver.findElement(By.className("agregar"));
         agregarCliente.click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("container")));
 
-
-        //llenar form de creacion
+        // llenar form de creacion
         WebElement agregarClienteCedula = driver.findElement(By.id("cedula"));
         WebElement agregarClienteNombre = driver.findElement(By.id("nombre"));
         WebElement agregarClienteCorreo = driver.findElement(By.id("corre"));
         WebElement agregarClienteCelular = driver.findElement(By.id("celular"));
-        WebElement agregarClienteEnviar= driver.findElement(By.id("enviarForm"));
-        
-        //crear cleitne con correo erroneo
+        WebElement agregarClienteEnviar = driver.findElement(By.id("enviarForm"));
+
+        // crear cleitne con correo erroneo
         agregarClienteCedula.sendKeys("52397652367529");
         agregarClienteNombre.sendKeys("beto");
         agregarClienteCorreo.sendKeys("correomalo");
         agregarClienteCelular.sendKeys("3185234355");
         agregarClienteEnviar.click();
 
-
-        //assert error de creacion
+        // assert error de creacion
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("error")));
         WebElement errorEmailCliente = driver.findElement(By.className("error"));
-        expectedMessage ="Correo no puede estar vacío.";
+        expectedMessage = "Correo no puede estar vacío.";
         Assertions.assertThat(errorEmailCliente.getText()).isEqualTo(expectedMessage);
 
         agregarClienteCorreo.clear();
 
-        //correo valido
+        // correo valido
         agregarClienteCorreo.sendKeys("correovalido@gmail.com");
         agregarClienteEnviar.click();
 
-        //assert numero de cleitnes aumenta por 1 
+        // assert numero de cleitnes aumenta por 1
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("delete-button")));
         List<WebElement> nombresClientesFinales = driver.findElements(By.className("nombresClientes"));
-      
 
-        Assertions.assertThat(nombresClientesFinales.size()).isEqualTo(nombresClientes.size()+1);
+        Assertions.assertThat(nombresClientesFinales.size()).isEqualTo(nombresClientes.size() + 1);
 
-
-        //volver crud de mascota
+        // volver crud de mascota
         WebElement mascotasCrud = driver.findElement(By.id("crudMascotas"));
         mascotasCrud.click();
 
-
-        //agregar mascota
+        // agregar mascota
         WebElement agregarMascota = driver.findElement(By.className("agregar"));
         agregarMascota.click();
 
-        
         WebElement agregarMascotanombre = driver.findElement(By.id("nombre"));
         WebElement agregarMascotaraza = driver.findElement(By.id("correo"));
         WebElement agregarMascotaedad = driver.findElement(By.id("carrera"));
         WebElement agregarMascotapeso = driver.findElement(By.id("semestre"));
-        WebElement agregarMascotaEnfermedad= driver.findElement(By.id("Enfermedad"));
-        WebElement agregarMascotaFoto= driver.findElement(By.id("Foto"));
+        WebElement agregarMascotaEnfermedad = driver.findElement(By.id("Enfermedad"));
+        WebElement agregarMascotaFoto = driver.findElement(By.id("Foto"));
         WebElement agregarMascotasearchWrapper = driver.findElement(By.className("wrapper"));
-        WebElement agregarMascotasearchInput= driver.findElement(By.id("searchInput"));
-        WebElement agregarMascotaEnviar= driver.findElement(By.id("enviarForm"));
+        WebElement agregarMascotasearchInput = driver.findElement(By.id("searchInput"));
+        WebElement agregarMascotaEnviar = driver.findElement(By.id("enviarForm"));
 
         String nombreMascota = "misifu";
         String razaMascota = "Pardo";
@@ -163,7 +154,6 @@ public class registrarMascotaTest {
         String enfermedadMascota = "Triste";
         String fotoMascota = "https://assets.elanco.com/8e0bf1c2-1ae4-001f-9257-f2be3c683fb1/fca42f04-2474-4302-a238-990c8aebfe8c/Siamese_cat_1110x740.jpg";
         String busquedaMascota = "be";
-
 
         agregarMascotanombre.sendKeys(nombreMascota);
         agregarMascotaraza.sendKeys(razaMascota);
@@ -174,26 +164,22 @@ public class registrarMascotaTest {
         agregarMascotasearchWrapper.click();
         agregarMascotasearchInput.sendKeys(busquedaMascota);
 
-
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("nombresClientes")));
         List<WebElement> clienteElements = driver.findElements(By.className("nombresClientes"));
 
-            for (WebElement clienteElement : clienteElements) {
-                if ("beto".equals(clienteElement.getText())) {
-                    clienteElement.click(); // Click the element if the text matches
-                    break; // Break out of the loop once found
-                }
+        for (WebElement clienteElement : clienteElements) {
+            if ("beto".equals(clienteElement.getText())) {
+                clienteElement.click(); // Click the element if the text matches
+                break; // Break out of the loop once found
             }
+        }
 
         agregarMascotaEnviar.click();
 
-
-        //hace el assert de que crecio la lista
+        // hace el assert de que crecio la lista
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("delete-button")));
         List<WebElement> nombresMascotasFinal = driver.findElements(By.className("nombresMascotas"));
-        Assertions.assertThat(nombresMascotasFinal.size()).isEqualTo(nombresMascotas.size()+1);
-
-
+        Assertions.assertThat(nombresMascotasFinal.size()).isEqualTo(nombresMascotas.size() + 1);
 
         // volver a la landing page
         WebElement VOlverLanding = driver.findElement(By.id("logogato"));
@@ -202,19 +188,19 @@ public class registrarMascotaTest {
         loginButton = driver.findElement(By.id("Loginbutton"));
         loginButton.click();
 
-        //entrar como cliente
+        // entrar como cliente
         WebElement loginCliCedula = driver.findElement(By.id("ContrasnaLogInCli"));
         loginCliCedula.sendKeys("52397652367529");
 
         buttonLogVet = driver.findElement(By.className("btn"));
         buttonLogVet.click();
 
-        //encontrar mascota creada
+        // encontrar mascota creada
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("contenido")));
         WebElement Mascota = driver.findElement(By.className("cardclik"));
         Mascota.click();
 
-        //assert creacion de mascota con datos correctos
+        // assert creacion de mascota con datos correctos
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("user-details")));
         WebElement nombreMascotaAssert = driver.findElement(By.id("nombre"));
         WebElement razaMascotaAssert = driver.findElement(By.id("raza"));
@@ -227,22 +213,20 @@ public class registrarMascotaTest {
         Assertions.assertThat(edadMascotaAssert.getText()).isEqualTo(edadMascota);
         Assertions.assertThat(pesoMascotaAssert.getText()).isEqualTo(pesoMascota);
         Assertions.assertThat(enfermedadMascotaAssert.getText()).isEqualTo(enfermedadMascota);
-        
-
 
     }
 
     @Test
-    public void caso2(){
+    public void caso2() {
         // ir a la url para ver las estadisticas
-        driver.get(UrlBase + "admin/dashboard");
         driver.manage().window().maximize();
+        loginAdmin();
 
-        //Esperar hasta que se vea la informacion de las tarjetas de dashbord
+        // Esperar hasta que se vea la informacion de las tarjetas de dashbord
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("ventas")));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("ganancias")));
 
-        //Conseguir el objeto web de estas estadisticas
+        // Conseguir el objeto web de estas estadisticas
         WebElement ventas = driver.findElement(By.id("ventas"));
         WebElement ganancias = driver.findElement(By.id("ganancias"));
         // pasar el textoa dato string y quitar los caracteres no numericos
@@ -256,9 +240,9 @@ public class registrarMascotaTest {
 
         log.info(ventasNumero.toString());
         log.info(gananciasNumero.toString());
-        // volver a home para comenzar con la prueba 
+        // volver a home para comenzar con la prueba
         WebElement buttonSideNav = driver.findElement(By.id("buttonSidenav"));
-        buttonSideNav.click(); 
+        buttonSideNav.click();
         WebElement buttonHome = wait.until(ExpectedConditions.elementToBeClickable(By.id("buttonHome")));
         buttonHome.click();
         // oprimir el boton que lleva a login
@@ -266,47 +250,47 @@ public class registrarMascotaTest {
         WebElement loginButton = driver.findElement(By.id("Loginbutton"));
         loginButton.click();
 
-         //entrar login veterinario
+        // entrar login veterinario
         WebElement loginVet = driver.findElement(By.id("loginVet"));
         loginVet.click();
 
-        //llenar el form de log in
+        // llenar el form de log in
         WebElement loginCedula = driver.findElement(By.id("cedulaLogIn"));
         WebElement loginContrasena = driver.findElement(By.id("ContrasnaLogIn"));
         WebElement buttonLogVet = driver.findElement(By.className("btn"));
 
-        //entrar con credenciales valdias
+        // entrar con credenciales valdias
         loginCedula.sendKeys("123");
         loginContrasena.sendKeys("123");
         buttonLogVet.click();
 
-        //conseguir la lista de mascotasa 
+        // conseguir la lista de mascotasa
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("delete-button")));
-       
 
-        //Esperar a que cargue la searchbar
+        // Esperar a que cargue la searchbar
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("searchInput")));
         WebElement barraBusqueda = driver.findElement(By.id("searchInput"));
 
-        //Escribir en la barra de busqueda
+        // Escribir en la barra de busqueda
         barraBusqueda.sendKeys("Quin");
         List<WebElement> botonesTratamiento = driver.findElements(By.className("tratamiento-button"));
 
-        //Oprimir el boton para ir a tratmientos
+        // Oprimir el boton para ir a tratmientos
         botonesTratamiento.get(0).click();
-        //esperar hasta que se cargue la pagina
+        // esperar hasta que se cargue la pagina
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("input-box")));
-        
-        //Oprimir el wrapper para que sse muestre la lista de medicamentos
+
+        // Oprimir el wrapper para que sse muestre la lista de medicamentos
         WebElement agregarMascotasearchWrapper = driver.findElement(By.className("wrapper"));
         agregarMascotasearchWrapper.click();
 
-        //buscar en la lista de medicamentos
+        // buscar en la lista de medicamentos
         String nombreMedicamento = "AMOX";
-        WebElement agregarMascotasearchInput= driver.findElement(By.id("searchInput"));
+        WebElement agregarMascotasearchInput = driver.findElement(By.id("searchInput"));
         agregarMascotasearchInput.sendKeys(nombreMedicamento);
 
-        // Se espera que se muestre la lista y despues se selecciona el medicamento en la lista que tiene el nombre elegido  
+        // Se espera que se muestre la lista y despues se selecciona el medicamento en
+        // la lista que tiene el nombre elegido
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("nombresClientes")));
         List<WebElement> clienteElements = driver.findElements(By.className("nombresClientes"));
 
@@ -316,7 +300,6 @@ public class registrarMascotaTest {
                 break; // Break out of the loop once found
             }
         }
-        
 
         WebElement inputFecha = driver.findElement(By.id("fecha"));
 
@@ -327,7 +310,7 @@ public class registrarMascotaTest {
         String fechaDeseada = "27/10/2023"; // Reemplazar con la fecha deseada en formato dd/MM/yy
         inputFecha.sendKeys(fechaDeseada);
 
-        //Guardamos el precio del medicamento
+        // Guardamos el precio del medicamento
         // Buscar el elemento por su ID
         WebElement precioElement = driver.findElement(By.id("precioo"));
 
@@ -345,22 +328,22 @@ public class registrarMascotaTest {
 
         buttonSubmit.click();
 
-        //conseguir la lista de mascotasa 
+        // conseguir la lista de mascotasa
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("delete-button")));
         List<WebElement> nombresMascotas = driver.findElements(By.cssSelector(".nombresMascotas a"));
 
         // Buscar la mascota para ver que se anadio el tratamiento
-        for(WebElement mascotas:nombresMascotas){
-            if("Quinta".equals(mascotas.getText())){
+        for (WebElement mascotas : nombresMascotas) {
+            if ("Quinta".equals(mascotas.getText())) {
                 mascotas.click();
                 break;
             }
         }
 
-        //Ver que la lista existe en la mascota
+        // Ver que la lista existe en la mascota
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("medicamentos")));
-        List<WebElement> medicamenbtos= driver.findElements(By.className("medicamentos"));
-        // Ver que se anadio el medicamento correcto 
+        List<WebElement> medicamenbtos = driver.findElements(By.className("medicamentos"));
+        // Ver que se anadio el medicamento correcto
         Assertions.assertThat(medicamenbtos.size()).isGreaterThan(0);
         Assertions.assertThat(medicamenbtos.size()).isEqualTo(1);
         Assertions.assertThat(medicamenbtos.get(0).getText()).isEqualTo("AMOXICILINA");
@@ -373,27 +356,13 @@ public class registrarMascotaTest {
         VOlverLanding.click();
 
         // ir a el login del admin e ingresar
-        driver.get(UrlBase + "login/admin");
-        WebElement loginUsername = driver.findElement(By.id("username"));
-        WebElement loginContra = driver.findElement(By.id("contra"));
-        WebElement buttonLogAdmin = driver.findElement(By.className("btn"));
-        loginUsername.sendKeys("123");
-        loginContra.sendKeys("123");
-        buttonLogAdmin.click();
+        loginAdmin();
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("buttonSidenav")));
-        // Abrir la sidenav
-        WebElement buttonSideNav2 = driver.findElement(By.id("buttonSidenav"));
-        buttonSideNav2.click();
-
-        WebElement buttonEstadisticas= driver.findElement(By.id("Estadisticas"));
-        buttonEstadisticas.click();
-
-        //Esperar hasta que se vea la informacion de las tarjetas de dashbord
+        // Esperar hasta que se vea la informacion de las tarjetas de dashbord
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("ventas")));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("ganancias")));
 
-        //Conseguir el objeto web de estas estadisticas
+        // Conseguir el objeto web de estas estadisticas
         WebElement ventas2 = driver.findElement(By.id("ventas"));
         WebElement ganancias2 = driver.findElement(By.id("ganancias"));
 
@@ -406,13 +375,33 @@ public class registrarMascotaTest {
         Long ventasNumero2 = Long.parseLong(ventasText2);
         Double gananciasNumero2 = Double.parseDouble(gananciasText2);
 
-        //Assert
+        // Assert
+        Assertions.assertThat(ventasNumero2).isEqualTo(31L);
+        Assertions.assertThat(gananciasNumero2).isEqualTo(4365000);
         Double precioFinal = gananciasNumero + precio;
         Assertions.assertThat(ventasNumero2).isEqualTo(ventasNumero + 1);
         Assertions.assertThat(gananciasNumero2).isEqualTo(precioFinal);
 
-
     }
-    
-    
+
+    public void loginAdmin() {
+        driver.get(UrlBase + "login/admin");
+        WebElement loginUsername = driver.findElement(By.id("username"));
+        WebElement loginContra = driver.findElement(By.id("contra"));
+        WebElement buttonLogAdmin = driver.findElement(By.className("btn"));
+        loginUsername.sendKeys("123");
+        loginContra.sendKeys("123");
+        buttonLogAdmin.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("buttonSidenav")));
+        // Abrir la sidenav
+        WebElement buttonSideNav2 = driver.findElement(By.id("buttonSidenav"));
+        buttonSideNav2.click();
+
+        wait.until(ExpectedConditions.and(
+                ExpectedConditions.presenceOfElementLocated(By.id("Estadisticas")),
+                ExpectedConditions.elementToBeClickable(By.id("Estadisticas"))));
+        WebElement buttonEstadisticas = driver.findElement(By.id("Estadisticas"));
+        buttonEstadisticas.click();
+    }
+
 }
