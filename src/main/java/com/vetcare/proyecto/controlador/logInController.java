@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vetcare.proyecto.DTOs.VeterinarioDto;
+import com.vetcare.proyecto.DTOs.VeterinarioMapper;
 import com.vetcare.proyecto.entities.Admin;
 import com.vetcare.proyecto.entities.Cliente;
 import com.vetcare.proyecto.entities.Veterinario;
@@ -34,18 +36,18 @@ public class logInController {
     // http://localhost:8090/Veterinariologin
     // Maneja la solicitud de inicio de sesión de un veterinario
     @PostMapping("/Veterinariologin")
-    public Veterinario handleVeterinarioLoginForm(@RequestBody Veterinario veterinario){
+    public VeterinarioDto handleVeterinarioLoginForm(@RequestBody Veterinario veterinario){
         String cedula = veterinario.getCedula();
         String contrasena = veterinario.getContrasena();
         log.info(cedula);
         log.info(contrasena);
         Veterinario veterinarioLogin = veterinarioServicio.VeterianarioByCedulaYContrasena(cedula, contrasena);
-        
+        VeterinarioDto vetetdto = VeterinarioMapper.INSTANCE.convert(veterinarioLogin);
         if(veterinarioLogin == null || veterinarioLogin.isActivo() == false){
            log.info("mal");
-            return new Veterinario("mal", "mal", "mal", "mal", "mal", false); // Devuelve falso si el inicio de sesión no tiene éxito
+            return new VeterinarioDto("mal"); // Devuelve falso si el inicio de sesión no tiene éxito
         }
-        return veterinarioLogin; // Devuelve verdadero si el inicio de sesión es exitoso
+        return vetetdto; // Devuelve verdadero si el inicio de sesión es exitoso
     }
 
     // http://localhost:8090/AdminLogin

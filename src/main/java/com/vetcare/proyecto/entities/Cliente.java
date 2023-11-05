@@ -14,8 +14,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@NoArgsConstructor
 public class Cliente {
     // Atributos de la clase Cliente
     String cedula;
@@ -43,5 +41,50 @@ public class Cliente {
         this.celular = celular;
     }
 
-   
+    // Constructor vacío necesario para JPA
+    public Cliente (){}
+
+    // Métodos getter y setter para los atributos de la clase
+    public String getNombre() {
+        return nombre;
+    }
+    public String getCedula() {
+        return cedula;
+    }
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getCorre() {
+        return corre;
+    }
+    public void setCorre(String corre) {
+        this.corre = corre;
+    }
+    public String getCelular() {
+        return celular;
+    }
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+    
+    // Métodos getter y setter para la lista de Mascotas
+    public List<Mascota> getMisMascotas() {
+        return MisMascotas;
+    }
+
+    public void setMisMascotas(List<Mascota> misMascotas) {
+        MisMascotas = misMascotas;
+    }
+
+    // Métodos getter y setter para el ID
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

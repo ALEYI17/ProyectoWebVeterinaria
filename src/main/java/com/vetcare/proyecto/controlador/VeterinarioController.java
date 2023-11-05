@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vetcare.proyecto.DTOs.VeterinarioDto;
+import com.vetcare.proyecto.DTOs.VeterinarioMapper;
 import com.vetcare.proyecto.Exepciones.NotFoundException;
 import com.vetcare.proyecto.entities.Veterinario;
 import com.vetcare.proyecto.service.VeterinarioServicio;
@@ -34,15 +36,16 @@ public class VeterinarioController {
     //http://localhost:8090/Veterinario//find/{id}
     // Buscar un veterinario por su ID
     @GetMapping("/find/{id}")
-    public Veterinario mosVeterinarioById(@PathVariable("id")Long id){
+    public VeterinarioDto mosVeterinarioById(@PathVariable("id")Long id){
         Veterinario veterinario = veterinarioServicio.findVeterinarioById(id);
+        VeterinarioDto vetetdto = VeterinarioMapper.INSTANCE.convert(veterinario);
         if(veterinario!=null){
 
         }
         else{
             throw new NotFoundException(id);
         }
-        return veterinario;
+        return vetetdto;
     }
 
     //http://localhost:8090/Veterinario/add
