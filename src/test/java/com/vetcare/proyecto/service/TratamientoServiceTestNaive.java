@@ -1,4 +1,4 @@
-package com.vetcare.proyecto.Service;
+package com.vetcare.proyecto.service;
 
 
 import java.util.Date;
