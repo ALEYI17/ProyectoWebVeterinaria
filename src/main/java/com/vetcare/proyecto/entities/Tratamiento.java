@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 // Importa la clase java.sql.Date para trabajar con fechas
 import java.util.Date;
@@ -12,6 +14,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 // Marca esta clase como una entidad de JPA
 @Entity
+@Data
+@NoArgsConstructor
 public class Tratamiento {
     // Identificador único generado automáticamente por JPA
     @Id
@@ -39,10 +43,7 @@ public class Tratamiento {
     @ManyToOne
     private Veterinario veterinario;
 
-    // Constructor vacío necesario para JPA
-    public Tratamiento() {
-        // Constructor vacío
-    }
+
 
     // Constructor de la clase Tratamiento que recibe parámetros
     public Tratamiento(Date Fecha, int precio) {
@@ -50,59 +51,6 @@ public class Tratamiento {
         this.precio = precio;
     }
 
-    // Métodos getter y setter para el identificador único
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    // Métodos getter y setter para el atributo "Fecha"
-    public Date getFecha() {
-        return Fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        Fecha = fecha;
-    }
-
-    // Métodos getter y setter para el atributo "precio"
-    public Integer getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Integer precio) {
-        this.precio = precio;
-    }
-
-    // Métodos getter y setter para la relación con la entidad Medicamento
-    public Medicamento getMedicamentos() {
-        return medicamentos;
-    }
-
-    public void setMedicamentos(Medicamento medicamentos) {
-        this.medicamentos = medicamentos;
-    }
-
-    // Métodos getter y setter para la relación con la entidad Mascota
-    public Mascota getMascota() {
-        return mascota;
-    }
-
-    public void setMascota(Mascota mascota) {
-        this.mascota = mascota;
-    }
-
-    // Métodos getter y setter para la relación con la entidad Veterinario
-    public Veterinario getVeterinario() {
-        return veterinario;
-    }
-
-    public void setVeterinario(Veterinario veterinario) {
-        this.veterinario = veterinario;
-    }
 
 
 }

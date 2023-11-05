@@ -2,8 +2,12 @@ package com.vetcare.proyecto.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Admin {
 
     // Declaración de variables de instancia
@@ -21,32 +25,5 @@ public class Admin {
         this.contrasena = contrasena;
     }
 
-    public Admin() {
-    }
 
-    // Métodos getter y setter para las variables de instancia
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
-    // Métodos getter y setter para el identificador (id)
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

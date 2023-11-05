@@ -8,8 +8,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Medicamento {
     @Id
     @GeneratedValue
@@ -27,8 +31,6 @@ public class Medicamento {
     private List<Tratamiento> tratamiento;
 
      // Constructores
-    public Medicamento() {
-    }
 
     public Medicamento(String nombre, double precioVenta, double precioCompra, int unidadesDisponibles, int unidadesVendidas) {
         this.nombre = nombre;
@@ -39,60 +41,4 @@ public class Medicamento {
     }
 
 
-     // Métodos getter y setter para los atributos de la entidad
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public double getPrecioVenta() {
-        return precioVenta;
-    }
-
-    public void setPrecioVenta(double precioVenta) {
-        this.precioVenta = precioVenta;
-    }
-
-    public double getPrecioCompra() {
-        return precioCompra;
-    }
-
-    public void setPrecioCompra(double precioCompra) {
-        this.precioCompra = precioCompra;
-    }
-
-    public int getUnidadesDisponibles() {
-        return unidadesDisponibles;
-    }
-
-    public void setUnidadesDisponibles(int unidadesDisponibles) {
-        this.unidadesDisponibles = unidadesDisponibles;
-    }
-
-    public int getUnidadesVendidas() {
-        return unidadesVendidas;
-    }
-
-    public void setUnidadesVendidas(int unidadesVendidas) {
-        this.unidadesVendidas = unidadesVendidas;
-    }
-
-    public List<Tratamiento> getTratamiento() {
-        return tratamiento;
-    }
-
-    public void setTratamiento(List<Tratamiento> tratamiento) {
-        this.tratamiento = tratamiento;
-    }
 }

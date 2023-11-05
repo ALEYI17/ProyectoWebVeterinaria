@@ -12,7 +12,6 @@ import com.vetcare.proyecto.entities.Medicamento;
 import com.vetcare.proyecto.entities.Tratamiento;
 import com.vetcare.proyecto.repository.TratamientoRepositorio;
 
-import jakarta.transaction.Transactional;
 
 @Service
 public class TratamientoServicioimpl implements TratamientoServicio {
