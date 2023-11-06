@@ -10,8 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.OneToOne;
+
 
 @Entity
 public class Cliente {
@@ -20,6 +20,10 @@ public class Cliente {
     String nombre;
     String corre;
     String celular;
+
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
+    private UserEntity user;
     
     // Identificador único de la entidad Cliente
     @Id
@@ -87,4 +91,13 @@ public class Cliente {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+    
 }
