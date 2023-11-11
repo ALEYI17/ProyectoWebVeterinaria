@@ -1,5 +1,6 @@
 package com.vetcare.proyecto.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,6 +11,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
@@ -17,13 +19,20 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    @Autowired
+    private JwtEntryPoint jwtEntryPoint;
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
             .headers(headers -> headers.frameOptions(frame -> frame.disable()))
             .authorizeHttpRequests(request -> request
                 .requestMatchers(new AntPathRequestMatcher("/h2/**")).permitAll()
-                .anyRequest().permitAll());
+                .anyRequest().permitAll())
+        
+        .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtEntryPoint));
+
+        http.addFilterBefore(jwtAunthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -37,5 +46,10 @@ public class SecurityConfig {
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)throws Exception{
         return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    JwtAunthenticationFilter jwtAunthenticationFilter(){
+        return new JwtAunthenticationFilter();
     }
 }

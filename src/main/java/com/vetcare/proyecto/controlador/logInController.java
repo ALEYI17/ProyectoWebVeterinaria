@@ -19,6 +19,7 @@ import com.vetcare.proyecto.DTOs.VeterinarioMapper;
 import com.vetcare.proyecto.entities.Admin;
 import com.vetcare.proyecto.entities.Cliente;
 import com.vetcare.proyecto.entities.Veterinario;
+import com.vetcare.proyecto.security.JwtGenerator;
 import com.vetcare.proyecto.service.AdminServicio;
 import com.vetcare.proyecto.service.ClienteServicio;
 import com.vetcare.proyecto.service.VeterinarioServicio;
@@ -39,24 +40,37 @@ public class logInController {
     @Autowired
     AuthenticationManager authenticationManager;
 
+    @Autowired
+    JwtGenerator jwtGenerator;
+
     Logger log = LoggerFactory.getLogger(getClass());
 
 
     // http://localhost:8090/Veterinariologin
     // Maneja la solicitud de inicio de sesión de un veterinario
     @PostMapping("/Veterinariologin")
-    public VeterinarioDto handleVeterinarioLoginForm(@RequestBody Veterinario veterinario){
-        String cedula = veterinario.getCedula();
-        String contrasena = veterinario.getContrasena();
-        log.info(cedula);
-        log.info(contrasena);
-        Veterinario veterinarioLogin = veterinarioServicio.VeterianarioByCedulaYContrasena(cedula, contrasena);
-        VeterinarioDto vetetdto = VeterinarioMapper.INSTANCE.convert(veterinarioLogin);
-        if(veterinarioLogin == null || veterinarioLogin.isActivo() == false){
-           log.info("mal");
-            return new VeterinarioDto("mal"); // Devuelve falso si el inicio de sesión no tiene éxito
-        }
-        return vetetdto; // Devuelve verdadero si el inicio de sesión es exitoso
+    public ResponseEntity handleVeterinarioLoginForm(@RequestBody Veterinario veterinario){
+        // String cedula = veterinario.getCedula();
+        // String contrasena = veterinario.getContrasena();
+        // log.info(cedula);
+        // log.info(contrasena);
+        // Veterinario veterinarioLogin = veterinarioServicio.VeterianarioByCedulaYContrasena(cedula, contrasena);
+        // VeterinarioDto vetetdto = VeterinarioMapper.INSTANCE.convert(veterinarioLogin);
+        // if(veterinarioLogin == null || veterinarioLogin.isActivo() == false){
+        //    log.info("mal");
+        //     return new VeterinarioDto("mal"); // Devuelve falso si el inicio de sesión no tiene éxito
+        // }
+        // return vetetdto; // Devuelve verdadero si el inicio de sesión es exitoso
+
+         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(veterinario.getCedula(), veterinario.getContrasena()));
+
+         SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String token = jwtGenerator.generateToken(authentication);
+
+        return new ResponseEntity<String>(token, HttpStatus.OK);
+
+
     }
 
     // http://localhost:8090/AdminLogin
@@ -96,7 +110,9 @@ public class logInController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return new ResponseEntity<String>("Usuario ingresa con exito", HttpStatus.OK);
+        String token = jwtGenerator.generateToken(authentication);
+
+        return new ResponseEntity<String>(token, HttpStatus.OK);
     }
 
 }

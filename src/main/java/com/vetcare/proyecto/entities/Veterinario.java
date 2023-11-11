@@ -31,6 +31,7 @@ public class Veterinario {
     private String foto; // Ruta de la foto del veterinario
    private boolean activo;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     private UserEntity user;
 
