@@ -3,6 +3,9 @@ package com.vetcare.proyecto.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vetcare.proyecto.DTOs.VeterinarioDto;
 import com.vetcare.proyecto.DTOs.VeterinarioMapper;
 import com.vetcare.proyecto.Exepciones.NotFoundException;
+import com.vetcare.proyecto.entities.UserEntity;
 import com.vetcare.proyecto.entities.Veterinario;
+import com.vetcare.proyecto.repository.UserEntityRepository;
+import com.vetcare.proyecto.security.CustomUserDetailService;
 import com.vetcare.proyecto.service.VeterinarioServicio;
 
 @RestController
@@ -25,6 +31,12 @@ import com.vetcare.proyecto.service.VeterinarioServicio;
 public class VeterinarioController {
     @Autowired
     VeterinarioServicio veterinarioServicio;
+
+    @Autowired
+    UserEntityRepository userEntityRepository;
+
+    @Autowired
+    CustomUserDetailService customUserDetailService;
 
     //http://localhost:8090/Veterinario/todos
     // Obtener todos los veterinarios
@@ -51,9 +63,21 @@ public class VeterinarioController {
     //http://localhost:8090/Veterinario/add
     // Agregar un nuevo veterinario
     @PostMapping("/add")
-    public void anadirVeterinario(@RequestBody Veterinario veterinario){
+    public ResponseEntity anadirVeterinario(@RequestBody Veterinario veterinario){
+
+        if(userEntityRepository.existsByUsername(veterinario.getCedula())){
+            return new ResponseEntity<String>("Este usuario ya existe", HttpStatus.BAD_REQUEST);
+        }
+        UserEntity userEntity = customUserDetailService.VeterinarioToUser(veterinario);
+        veterinario.setUser(userEntity);
+        Veterinario veterinarioDB = veterinarioServicio.addVeterinario(veterinario);
         veterinario.setActivo(true);
-        veterinarioServicio.addVeterinario(veterinario);
+        VeterinarioDto newVeterinarioDto = VeterinarioMapper.INSTANCE.convert(veterinarioDB);
+        if(newVeterinarioDto == null){
+            return new ResponseEntity<VeterinarioDto>(newVeterinarioDto, HttpStatus.BAD_REQUEST);
+        }
+        
+        return new ResponseEntity<VeterinarioDto>(newVeterinarioDto, HttpStatus.CREATED);
     }
 
     //http://localhost:8090/Veterinario//delete/{id}

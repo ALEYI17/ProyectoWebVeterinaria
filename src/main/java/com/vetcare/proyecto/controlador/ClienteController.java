@@ -7,6 +7,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vetcare.proyecto.Exepciones.NotFoundException;
 import com.vetcare.proyecto.entities.Cliente;
+import com.vetcare.proyecto.entities.UserEntity;
+import com.vetcare.proyecto.repository.UserEntityRepository;
+import com.vetcare.proyecto.security.CustomUserDetailService;
 import com.vetcare.proyecto.service.ClienteServicio;
 
 
@@ -32,6 +37,12 @@ public class ClienteController {
     Logger log = LoggerFactory.getLogger(getClass());
     @Autowired
     ClienteServicio clienteServicio;
+
+    @Autowired
+    UserEntityRepository userEntityRepository;
+
+    @Autowired
+    CustomUserDetailService customUserDetailService;
 
     // Mostrar todos los clientes
     //http://localhost:8090/Clientes/todos
@@ -61,9 +72,17 @@ public class ClienteController {
     // Agregar un nuevo cliente
     //http://localhost:8090/Clientes/add
     @PostMapping("/add")
-    public void agregarmascota(@RequestBody  Cliente cliente) {
-        clienteServicio.addCliente(cliente);
+    public ResponseEntity agregarmascota(@RequestBody  Cliente cliente) {
+
+        if(userEntityRepository.existsByUsername(cliente.getCedula())){
+            return new ResponseEntity<String>("Este usuario ya existe", HttpStatus.BAD_REQUEST);
+        }
         
+        UserEntity userEntity = customUserDetailService.ClienteToUser(cliente);
+        cliente.setUser(userEntity);
+        Cliente newCliente = clienteServicio.addCliente(cliente);
+
+        return new  ResponseEntity<Cliente>(newCliente , HttpStatus.CREATED);
     }
 
     // Eliminar un cliente por su ID

@@ -32,8 +32,8 @@ public class VeterinarioServicioImpl implements VeterinarioServicio{
     }
     // Método para agregar un veterinario
     @Override
-    public void addVeterinario(Veterinario veterinario) {
-        veterinarioRepositorio.save(veterinario);
+    public Veterinario addVeterinario(Veterinario veterinario) {
+        return veterinarioRepositorio.save(veterinario);
     }
     // Método para eliminar un veterinario por su ID
     @Override

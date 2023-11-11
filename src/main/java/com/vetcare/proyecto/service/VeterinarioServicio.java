@@ -12,7 +12,7 @@ public interface VeterinarioServicio {
     // Método para encontrar un veterinario por su ID
     public Veterinario findVeterinarioById(Long id);
     // Método para agregar un veterinario
-    public void addVeterinario(Veterinario veterinario);
+    public Veterinario addVeterinario(Veterinario veterinario);
      // Método para eliminar un veterinario por su ID
     public void removerVeterinario(Long id);
     // Método para actualizar un veterinario

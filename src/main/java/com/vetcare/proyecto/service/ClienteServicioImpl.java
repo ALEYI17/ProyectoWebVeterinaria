@@ -30,8 +30,8 @@ public class ClienteServicioImpl implements ClienteServicio {
 
     // Agregar un nuevo cliente
     @Override
-    public void addCliente(Cliente cliente) {
-        clienteRepositorio.save(cliente);
+    public Cliente addCliente(Cliente cliente) {
+        return clienteRepositorio.save(cliente);
     }
 
     // Eliminar un cliente por su ID

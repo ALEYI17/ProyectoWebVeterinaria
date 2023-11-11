@@ -17,7 +17,7 @@ public interface ClienteServicio {
    public List<Cliente> GetAll();
 
    // Agregar un nuevo cliente
-   public void addCliente(Cliente cliente);
+   public Cliente addCliente(Cliente cliente);
 
    // Eliminar un cliente por su ID
    public void removerCliente(Long id);

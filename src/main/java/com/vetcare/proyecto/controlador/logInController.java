@@ -3,6 +3,12 @@ package com.vetcare.proyecto.controlador;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +35,9 @@ public class logInController {
 
     @Autowired
     AdminServicio adminServicio;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
 
     Logger log = LoggerFactory.getLogger(getClass());
 
@@ -70,19 +79,24 @@ public class logInController {
     // http://localhost:8090/clientelogin
     // Maneja la solicitud de inicio de sesión de un cliente
     @PostMapping("/clientelogin")
-    public Cliente handleClienteLoginForm(@RequestBody Cliente cliente) {
+    public ResponseEntity handleClienteLoginForm(@RequestBody Cliente cliente) {
         // Ahora puedes acceder al atributo cedula del objeto cliente
-        String cedula = cliente.getCedula();
-        log.info(cedula);
-        Cliente clienteLogIn = clienteServicio.getByCedula(cedula);
+    //     String cedula = cliente.getCedula();
+    //     log.info(cedula);
+    //     Cliente clienteLogIn = clienteServicio.getByCedula(cedula);
 
-        if (clienteLogIn == null) {
-            // model.addAttribute("errorMessage", "Credenciales de inicio de sesión no válidas");
-            return clienteLogIn = new Cliente("invalid","","",""); // Volver a la página de inicio de sesión con un mensaje de error
-        }
+    //     if (clienteLogIn == null) {
+    //         // model.addAttribute("errorMessage", "Credenciales de inicio de sesión no válidas");
+    //         return clienteLogIn = new Cliente("invalid","","",""); // Volver a la página de inicio de sesión con un mensaje de error
+    //     }
 
-        return clienteLogIn;  // Devuelve el objeto Cliente si el inicio de sesión es exitoso
+    //     return clienteLogIn;  // Devuelve el objeto Cliente si el inicio de sesión es exitoso
+    
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(cliente.getCedula(), "123"));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        return new ResponseEntity<String>("Usuario ingresa con exito", HttpStatus.OK);
     }
-
 
 }
