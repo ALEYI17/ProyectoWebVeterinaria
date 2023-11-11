@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -28,6 +29,11 @@ public class SecurityConfig {
             .headers(headers -> headers.frameOptions(frame -> frame.disable()))
             .authorizeHttpRequests(request -> request
                 .requestMatchers(new AntPathRequestMatcher("/h2/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/Clientes/todos")).hasAuthority("VETERINARIO")
+                .requestMatchers(new AntPathRequestMatcher("/Clientes/find/**")).hasAnyAuthority("VETERINARIO","CLIENTE")
+                .requestMatchers(new AntPathRequestMatcher("/Mascota/todas")).hasAuthority("VETERINARIO")
+                .requestMatchers(new AntPathRequestMatcher("/Mascota/find/**")).hasAnyAuthority("VETERINARIO","CLIENTE")
+
                 .anyRequest().permitAll())
         
         .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtEntryPoint));
