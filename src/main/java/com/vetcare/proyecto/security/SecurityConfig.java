@@ -34,6 +34,7 @@ public class SecurityConfig {
                 .requestMatchers(new AntPathRequestMatcher("/Mascota/todas")).hasAuthority("VETERINARIO")
                 .requestMatchers(new AntPathRequestMatcher("/Mascota/find/**")).hasAnyAuthority("VETERINARIO","CLIENTE")
                 .requestMatchers(new AntPathRequestMatcher("/Clientes/details")).hasAuthority("CLIENTE")
+                .requestMatchers(new AntPathRequestMatcher("/Veterinario/details")).hasAuthority("VETERINARIO")
 
                 .anyRequest().permitAll())
         
