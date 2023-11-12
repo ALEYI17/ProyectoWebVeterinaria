@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,6 +68,20 @@ public class ClienteController {
         }
 
         return cliente;
+    }
+
+
+    @GetMapping("/details")
+    public ResponseEntity<Cliente> buscarCliente(){
+        Cliente cliente = clienteServicio.getByCedula(
+            SecurityContextHolder.getContext().getAuthentication().getName()
+        );
+
+        if(cliente == null ){
+            return new ResponseEntity<Cliente>(cliente, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
     }
 
     // Agregar un nuevo cliente

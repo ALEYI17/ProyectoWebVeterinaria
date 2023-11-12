@@ -89,8 +89,8 @@ public class databaseInit implements ApplicationRunner{
         // Example of using the builder pattern to create Veterinario instances
         veterinarioSave = Veterinario.builder()
             .Nombre("prueba")
-            .cedula("123")
-            .contrasena("123")
+            .cedula("1234")
+            .contrasena("1234")
             .especialidad("Nose")
             .foto("Nose")
             .activo(true)
@@ -951,7 +951,7 @@ public class databaseInit implements ApplicationRunner{
     private UserEntity saveUserVeterinario(Veterinario veterinario){
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(veterinario.getCedula());
-        userEntity.setPassword(passwordEncoder.encode(veterinario.getCedula()));
+        userEntity.setPassword(passwordEncoder.encode(veterinario.getContrasena()));
         Rol rol = rolRepository.findByName("VETERINARIO").get();
         userEntity.setRoles(List.of(rol));
         return userEntityRepository.save(userEntity);

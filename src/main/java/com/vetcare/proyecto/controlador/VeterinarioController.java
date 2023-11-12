@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vetcare.proyecto.DTOs.VeterinarioDto;
 import com.vetcare.proyecto.DTOs.VeterinarioMapper;
 import com.vetcare.proyecto.Exepciones.NotFoundException;
+import com.vetcare.proyecto.entities.Cliente;
 import com.vetcare.proyecto.entities.UserEntity;
 import com.vetcare.proyecto.entities.Veterinario;
 import com.vetcare.proyecto.repository.UserEntityRepository;
@@ -78,6 +80,21 @@ public class VeterinarioController {
         }
         
         return new ResponseEntity<VeterinarioDto>(newVeterinarioDto, HttpStatus.CREATED);
+    }
+
+    //http://localhost:8090/Veterinario//details/
+    // Devuelve info de veterinario
+    @GetMapping("/details")
+    public ResponseEntity<Veterinario> buscarVeterinario(){
+        Veterinario veterinario = veterinarioServicio.GetbyCedula(
+            SecurityContextHolder.getContext().getAuthentication().getName()
+        );
+
+        if(veterinario == null ){
+            return new ResponseEntity<Veterinario>(veterinario, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<Veterinario>(veterinario, HttpStatus.OK);
     }
 
     //http://localhost:8090/Veterinario//delete/{id}

@@ -28,4 +28,6 @@ public interface VeterinarioRepositorio extends JpaRepository<Veterinario,Long> 
     long countByActivoTrue();
      // Consulta para contar la cantidad de veterinarios inactivos
     long countByActivoFalse();
+
+    Veterinario  findByCedula(String cedula);
 }

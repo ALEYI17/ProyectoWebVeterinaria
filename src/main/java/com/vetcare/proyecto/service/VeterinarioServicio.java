@@ -25,4 +25,6 @@ public interface VeterinarioServicio {
     Long CountVeterinariosActivos();
     // Método para contar la cantidad de veterinarios inactivos
     Long CountVeterinariosInactivos();
+    // Método para desactivar un veterinario por su cedula
+    public Veterinario GetbyCedula(String cedula);
 }

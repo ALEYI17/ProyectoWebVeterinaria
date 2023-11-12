@@ -67,5 +67,9 @@ public class VeterinarioServicioImpl implements VeterinarioServicio{
     public Long CountVeterinariosInactivos() {
          return veterinarioRepositorio.countByActivoFalse();
     }
+    @Override
+    public Veterinario GetbyCedula(String cedula) {
+        return veterinarioRepositorio.findByCedula(cedula);
+    }
     
 }
