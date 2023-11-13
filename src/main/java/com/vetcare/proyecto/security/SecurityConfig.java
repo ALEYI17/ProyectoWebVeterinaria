@@ -31,10 +31,41 @@ public class SecurityConfig {
                 .requestMatchers(new AntPathRequestMatcher("/h2/**")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/Clientes/todos")).hasAuthority("VETERINARIO")
                 .requestMatchers(new AntPathRequestMatcher("/Clientes/find/**")).hasAnyAuthority("VETERINARIO","CLIENTE")
+                .requestMatchers(new AntPathRequestMatcher("/Clientes/add")).hasAuthority("VETERINARIO")
+                .requestMatchers(new AntPathRequestMatcher("/Clientes/delete/**")).hasAuthority("VETERINARIO")
+                .requestMatchers(new AntPathRequestMatcher("/Clientes/update/**")).hasAuthority("VETERINARIO")
+
                 .requestMatchers(new AntPathRequestMatcher("/Mascota/todas")).hasAuthority("VETERINARIO")
                 .requestMatchers(new AntPathRequestMatcher("/Mascota/find/**")).hasAnyAuthority("VETERINARIO","CLIENTE")
+                .requestMatchers(new AntPathRequestMatcher("/Mascota/agregar")).hasAuthority("VETERINARIO")
+                .requestMatchers(new AntPathRequestMatcher("/Mascota/delete/**")).hasAuthority("VETERINARIO")
+                .requestMatchers(new AntPathRequestMatcher("/Mascota/update/**")).hasAuthority("VETERINARIO")
+
+                .requestMatchers(new AntPathRequestMatcher("/Medicamentos/todos")).hasAuthority("VETERINARIO")
+                .requestMatchers(new AntPathRequestMatcher("/Medicamentos/find/**")).hasAnyAuthority("VETERINARIO","CLIENTE")
+
+                .requestMatchers(new AntPathRequestMatcher("/Tratamiento/add")).hasAuthority("VETERINARIO")
+                .requestMatchers(new AntPathRequestMatcher("/Tratamiento/**/medicamento")).hasAnyAuthority("VETERINARIO","CLIENTE")
+
+                .requestMatchers(new AntPathRequestMatcher("/Veterinario/todos")).hasAuthority("ADMINISTRADOR")
+                .requestMatchers(new AntPathRequestMatcher("/Veterinario/add")).hasAuthority("ADMINISTRADOR")
+                .requestMatchers(new AntPathRequestMatcher("/Veterinario/find/**")).hasAnyAuthority("ADMINISTRADOR","VETERINARIO","CLIENTE")
+                .requestMatchers(new AntPathRequestMatcher("/Veterinario/delete/**")).hasAuthority("ADMINISTRADOR")
+                .requestMatchers(new AntPathRequestMatcher("/Veterinario/update/**")).hasAuthority("ADMINISTRADOR")
+
+                .requestMatchers(new AntPathRequestMatcher("/estadisticas/vetactivos")).hasAuthority("ADMINISTRADOR")
+                .requestMatchers(new AntPathRequestMatcher("/estadisticas/vetinactivos")).hasAuthority("ADMINISTRADOR")
+                .requestMatchers(new AntPathRequestMatcher("/estadisticas/countmascotas")).hasAuthority("ADMINISTRADOR")
+                .requestMatchers(new AntPathRequestMatcher("/estadisticas/tratamientosmes")).hasAuthority("ADMINISTRADOR")
+                .requestMatchers(new AntPathRequestMatcher("/estadisticas/tratamientomedicamento")).hasAuthority("ADMINISTRADOR")
+                .requestMatchers(new AntPathRequestMatcher("/estadisticas/totalventas")).hasAuthority("ADMINISTRADOR")
+                .requestMatchers(new AntPathRequestMatcher("/estadisticas/gananciastotales")).hasAuthority("ADMINISTRADOR")
+                .requestMatchers(new AntPathRequestMatcher("/estadisticas/TratamientosActivos")).hasAuthority("ADMINISTRADOR")
+                .requestMatchers(new AntPathRequestMatcher("/estadisticas/topmedicamentos")).hasAuthority("ADMINISTRADOR")
+
                 .requestMatchers(new AntPathRequestMatcher("/Clientes/details")).hasAuthority("CLIENTE")
                 .requestMatchers(new AntPathRequestMatcher("/Veterinario/details")).hasAuthority("VETERINARIO")
+                
 
                 .anyRequest().permitAll())
         
