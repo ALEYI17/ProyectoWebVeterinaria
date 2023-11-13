@@ -47,9 +47,8 @@ public class SecurityConfig {
                 .requestMatchers(new AntPathRequestMatcher("/Tratamiento/add")).hasAuthority("VETERINARIO")
                 .requestMatchers(new AntPathRequestMatcher("/Tratamiento/**/medicamento")).hasAnyAuthority("VETERINARIO","CLIENTE")
 
-                .requestMatchers(new AntPathRequestMatcher("/Veterinario/todos")).hasAuthority("ADMINISTRADOR")
+                
                 .requestMatchers(new AntPathRequestMatcher("/Veterinario/add")).hasAuthority("ADMINISTRADOR")
-                .requestMatchers(new AntPathRequestMatcher("/Veterinario/find/**")).hasAnyAuthority("ADMINISTRADOR","VETERINARIO","CLIENTE")
                 .requestMatchers(new AntPathRequestMatcher("/Veterinario/delete/**")).hasAuthority("ADMINISTRADOR")
                 .requestMatchers(new AntPathRequestMatcher("/Veterinario/update/**")).hasAuthority("ADMINISTRADOR")
 
