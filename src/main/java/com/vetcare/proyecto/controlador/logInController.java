@@ -81,15 +81,24 @@ public class logInController {
     // http://localhost:8090/AdminLogin
     // Maneja la solicitud de inicio de sesión de un administrador
     @PostMapping("/AdminLogin")
-    public Boolean handleAdminLoginForm(@RequestBody Admin admin){
-        String usuString = admin.getUsuario();
-        String contraString= admin.getContrasena();
-        Admin admin2 = adminServicio.GetAdmin(usuString,contraString);
+    public ResponseEntity handleAdminLoginForm(@RequestBody Admin admin){
 
-        if(admin2 != null){
-            return true; // Devuelve verdadero si el inicio de sesión es exitoso
-        }
-        return false; // Devuelve falso si el inicio de sesión no tiene éxito
+        // String usuString = admin.getUsuario();
+        // String contraString= admin.getContrasena();
+        // Admin admin2 = adminServicio.GetAdmin(usuString,contraString);
+
+        // if(admin2 != null){
+        //     return true; // Devuelve verdadero si el inicio de sesión es exitoso
+        // }
+        // return false; // Devuelve falso si el inicio de sesión no tiene éxito
+
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(admin.getUsuario(),admin.getContrasena() ));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String token = jwtGenerator.generateToken(authentication);
+
+        return new ResponseEntity<String>(token, HttpStatus.OK);
     }
 
 

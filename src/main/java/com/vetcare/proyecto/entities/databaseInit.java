@@ -67,6 +67,7 @@ public class databaseInit implements ApplicationRunner{
 
         rolRepository.save(new Rol("CLIENTE"));
         rolRepository.save(new Rol("VETERINARIO"));
+        rolRepository.save(new Rol("ADMINISTRADOR"));
 
         Cliente clienteSave;
         UserEntity userEntity;
@@ -893,7 +894,10 @@ public class databaseInit implements ApplicationRunner{
             tratamientoRepositorio.save(tratamiento);
         }
 
-        adminRepositorio.save(new Admin("123", "123"));
+        Admin adminSave = new Admin("123456", "123456");
+        userEntity = saveUserAdministrador(adminSave);
+        adminSave.setUser(userEntity);
+        adminRepositorio.save(adminSave);
     }
 
 
@@ -953,6 +957,15 @@ public class databaseInit implements ApplicationRunner{
         userEntity.setUsername(veterinario.getCedula());
         userEntity.setPassword(passwordEncoder.encode(veterinario.getContrasena()));
         Rol rol = rolRepository.findByName("VETERINARIO").get();
+        userEntity.setRoles(List.of(rol));
+        return userEntityRepository.save(userEntity);
+    }
+
+    private UserEntity saveUserAdministrador(Admin admin){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUsername(admin.getUsuario());
+        userEntity.setPassword(passwordEncoder.encode(admin.getContrasena()));
+        Rol rol = rolRepository.findByName("ADMINISTRADOR").get();
         userEntity.setRoles(List.of(rol));
         return userEntityRepository.save(userEntity);
     }

@@ -1,7 +1,11 @@
 package com.vetcare.proyecto.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,6 +22,10 @@ public class Admin {
     @Id
     @GeneratedValue
     private Long id;
+
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
+    private UserEntity user;
 
     // Constructores
     public Admin(String usuario, String contrasena) {

@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.vetcare.proyecto.entities.Admin;
 import com.vetcare.proyecto.entities.Cliente;
 import com.vetcare.proyecto.entities.Rol;
 import com.vetcare.proyecto.entities.UserEntity;
@@ -58,12 +59,22 @@ public class CustomUserDetailService implements UserDetailsService{
         return userEntity;
     }
 
-        public UserEntity VeterinarioToUser(Veterinario veterinario){
+    public UserEntity VeterinarioToUser(Veterinario veterinario){
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(veterinario.getCedula());
         userEntity.setPassword(passwordEncoder.encode(veterinario.getContrasena()));
 
         Rol rol = rolRepository.findByName("VETERINARIO").get();
+        userEntity.setRoles(List.of(rol));
+        return userEntity;
+    }
+
+    public UserEntity AdminToUser(Admin admin){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUsername(admin.getUsuario());
+        userEntity.setPassword(passwordEncoder.encode(admin.getContrasena()));
+
+        Rol rol = rolRepository.findByName("ADMINISTRADOR").get();
         userEntity.setRoles(List.of(rol));
         return userEntity;
     }
