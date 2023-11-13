@@ -72,8 +72,8 @@ public class VeterinarioController {
         }
         UserEntity userEntity = customUserDetailService.VeterinarioToUser(veterinario);
         veterinario.setUser(userEntity);
-        Veterinario veterinarioDB = veterinarioServicio.addVeterinario(veterinario);
         veterinario.setActivo(true);
+        Veterinario veterinarioDB = veterinarioServicio.addVeterinario(veterinario);
         VeterinarioDto newVeterinarioDto = VeterinarioMapper.INSTANCE.convert(veterinarioDB);
         if(newVeterinarioDto == null){
             return new ResponseEntity<VeterinarioDto>(newVeterinarioDto, HttpStatus.BAD_REQUEST);

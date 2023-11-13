@@ -55,21 +55,23 @@ public class logInController {
     // Maneja la solicitud de inicio de sesión de un veterinario
     @PostMapping("/Veterinariologin")
     public ResponseEntity handleVeterinarioLoginForm(@RequestBody Veterinario veterinario){
-        // String cedula = veterinario.getCedula();
-        // String contrasena = veterinario.getContrasena();
+        String cedula = veterinario.getCedula();
+        String contrasena = veterinario.getContrasena();
         // log.info(cedula);
         // log.info(contrasena);
-        // Veterinario veterinarioLogin = veterinarioServicio.VeterianarioByCedulaYContrasena(cedula, contrasena);
+        Veterinario veterinarioLogin = veterinarioServicio.VeterianarioByCedulaYContrasena(cedula, contrasena);
         // VeterinarioDto vetetdto = VeterinarioMapper.INSTANCE.convert(veterinarioLogin);
-        // if(veterinarioLogin == null || veterinarioLogin.isActivo() == false){
-        //    log.info("mal");
-        //     return new VeterinarioDto("mal"); // Devuelve falso si el inicio de sesión no tiene éxito
-        // }
+        if(veterinarioLogin == null || veterinarioLogin.isActivo() == false){
+           log.info("mal");
+            return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED); // Devuelve falso si el inicio de sesión no tiene éxito
+        }
         // return vetetdto; // Devuelve verdadero si el inicio de sesión es exitoso
+        
 
-         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(veterinario.getCedula(), veterinario.getContrasena()));
 
-         SecurityContextHolder.getContext().setAuthentication(authentication);
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(veterinario.getCedula(), veterinario.getContrasena()));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String token = jwtGenerator.generateToken(authentication);
 
