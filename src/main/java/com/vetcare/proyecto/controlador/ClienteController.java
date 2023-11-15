@@ -21,6 +21,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vetcare.proyecto.DTOs.ClienteDto;
+import com.vetcare.proyecto.DTOs.ClienteMapper;
+import com.vetcare.proyecto.DTOs.VeterinarioDto;
+import com.vetcare.proyecto.DTOs.VeterinarioMapper;
 import com.vetcare.proyecto.Exepciones.NotFoundException;
 import com.vetcare.proyecto.entities.Cliente;
 import com.vetcare.proyecto.entities.UserEntity;
@@ -48,17 +52,22 @@ public class ClienteController {
     // Mostrar todos los clientes
     //http://localhost:8090/Clientes/todos
     @GetMapping("/todos")
-    public List<Cliente> MostrarClientes() {
+    public ResponseEntity<List<ClienteDto>>  MostrarClientes() {
+
+
+        List<Cliente> listaCLientes = clienteServicio.GetAll();
+        List<ClienteDto> Clientedto = ClienteMapper.INSTANCE.convert(listaCLientes);
+
         
-        return clienteServicio.GetAll();
+        return  new ResponseEntity<List<ClienteDto>>(Clientedto, HttpStatus.OK);
     }
 
     // Mostrar un cliente por su ID
     //http://localhost:8090/Clientes/find/cedula
     @GetMapping("/find/{id}")
-    public Cliente MostrarClienteXId( @PathVariable("id") String id) {
+    public ResponseEntity<ClienteDto> MostrarClienteXId( @PathVariable("id") String id) {
         Cliente cliente = clienteServicio.getByCedula(id);
-       
+       ClienteDto Clientedto = ClienteMapper.INSTANCE.convert(cliente);
 
         if (cliente != null) {
            // List<Mascota> mascotas = cliente.getMisMascotas();
@@ -67,7 +76,7 @@ public class ClienteController {
             throw new NotFoundException(Long.parseLong(id));
         }
 
-        return cliente;
+        return new ResponseEntity<ClienteDto>(Clientedto, HttpStatus.OK);
     }
 
 
@@ -96,8 +105,9 @@ public class ClienteController {
         UserEntity userEntity = customUserDetailService.ClienteToUser(cliente);
         cliente.setUser(userEntity);
         Cliente newCliente = clienteServicio.addCliente(cliente);
+        ClienteDto Clientedto = ClienteMapper.INSTANCE.convert(newCliente);
 
-        return new  ResponseEntity<Cliente>(newCliente , HttpStatus.CREATED);
+        return new  ResponseEntity<ClienteDto>(Clientedto , HttpStatus.CREATED);
     }
 
     // Eliminar un cliente por su ID
@@ -112,6 +122,9 @@ public class ClienteController {
     //http://localhost:8090/Clientes/update/id
     @PutMapping("/update/{id}")
     public void actualizarMascota(@PathVariable("id") String id, @RequestBody Cliente cliente) {
+
+        Cliente clienteaActualizar = clienteServicio.GetById(cliente.getId());
+        cliente.setUser(clienteaActualizar.getUser()) ;
         clienteServicio.updateCliente(cliente);
         // return "redirect:/Clientes/todos";
     }

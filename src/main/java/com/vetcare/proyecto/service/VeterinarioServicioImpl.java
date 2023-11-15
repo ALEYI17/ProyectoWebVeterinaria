@@ -71,5 +71,10 @@ public class VeterinarioServicioImpl implements VeterinarioServicio{
     public Veterinario GetbyCedula(String cedula) {
         return veterinarioRepositorio.findByCedula(cedula);
     }
+    @Override
+    public Veterinario GetById(Long id) {
+        
+        return veterinarioRepositorio.findById(id).get();
+    }
     
 }

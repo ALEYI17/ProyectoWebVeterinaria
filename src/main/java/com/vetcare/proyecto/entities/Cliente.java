@@ -22,7 +22,7 @@ public class Cliente {
     String celular;
 
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.ALL})
     private UserEntity user;
     
     // Identificador único de la entidad Cliente

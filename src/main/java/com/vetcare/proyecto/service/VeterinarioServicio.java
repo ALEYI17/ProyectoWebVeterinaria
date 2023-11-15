@@ -2,6 +2,7 @@ package com.vetcare.proyecto.service;
 
 import java.util.List;
 
+import com.vetcare.proyecto.entities.Cliente;
 import com.vetcare.proyecto.entities.Veterinario;
 
 public interface VeterinarioServicio {
@@ -27,4 +28,5 @@ public interface VeterinarioServicio {
     Long CountVeterinariosInactivos();
     // Método para desactivar un veterinario por su cedula
     public Veterinario GetbyCedula(String cedula);
+    public Veterinario GetById(Long id);
 }

@@ -85,16 +85,18 @@ public class VeterinarioController {
     //http://localhost:8090/Veterinario//details/
     // Devuelve info de veterinario
     @GetMapping("/details")
-    public ResponseEntity<Veterinario> buscarVeterinario(){
+    public ResponseEntity<VeterinarioDto> buscarVeterinario(){
         Veterinario veterinario = veterinarioServicio.GetbyCedula(
             SecurityContextHolder.getContext().getAuthentication().getName()
         );
 
+        VeterinarioDto vetetdto = VeterinarioMapper.INSTANCE.convert(veterinario);
+
         if(veterinario == null ){
-            return new ResponseEntity<Veterinario>(veterinario, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<VeterinarioDto>(vetetdto, HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<Veterinario>(veterinario, HttpStatus.OK);
+        return new ResponseEntity<VeterinarioDto>(vetetdto, HttpStatus.OK);
     }
 
     //http://localhost:8090/Veterinario//delete/{id}
@@ -108,6 +110,11 @@ public class VeterinarioController {
     // Actualizar la información de un veterinario
     @PutMapping("update/{id}")
     public void actualizarVeterinario(@PathVariable("id") Long id ,@RequestBody Veterinario veterinario){
+
+        Veterinario veterinarioActualziar = veterinarioServicio.GetById(veterinario.getId());
+        veterinario.setUser(veterinarioActualziar.getUser());
+        veterinario.setContrasena(veterinarioActualziar.getContrasena());
+        veterinario.setActivo(true);
         veterinarioServicio.updateVeterinario(veterinario);
     }
 
