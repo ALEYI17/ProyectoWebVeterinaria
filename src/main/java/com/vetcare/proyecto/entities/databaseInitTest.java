@@ -12,13 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
 import com.vetcare.proyecto.repository.AdminRepositorio;
 import com.vetcare.proyecto.repository.ClienteRepositorio;
 import com.vetcare.proyecto.repository.MascotaRepository;
 import com.vetcare.proyecto.repository.MedicamentoRepositorio;
+import com.vetcare.proyecto.repository.RolRepository;
 import com.vetcare.proyecto.repository.TratamientoRepositorio;
+import com.vetcare.proyecto.repository.UserEntityRepository;
 import com.vetcare.proyecto.repository.VeterinarioRepositorio;
 
 import jakarta.transaction.Transactional;
@@ -31,6 +34,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 @Profile("test")
 public class databaseInitTest implements ApplicationRunner{
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    RolRepository rolRepository;
+
+    @Autowired
+    UserEntityRepository userEntityRepository;
 
     @Autowired
     ClienteRepositorio clienteRepositorio;
@@ -54,120 +65,581 @@ public class databaseInitTest implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        veterinarioRepositorio.save(new Veterinario("prueba","123", "123", "Nose", "Nose",true));
-        veterinarioRepositorio.save(new Veterinario("Lynelle Charsley", "9045730128", "nH6?tI)#e", "Imagenología", "https://images.ecestaticos.com/ciN9hN7qsu5JOcrGdMngWhCHs8Y=/0x70:1716x1040/1200x1200/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F8db%2F8b6%2Faa5%2F8db8b6aa54b585253e15f79a68447aeb.jpg",true));
-        veterinarioRepositorio.save(new Veterinario("Ianthe Jordine", "1443103554", "iB7,*K+Pi6a1q", "Rehabilitación", "https://amigodoctor.com/inicio/drs/adrian.jpg",true));
-        veterinarioRepositorio.save(new Veterinario("Jayme Novotne", "3844360055", "zF1%7D9~f", "Oncología", "https://yt3.googleusercontent.com/ytc/APkrFKYQtHv2GYhbAQkrTRknWk6YVrDLLZk1YovsUcT0Aw=s900-c-k-c0x00ffffff-no-rj",true));
-        veterinarioRepositorio.save(new Veterinario("Harrietta Wheatcroft", "9928747656", "fV5.}6BrqQ+Ma&+", "Rehabilitación", "https://ic.c4assets.com/brands/the-good-doctor/b24d15b7-bba0-4939-bf45-e893dd5d46fa.jpg?interpolation=progressive-bicubic&output-format=jpeg&output-quality=90{&resize}",true));
-        veterinarioRepositorio.save(new Veterinario("Clem Brewers", "3306814411", "oK6*e`jYxEC=T}O@", "Oncología", "https://i.pinimg.com/originals/11/97/09/119709a6e0e53e358a6b783c300885eb.jpg",true));
-        veterinarioRepositorio.save(new Veterinario("Corry Yannoni", "8286795345", "sE4>f<r}Vrv", "Oncología", "https://tecolotito.elsiglodetorreon.com.mx/cdn-cgi/image/format=auto,width=1024/i/2009/07/139879.jpeg",true));
-        veterinarioRepositorio.save(new Veterinario("Xavier Brislen", "9640373723", "rY1@yb'~", "Oncología", "https://media.istockphoto.com/id/1468678629/photo/portrait-healthcare-and-tablet-with-a-doctor-woman-at-work-in-a-hospital-for-research-or.webp?b=1&s=170667a&w=0&k=20&c=H9w4bMoP3WXY178SVYmZsZsSCaTJoVLRMnSLPd3L3OE=",true));
-        veterinarioRepositorio.save(new Veterinario("Pooh Geindre", "2352482910", "fE6@?)q~~_", "Fisioterapia", "https://www.leasurgery.co.uk/media/content/images/doctor.jpg",true));
-        veterinarioRepositorio.save(new Veterinario("Nobe Larter", "2064009404", "vG5(4c~Np`qYZ0", "Rehabilitación", "https://www.beaumont.org/images/default-source/primary-care/getting-to-know-doctor.jpg?sfvrsn=cc08ede2_0",true));
-        veterinarioRepositorio.save(new Veterinario("Yves Chittem", "6817346042", "eK3})<d`fC", "Fisioterapia", "https://www.pasadenahealthcenter.com/site/wp-content/uploads/2018/01/doctor.jpg",true));
-        veterinarioRepositorio.save(new Veterinario("Casie Gawkes", "7280532372", "uB8!1!c)fNh7Phe", "Cirugía", "https://medimap.ca/wp-content/uploads/2022/10/iStock-1193303828.jpg",true));
+        rolRepository.save(new Rol("CLIENTE"));
+        rolRepository.save(new Rol("VETERINARIO"));
+        rolRepository.save(new Rol("ADMINISTRADOR"));
+
+        Cliente clienteSave;
+        UserEntity userEntity;
+        Veterinario veterinarioSave;
+        UserEntity userEntityVet;
+        // veterinarioRepositorio.save(new Veterinario("prueba","123", "123", "Nose", "Nose",true));
+        // veterinarioRepositorio.save(new Veterinario("Lynelle Charsley", "9045730128", "nH6?tI)#e", "Imagenología", "https://images.ecestaticos.com/ciN9hN7qsu5JOcrGdMngWhCHs8Y=/0x70:1716x1040/1200x1200/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F8db%2F8b6%2Faa5%2F8db8b6aa54b585253e15f79a68447aeb.jpg",true));
+        // veterinarioRepositorio.save(new Veterinario("Ianthe Jordine", "1443103554", "iB7,*K+Pi6a1q", "Rehabilitación", "https://amigodoctor.com/inicio/drs/adrian.jpg",true));
+        // veterinarioRepositorio.save(new Veterinario("Jayme Novotne", "3844360055", "zF1%7D9~f", "Oncología", "https://yt3.googleusercontent.com/ytc/APkrFKYQtHv2GYhbAQkrTRknWk6YVrDLLZk1YovsUcT0Aw=s900-c-k-c0x00ffffff-no-rj",true));
+        // veterinarioRepositorio.save(new Veterinario("Harrietta Wheatcroft", "9928747656", "fV5.}6BrqQ+Ma&+", "Rehabilitación", "https://ic.c4assets.com/brands/the-good-doctor/b24d15b7-bba0-4939-bf45-e893dd5d46fa.jpg?interpolation=progressive-bicubic&output-format=jpeg&output-quality=90{&resize}",true));
+        // veterinarioRepositorio.save(new Veterinario("Clem Brewers", "3306814411", "oK6*e`jYxEC=T}O@", "Oncología", "https://i.pinimg.com/originals/11/97/09/119709a6e0e53e358a6b783c300885eb.jpg",true));
+        // veterinarioRepositorio.save(new Veterinario("Corry Yannoni", "8286795345", "sE4>f<r}Vrv", "Oncología", "https://tecolotito.elsiglodetorreon.com.mx/cdn-cgi/image/format=auto,width=1024/i/2009/07/139879.jpeg",true));
+        // veterinarioRepositorio.save(new Veterinario("Xavier Brislen", "9640373723", "rY1@yb'~", "Oncología", "https://media.istockphoto.com/id/1468678629/photo/portrait-healthcare-and-tablet-with-a-doctor-woman-at-work-in-a-hospital-for-research-or.webp?b=1&s=170667a&w=0&k=20&c=H9w4bMoP3WXY178SVYmZsZsSCaTJoVLRMnSLPd3L3OE=",true));
+        // veterinarioRepositorio.save(new Veterinario("Pooh Geindre", "2352482910", "fE6@?)q~~_", "Fisioterapia", "https://www.leasurgery.co.uk/media/content/images/doctor.jpg",true));
+        // veterinarioRepositorio.save(new Veterinario("Nobe Larter", "2064009404", "vG5(4c~Np`qYZ0", "Rehabilitación", "https://www.beaumont.org/images/default-source/primary-care/getting-to-know-doctor.jpg?sfvrsn=cc08ede2_0",true));
+        // veterinarioRepositorio.save(new Veterinario("Yves Chittem", "6817346042", "eK3})<d`fC", "Fisioterapia", "https://www.pasadenahealthcenter.com/site/wp-content/uploads/2018/01/doctor.jpg",true));
+        // veterinarioRepositorio.save(new Veterinario("Casie Gawkes", "7280532372", "uB8!1!c)fNh7Phe", "Cirugía", "https://medimap.ca/wp-content/uploads/2022/10/iStock-1193303828.jpg",true));
 
 
-        clienteRepositorio.save(new Cliente("5602222623501237","Crin Dottridge","cdottridge0@bravesites.com","184-683-8032"));
-        clienteRepositorio.save(new Cliente("5610426064728825","Meghan Vain","mvain1@indiegogo.com","253-723-4589"));
-        clienteRepositorio.save(new Cliente("5602248031401652","Darci Condie","dcondie2@blogtalkradio.com","755-993-2472"));
-        clienteRepositorio.save(new Cliente("5610882771911973","Bernard Sackes","bsackes3@ca.gov","876-141-1589"));
-        clienteRepositorio.save(new Cliente("374288553824805","Cully Matas","cmatas4@cdc.gov","764-541-3379"));
-        clienteRepositorio.save(new Cliente("374288603248310","Corinne Nerne","cnerne5@time.com","541-955-9935"));
-        clienteRepositorio.save(new Cliente("5610380149596485","Morgan Bernolet","mbernolet6@illinois.edu","841-465-7544"));
-        clienteRepositorio.save(new Cliente("372301484707619","Yolane Thistleton","ythistleton7@ustream.tv","432-406-7458"));
-        clienteRepositorio.save(new Cliente("372491765111308","Minerva Ashurst","mashurst8@list-manage.com","424-131-7675"));
-        clienteRepositorio.save(new Cliente("375368923381238","Kerrin Pioch","kpioch9@hibu.com","367-259-8444"));
-        clienteRepositorio.save(new Cliente("5602236196117023","Dominica Rosenfarb","drosenfarba@wordpress.com","277-852-9960"));
-        clienteRepositorio.save(new Cliente("374283409761582","Valina Baggott","vbaggottb@angelfire.com","649-847-5802"));
-        clienteRepositorio.save(new Cliente("374283395896384","Dagny Davidow","ddavidowc@hexun.com","970-778-5934"));
-        clienteRepositorio.save(new Cliente("5602257500781486","Brande Caulkett","bcaulkettd@addthis.com","865-170-4691"));
-        clienteRepositorio.save(new Cliente("5602228222398925","Allx Winship","awinshipe@biblegateway.com","595-323-6135"));
-        clienteRepositorio.save(new Cliente("5602226925786347","Miles Frany","mfranyf@cbsnews.com","898-945-8824"));
-        clienteRepositorio.save(new Cliente("374288095910500","Jill Goodbourn","jgoodbourng@pcworld.com","742-331-6722"));
-        clienteRepositorio.save(new Cliente("374283780451274","Toinette Jerams","tjeramsh@github.io","749-653-5728"));
-        clienteRepositorio.save(new Cliente("371457311064847","Erie Gobel","egobeli@arizona.edu","752-544-5760"));
-        clienteRepositorio.save(new Cliente("376076868622123","Jenny Giovani","jgiovanij@unesco.org","179-585-6376"));
-        clienteRepositorio.save(new Cliente("5602236327277357","Marge Malec","mmaleck@squidoo.com","277-638-5413"));
-        clienteRepositorio.save(new Cliente("5602256801682385","Kile Dumphy","kdumphyl@marketwatch.com","819-548-8883"));
-        clienteRepositorio.save(new Cliente("5602211891763355","Gipsy Archbould","garchbouldm@cnet.com","402-763-3570"));
-        clienteRepositorio.save(new Cliente("5602216928829962","Vite Hugonin","vhugoninn@bizjournals.com","496-363-9148"));
-        clienteRepositorio.save(new Cliente("349859054227730","Eric Withringten","ewithringteno@wired.com","305-521-8009"));
-        clienteRepositorio.save(new Cliente("5602245781671724","Thorpe Terlinden","tterlindenp@mapquest.com","953-143-7079"));
-        clienteRepositorio.save(new Cliente("374288205504045","Twyla Balnaves","tbalnavesq@netvibes.com","959-269-8991"));
-        clienteRepositorio.save(new Cliente("5602227303518773","Trefor Calvard","tcalvardr@comsenz.com","630-772-9173"));
-        clienteRepositorio.save(new Cliente("371866700185759","Reeba Maleham","rmalehams@vinaora.com","887-641-8220"));
-        clienteRepositorio.save(new Cliente("5602243092633558","Vivianne Burnes","vburnest@sun.com","917-284-2302"));
-        clienteRepositorio.save(new Cliente("5602250389738271","Barrie Digby","bdigbyu@youtu.be","946-104-8669"));
-        clienteRepositorio.save(new Cliente("372301026384687","Torey Barratt","tbarrattv@theglobeandmail.com","619-619-3110"));
-        clienteRepositorio.save(new Cliente("374283613945351","Any Tomkys","atomkysw@slate.com","865-592-2761"));
-        clienteRepositorio.save(new Cliente("5610858708657871","Boy Kelk","bkelkx@answers.com","525-467-7043"));
-        clienteRepositorio.save(new Cliente("5602251568175244","Codie Libreros","clibrerosy@deliciousdays.com","226-171-3199"));
-        clienteRepositorio.save(new Cliente("5610955261359885","Laughton Eagger","leaggerz@cloudflare.com","622-956-4799"));
-        clienteRepositorio.save(new Cliente("374622169164786","Stafford Rault","srault10@tuttocitta.it","135-182-9561"));
-        clienteRepositorio.save(new Cliente("5602237137080817","Talya Foulkes","tfoulkes11@woothemes.com","547-878-5826"));
-        clienteRepositorio.save(new Cliente("5602241958853815","Elvyn Cowlin","ecowlin12@telegraph.co.uk","418-850-4148"));
-        clienteRepositorio.save(new Cliente("374622160531629","Philippine O'Currane","pocurrane13@forbes.com","502-883-2935"));
-        clienteRepositorio.save(new Cliente("5602236989402921","Romy Campione","rcampione14@mit.edu","241-218-0964"));
-        clienteRepositorio.save(new Cliente("337941682156335","Antonetta Sackur","asackur15@oakley.com","684-637-5888"));
-        clienteRepositorio.save(new Cliente("344247442909448","Rebecka Boscher","rboscher16@tmall.com","969-358-4619"));
-        clienteRepositorio.save(new Cliente("347013784985041","Renaldo Earp","rearp17@cisco.com","176-557-9490"));
-        clienteRepositorio.save(new Cliente("5602231812797159","Dynah Benoiton","dbenoiton18@disqus.com","411-282-3571"));
-        clienteRepositorio.save(new Cliente("5602258345383595","Gerri Caswall","gcaswall19@de.vu","698-857-2334"));
-        clienteRepositorio.save(new Cliente("5602250834814263","Brewster Zolini","bzolini1a@nps.gov","528-620-3271"));
-        clienteRepositorio.save(new Cliente("5610532474297101","Kinna Manifield","kmanifield1b@dropbox.com","973-697-0539"));
-        clienteRepositorio.save(new Cliente("5610852357387591","Dianna Karlsen","dkarlsen1c@latimes.com","540-601-7660"));
-        clienteRepositorio.save(new Cliente("5602211492454834","Carolann Larway","clarway1d@xinhuanet.com","792-880-8946"));
-        clienteRepositorio.save(new Cliente("337941183735876","Maxi Lippiatt","mlippiatt1e@hhs.gov","936-191-3078"));
-        clienteRepositorio.save(new Cliente("5602215392755562","Kandy Colleck","kcolleck1f@cisco.com","151-607-4890"));
-        clienteRepositorio.save(new Cliente("5602255158197641","Tim MacRury","tmacrury1g@g.co","713-448-1209"));
-        clienteRepositorio.save(new Cliente("5602248745161923","Violet Gateman","vgateman1h@aol.com","577-938-8690"));
-        clienteRepositorio.save(new Cliente("373693584818414","Lewie Abramovitch","labramovitch1i@hp.com","471-691-1009"));
-        clienteRepositorio.save(new Cliente("5602221136058503","Alejandrina Bean","abean1j@cornell.edu","676-158-3979"));
-        clienteRepositorio.save(new Cliente("337941486437790","Elfrida Nyles","enyles1k@google.es","324-688-2436"));
-        clienteRepositorio.save(new Cliente("5602214027388741","Kevina Lidgard","klidgard1l@ovh.net","193-711-9722"));
-        clienteRepositorio.save(new Cliente("374283713874493","Ynes Blanpein","yblanpein1m@stumbleupon.com","345-527-2932"));
-        clienteRepositorio.save(new Cliente("5610681241437175","Janna Laurentin","jlaurentin1n@shinystat.com","529-523-1286"));
-        clienteRepositorio.save(new Cliente("345095084253602","Brenden Kaye","bkaye1o@epa.gov","229-474-9497"));
-        clienteRepositorio.save(new Cliente("337941871380605","Angelico Chrisp","achrisp1p@yahoo.com","734-989-5586"));
-        clienteRepositorio.save(new Cliente("374283736974890","Talbot Swiggs","tswiggs1q@yolasite.com","773-220-3879"));
-        clienteRepositorio.save(new Cliente("370376526960899","Rena Dufaur","rdufaur1r@g.co","358-609-0914"));
-        clienteRepositorio.save(new Cliente("5610427870181126","Ki Lemasney","klemasney1s@upenn.edu","207-903-3838"));
-        clienteRepositorio.save(new Cliente("5610179003571679","Niels Marcome","nmarcome1t@telegraph.co.uk","823-979-9873"));
-        clienteRepositorio.save(new Cliente("5602230114215191","Ellie Dewberry","edewberry1u@feedburner.com","736-699-9985"));
-        clienteRepositorio.save(new Cliente("5602239237848887","Rolf Naisby","rnaisby1v@g.co","211-541-9539"));
-        clienteRepositorio.save(new Cliente("5602210275331128","Cyndy Hickeringill","chickeringill1w@mapy.cz","910-787-6401"));
-        clienteRepositorio.save(new Cliente("337941787208718","Theresa Ferretti","tferretti1x@adobe.com","816-134-9141"));
-        clienteRepositorio.save(new Cliente("372301634648010","Sibyl Shaul","sshaul1y@alibaba.com","491-948-9194"));
-        clienteRepositorio.save(new Cliente("374622442361332","Cilka Ludron","cludron1z@bloglovin.com","694-686-2013"));
-        clienteRepositorio.save(new Cliente("374622658526123","Lou Shenfisch","lshenfisch20@typepad.com","406-757-7077"));
-        clienteRepositorio.save(new Cliente("5602248485451823","Bethanne Brailey","bbrailey21@mozilla.com","583-881-6737"));
-        clienteRepositorio.save(new Cliente("5610909250283937","Margalo Ferrarese","mferrarese22@si.edu","400-362-6145"));
-        clienteRepositorio.save(new Cliente("374283728487935","Pierre Mithon","pmithon23@washingtonpost.com","385-291-0527"));
-        clienteRepositorio.save(new Cliente("374288120809008","Umberto Robillard","urobillard24@omniture.com","918-747-7575"));
-        clienteRepositorio.save(new Cliente("374283748231529","Byrann Gerner","bgerner25@bluehost.com","801-506-2404"));
-        clienteRepositorio.save(new Cliente("374622506140531","Filbert Celler","fceller26@patch.com","125-191-3627"));
-        clienteRepositorio.save(new Cliente("374283066882143","Bealle Darville","bdarville27@lycos.com","476-311-0186"));
-        clienteRepositorio.save(new Cliente("373486810973230","Blakelee Spohr","bspohr28@wikipedia.org","690-252-0570"));
-        clienteRepositorio.save(new Cliente("5602256327479803","Shannah Astley","sastley29@usatoday.com","580-107-4445"));
-        clienteRepositorio.save(new Cliente("374094258850107","Shirley Nulty","snulty2a@aol.com","149-815-5253"));
-        clienteRepositorio.save(new Cliente("5602219125378049","Aubree Baxstair","abaxstair2b@ezinearticles.com","278-584-9213"));
-        clienteRepositorio.save(new Cliente("337941926935999","Evan Colwill","ecolwill2c@mac.com","660-100-0788"));
-        clienteRepositorio.save(new Cliente("5602220110644916","Andree Baff","abaff2d@zdnet.com","125-457-0257"));
-        clienteRepositorio.save(new Cliente("5602235959575344","Traci Swetmore","tswetmore2e@businessweek.com","546-724-8953"));
-        clienteRepositorio.save(new Cliente("5602227595000324","Isabella Currington","icurrington2f@diigo.com","109-679-2810"));
-        clienteRepositorio.save(new Cliente("5610913732952481","Levy Dewsnap","ldewsnap2g@vimeo.com","862-835-2184"));
-        clienteRepositorio.save(new Cliente("5602244926501813","Bee Hourahan","bhourahan2h@washingtonpost.com","696-207-0601"));
-        clienteRepositorio.save(new Cliente("5602217770517218","Sandi Beever","sbeever2i@whitehouse.gov","737-133-4688"));
-        clienteRepositorio.save(new Cliente("337941066302331","Fania Ksandra","fksandra2j@howstuffworks.com","250-811-2970"));
-        clienteRepositorio.save(new Cliente("5610044013251953","Silvanus Grief","sgrief2k@hexun.com","106-713-7788"));
-        clienteRepositorio.save(new Cliente("5602228361363631","Franni Harpur","fharpur2l@wiley.com","879-796-3059"));
-        clienteRepositorio.save(new Cliente("337941843386169","Orsola Lowder","olowder2m@wikispaces.com","391-297-9679"));
-        clienteRepositorio.save(new Cliente("374622310305783","Hephzibah Roma","hroma2n@vistaprint.com","203-855-3134"));
-        clienteRepositorio.save(new Cliente("374288810042795","Ariella Hodgin","ahodgin2o@is.gd","281-616-0109"));
-        clienteRepositorio.save(new Cliente("374288744874230","Hubey Worssam","hworssam2p@sourceforge.net","718-350-9624"));
-        clienteRepositorio.save(new Cliente("5602235713110313","Gillie Meegin","gmeegin2q@house.gov","922-861-3358"));
-        clienteRepositorio.save(new Cliente("374283828690503","Cassandre Baylay","cbaylay2r@go.com","891-785-3194"));
+        // Example of using the builder pattern to create Veterinario instances
+        veterinarioSave = Veterinario.builder()
+            .Nombre("prueba")
+            .cedula("1234")
+            .contrasena("1234")
+            .especialidad("Nose")
+            .foto("Nose")
+            .activo(true)
+            .build();
+        userEntityVet = saveUserVeterinario(veterinarioSave);
+        veterinarioSave.setUser(userEntityVet);
+        veterinarioRepositorio.save(veterinarioSave);
+
+        veterinarioSave = Veterinario.builder()
+            .Nombre("Lynelle Charsley")
+            .cedula("9045730128")
+            .contrasena("nH6?tI)#e")
+            .especialidad("Imagenología")
+            .foto("https://images.ecestaticos.com/ciN9hN7qsu5JOcrGdMngWhCHs8Y=/0x70:1716x1040/1200x1200/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F8db%2F8b6%2Faa5%2F8db8b6aa54b585253e15f79a68447aeb.jpg")
+            .activo(true)
+            .build();
+        userEntityVet = saveUserVeterinario(veterinarioSave);
+        veterinarioSave.setUser(userEntityVet);
+        veterinarioRepositorio.save(veterinarioSave);
+
+        veterinarioSave = Veterinario.builder()
+            .Nombre("Ianthe Jordine")
+            .cedula("1443103554")
+            .contrasena("iB7,*K+Pi6a1q")
+            .especialidad("Rehabilitación")
+            .foto("https://amigodoctor.com/inicio/drs/adrian.jpg")
+            .activo(true)
+            .build();
+        userEntityVet = saveUserVeterinario(veterinarioSave);
+        veterinarioSave.setUser(userEntityVet);
+        veterinarioRepositorio.save(veterinarioSave);
+        
+        veterinarioSave = Veterinario.builder()
+            .Nombre("Jayme Novotne")
+            .cedula("3844360055")
+            .contrasena("zF1%7D9~f")
+            .especialidad("Oncología")
+            .foto("https://yt3.googleusercontent.com/ytc/APkrFKYQtHv2GYhbAQkrTRknWk6YVrDLLZk1YovsUcT0Aw=s900-c-k-c0x00ffffff-no-rj")
+            .activo(true)
+            .build();
+        userEntityVet = saveUserVeterinario(veterinarioSave);
+        veterinarioSave.setUser(userEntityVet);
+        veterinarioRepositorio.save(veterinarioSave);
+
+        veterinarioSave = Veterinario.builder()
+            .Nombre("Harrietta Wheatcroft")
+            .cedula("9928747656")
+            .contrasena("fV5.}6BrqQ+Ma&+")
+            .especialidad("Rehabilitación")
+            .foto("https://ic.c4assets.com/brands/the-good-doctor/b24d15b7-bba0-4939-bf45-e893dd5d46fa.jpg?interpolation=progressive-bicubic&output-format=jpeg&output-quality=90{&resize}")
+            .activo(true)
+            .build();
+        userEntityVet = saveUserVeterinario(veterinarioSave);
+        veterinarioSave.setUser(userEntityVet);
+        veterinarioRepositorio.save(veterinarioSave);
+        
+        
+        veterinarioSave = Veterinario.builder()
+            .Nombre("Clem Brewers")
+            .cedula("3306814411")
+            .contrasena("oK6*e`jYxEC=T}O@")
+            .especialidad("Oncología")
+            .foto("https://i.pinimg.com/originals/11/97/09/119709a6e0e53e358a6b783c300885eb.jpg")
+            .activo(true)
+            .build();
+        userEntityVet = saveUserVeterinario(veterinarioSave);
+        veterinarioSave.setUser(userEntityVet);
+        veterinarioRepositorio.save(veterinarioSave);
+        
+
+        veterinarioSave = Veterinario.builder()
+            .Nombre("Corry Yannoni")
+            .cedula("8286795345")
+            .contrasena("sE4>f<r}Vrv")
+            .especialidad("Oncología")
+            .foto("https://tecolotito.elsiglodetorreon.com.mx/cdn-cgi/image/format=auto,width=1024/i/2009/07/139879.jpeg")
+            .activo(true)
+            .build();
+        userEntityVet = saveUserVeterinario(veterinarioSave);
+        veterinarioSave.setUser(userEntityVet);
+        veterinarioRepositorio.save(veterinarioSave);
+        
+
+
+        veterinarioSave = Veterinario.builder()
+            .Nombre("Xavier Brislen")
+            .cedula("9640373723")
+            .contrasena("rY1@yb'~")
+            .especialidad("Oncología")
+            .foto("https://media.istockphoto.com/id/1468678629/photo/portrait-healthcare-and-tablet-with-a-doctor-woman-at-work-in-a-hospital-for-research-or.webp?b=1&s=170667a&w=0&k=20&c=H9w4bMoP3WXY178SVYmZsZsSCaTJoVLRMnSLPd3L3OE=")
+            .activo(true)
+            .build();
+        userEntityVet = saveUserVeterinario(veterinarioSave);
+        veterinarioSave.setUser(userEntityVet);
+        veterinarioRepositorio.save(veterinarioSave);
+
+        veterinarioSave=Veterinario.builder()
+            .Nombre("Pooh Geindre")
+            .cedula("2352482910")
+            .contrasena("fE6@?)q~~_")
+            .especialidad("Fisioterapia")
+            .foto("https://www.leasurgery.co.uk/media/content/images/doctor.jpg")
+            .activo(true)
+            .build();
+        userEntityVet = saveUserVeterinario(veterinarioSave);
+        veterinarioSave.setUser(userEntityVet);
+        veterinarioRepositorio.save(veterinarioSave);
+
+        veterinarioSave = Veterinario.builder()
+            .Nombre("Nobe Larter")
+            .cedula("2064009404")
+            .contrasena("vG5(4c~Np`qYZ0")
+            .especialidad("Rehabilitación")
+            .foto("https://www.beaumont.org/images/default-source/primary-care/getting-to-know-doctor.jpg?sfvrsn=cc08ede2_0")
+            .activo(true)
+            .build();
+        userEntityVet = saveUserVeterinario(veterinarioSave);
+        veterinarioSave.setUser(userEntityVet);
+        veterinarioRepositorio.save(veterinarioSave);
+
+        veterinarioSave = Veterinario.builder()
+            .Nombre("Yves Chittem")
+            .cedula("6817346042")
+            .contrasena("eK3})<d`fC")
+            .especialidad("Fisioterapia")
+            .foto("https://www.pasadenahealthcenter.com/site/wp-content/uploads/2018/01/doctor.jpg")
+            .activo(true)
+            .build();
+        userEntityVet = saveUserVeterinario(veterinarioSave);
+        veterinarioSave.setUser(userEntityVet);
+        veterinarioRepositorio.save(veterinarioSave);
+
+
+        veterinarioSave = Veterinario.builder()
+            .Nombre("Casie Gawkes")
+            .cedula("7280532372")
+            .contrasena("uB8!1!c)fNh7Phe")
+            .especialidad("Cirugía")
+            .foto("https://medimap.ca/wp-content/uploads/2022/10/iStock-1193303828.jpg")
+            .activo(true)
+            .build();
+        userEntityVet = saveUserVeterinario(veterinarioSave);
+        veterinarioSave.setUser(userEntityVet);
+        veterinarioRepositorio.save(veterinarioSave);
+
+        
+
+            clienteSave = new Cliente("5602222623501237","Crin Dottridge","cdottridge0@bravesites.com","184-683-8032");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5610426064728825","Meghan Vain","mvain1@indiegogo.com","253-723-4589");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602248031401652","Darci Condie","dcondie2@blogtalkradio.com","755-993-2472");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5610882771911973","Bernard Sackes","bsackes3@ca.gov","876-141-1589");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374288553824805","Cully Matas","cmatas4@cdc.gov","764-541-3379");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374288603248310","Corinne Nerne","cnerne5@time.com","541-955-9935");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5610380149596485","Morgan Bernolet","mbernolet6@illinois.edu","841-465-7544");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("372301484707619","Yolane Thistleton","ythistleton7@ustream.tv","432-406-7458");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("372491765111308","Minerva Ashurst","mashurst8@list-manage.com","424-131-7675");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("375368923381238","Kerrin Pioch","kpioch9@hibu.com","367-259-8444");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602236196117023","Dominica Rosenfarb","drosenfarba@wordpress.com","277-852-9960");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374283409761582","Valina Baggott","vbaggottb@angelfire.com","649-847-5802");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374283395896384","Dagny Davidow","ddavidowc@hexun.com","970-778-5934");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602257500781486","Brande Caulkett","bcaulkettd@addthis.com","865-170-4691");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602228222398925","Allx Winship","awinshipe@biblegateway.com","595-323-6135");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602226925786347","Miles Frany","mfranyf@cbsnews.com","898-945-8824");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374288095910500","Jill Goodbourn","jgoodbourng@pcworld.com","742-331-6722");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374283780451274","Toinette Jerams","tjeramsh@github.io","749-653-5728");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("371457311064847","Erie Gobel","egobeli@arizona.edu","752-544-5760");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("376076868622123","Jenny Giovani","jgiovanij@unesco.org","179-585-6376");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602236327277357","Marge Malec","mmaleck@squidoo.com","277-638-5413");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602256801682385","Kile Dumphy","kdumphyl@marketwatch.com","819-548-8883");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602211891763355","Gipsy Archbould","garchbouldm@cnet.com","402-763-3570");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602216928829962","Vite Hugonin","vhugoninn@bizjournals.com","496-363-9148");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("349859054227730","Eric Withringten","ewithringteno@wired.com","305-521-8009");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602245781671724","Thorpe Terlinden","tterlindenp@mapquest.com","953-143-7079");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374288205504045","Twyla Balnaves","tbalnavesq@netvibes.com","959-269-8991");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602227303518773","Trefor Calvard","tcalvardr@comsenz.com","630-772-9173");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("371866700185759","Reeba Maleham","rmalehams@vinaora.com","887-641-8220");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602243092633558","Vivianne Burnes","vburnest@sun.com","917-284-2302");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602250389738271","Barrie Digby","bdigbyu@youtu.be","946-104-8669");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("372301026384687","Torey Barratt","tbarrattv@theglobeandmail.com","619-619-3110");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374283613945351","Any Tomkys","atomkysw@slate.com","865-592-2761");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5610858708657871","Boy Kelk","bkelkx@answers.com","525-467-7043");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602251568175244","Codie Libreros","clibrerosy@deliciousdays.com","226-171-3199");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5610955261359885","Laughton Eagger","leaggerz@cloudflare.com","622-956-4799");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374622169164786","Stafford Rault","srault10@tuttocitta.it","135-182-9561");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602237137080817","Talya Foulkes","tfoulkes11@woothemes.com","547-878-5826");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602241958853815","Elvyn Cowlin","ecowlin12@telegraph.co.uk","418-850-4148");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374622160531629","Philippine O'Currane","pocurrane13@forbes.com","502-883-2935");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602236989402921","Romy Campione","rcampione14@mit.edu","241-218-0964");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("337941682156335","Antonetta Sackur","asackur15@oakley.com","684-637-5888");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("344247442909448","Rebecka Boscher","rboscher16@tmall.com","969-358-4619");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("347013784985041","Renaldo Earp","rearp17@cisco.com","176-557-9490");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602231812797159","Dynah Benoiton","dbenoiton18@disqus.com","411-282-3571");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602258345383595","Gerri Caswall","gcaswall19@de.vu","698-857-2334");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602250834814263","Brewster Zolini","bzolini1a@nps.gov","528-620-3271");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5610532474297101","Kinna Manifield","kmanifield1b@dropbox.com","973-697-0539");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5610852357387591","Dianna Karlsen","dkarlsen1c@latimes.com","540-601-7660");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602211492454834","Carolann Larway","clarway1d@xinhuanet.com","792-880-8946");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("337941183735876","Maxi Lippiatt","mlippiatt1e@hhs.gov","936-191-3078");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602215392755562","Kandy Colleck","kcolleck1f@cisco.com","151-607-4890");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602255158197641","Tim MacRury","tmacrury1g@g.co","713-448-1209");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602248745161923","Violet Gateman","vgateman1h@aol.com","577-938-8690");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("373693584818414","Lewie Abramovitch","labramovitch1i@hp.com","471-691-1009");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602221136058503","Alejandrina Bean","abean1j@cornell.edu","676-158-3979");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("337941486437790","Elfrida Nyles","enyles1k@google.es","324-688-2436");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602214027388741","Kevina Lidgard","klidgard1l@ovh.net","193-711-9722");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374283713874493","Ynes Blanpein","yblanpein1m@stumbleupon.com","345-527-2932");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5610681241437175","Janna Laurentin","jlaurentin1n@shinystat.com","529-523-1286");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("345095084253602","Brenden Kaye","bkaye1o@epa.gov","229-474-9497");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("337941871380605","Angelico Chrisp","achrisp1p@yahoo.com","734-989-5586");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374283736974890","Talbot Swiggs","tswiggs1q@yolasite.com","773-220-3879");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("370376526960899","Rena Dufaur","rdufaur1r@g.co","358-609-0914");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5610427870181126","Ki Lemasney","klemasney1s@upenn.edu","207-903-3838");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5610179003571679","Niels Marcome","nmarcome1t@telegraph.co.uk","823-979-9873");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602230114215191","Ellie Dewberry","edewberry1u@feedburner.com","736-699-9985");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602239237848887","Rolf Naisby","rnaisby1v@g.co","211-541-9539");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602210275331128","Cyndy Hickeringill","chickeringill1w@mapy.cz","910-787-6401");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("337941787208718","Theresa Ferretti","tferretti1x@adobe.com","816-134-9141");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("372301634648010","Sibyl Shaul","sshaul1y@alibaba.com","491-948-9194");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374622442361332","Cilka Ludron","cludron1z@bloglovin.com","694-686-2013");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374622658526123","Lou Shenfisch","lshenfisch20@typepad.com","406-757-7077");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602248485451823","Bethanne Brailey","bbrailey21@mozilla.com","583-881-6737");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5610909250283937","Margalo Ferrarese","mferrarese22@si.edu","400-362-6145");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374283728487935","Pierre Mithon","pmithon23@washingtonpost.com","385-291-0527");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374288120809008","Umberto Robillard","urobillard24@omniture.com","918-747-7575");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374283748231529","Byrann Gerner","bgerner25@bluehost.com","801-506-2404");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374622506140531","Filbert Celler","fceller26@patch.com","125-191-3627");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374283066882143","Bealle Darville","bdarville27@lycos.com","476-311-0186");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("373486810973230","Blakelee Spohr","bspohr28@wikipedia.org","690-252-0570");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602256327479803","Shannah Astley","sastley29@usatoday.com","580-107-4445");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374094258850107","Shirley Nulty","snulty2a@aol.com","149-815-5253");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602219125378049","Aubree Baxstair","abaxstair2b@ezinearticles.com","278-584-9213");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("337941926935999","Evan Colwill","ecolwill2c@mac.com","660-100-0788");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602220110644916","Andree Baff","abaff2d@zdnet.com","125-457-0257");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602235959575344","Traci Swetmore","tswetmore2e@businessweek.com","546-724-8953");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602227595000324","Isabella Currington","icurrington2f@diigo.com","109-679-2810");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5610913732952481","Levy Dewsnap","ldewsnap2g@vimeo.com","862-835-2184");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602244926501813","Bee Hourahan","bhourahan2h@washingtonpost.com","696-207-0601");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602217770517218","Sandi Beever","sbeever2i@whitehouse.gov","737-133-4688");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("337941066302331","Fania Ksandra","fksandra2j@howstuffworks.com","250-811-2970");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5610044013251953","Silvanus Grief","sgrief2k@hexun.com","106-713-7788");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602228361363631","Franni Harpur","fharpur2l@wiley.com","879-796-3059");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("337941843386169","Orsola Lowder","olowder2m@wikispaces.com","391-297-9679");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374622310305783","Hephzibah Roma","hroma2n@vistaprint.com","203-855-3134");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374288810042795","Ariella Hodgin","ahodgin2o@is.gd","281-616-0109");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374288744874230","Hubey Worssam","hworssam2p@sourceforge.net","718-350-9624");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("5602235713110313","Gillie Meegin","gmeegin2q@house.gov","922-861-3358");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            clienteSave = new Cliente("374283828690503","Cassandre Baylay","cbaylay2r@go.com","891-785-3194");
+            userEntity = saveUserCliente(clienteSave);
+            clienteSave.setUser(userEntity);
+            clienteRepositorio.save(clienteSave);
+            
 
         mascotaRepository.save(new Mascota("Quinta","Siamese",14,5.0,"Cistitis","https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-superJumbo.jpg?quality=75&auto=webp"));
         mascotaRepository.save(new Mascota("Lolly","Persian",18,4.9,"Perionitis","https://hips.hearstapps.com/hmg-prod/images/russian-blue-royalty-free-image-1658451809.jpg?resize=1200:*"));
@@ -422,7 +894,10 @@ public class databaseInitTest implements ApplicationRunner{
             tratamientoRepositorio.save(tratamiento);
         }
 
-        adminRepositorio.save(new Admin("123", "123"));
+        Admin adminSave = new Admin("123456", "123456");
+        userEntity = saveUserAdministrador(adminSave);
+        adminSave.setUser(userEntity);
+        adminRepositorio.save(adminSave);
     }
 
 
@@ -466,6 +941,33 @@ public class databaseInitTest implements ApplicationRunner{
         }
     
         return medicamento;
+    }
+
+    private UserEntity saveUserCliente(Cliente cliente){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUsername(cliente.cedula);
+        userEntity.setPassword(passwordEncoder.encode("123"));
+        Rol rol = rolRepository.findByName("CLIENTE").get();
+        userEntity.setRoles(List.of(rol));
+        return userEntityRepository.save(userEntity);
+    }
+
+    private UserEntity saveUserVeterinario(Veterinario veterinario){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUsername(veterinario.getCedula());
+        userEntity.setPassword(passwordEncoder.encode(veterinario.getContrasena()));
+        Rol rol = rolRepository.findByName("VETERINARIO").get();
+        userEntity.setRoles(List.of(rol));
+        return userEntityRepository.save(userEntity);
+    }
+
+    private UserEntity saveUserAdministrador(Admin admin){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUsername(admin.getUsuario());
+        userEntity.setPassword(passwordEncoder.encode(admin.getContrasena()));
+        Rol rol = rolRepository.findByName("ADMINISTRADOR").get();
+        userEntity.setRoles(List.of(rol));
+        return userEntityRepository.save(userEntity);
     }
     
 }

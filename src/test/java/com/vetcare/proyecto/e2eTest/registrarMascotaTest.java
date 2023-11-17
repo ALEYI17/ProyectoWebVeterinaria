@@ -69,6 +69,8 @@ public class registrarMascotaTest {
         loginContrasena.sendKeys("mal cubu");
         buttonLogVet.click();
 
+        loginCedula.clear();
+        loginContrasena.clear();
         // assert error
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("errorcito")));
         WebElement errorMesagge = driver.findElement(By.id("errorcito"));
@@ -76,8 +78,8 @@ public class registrarMascotaTest {
         Assertions.assertThat(errorMesagge.getText()).isEqualTo(expectedMessage);
 
         // entrar con credenciales valdias
-        loginCedula.sendKeys("123");
-        loginContrasena.sendKeys("123");
+        loginCedula.sendKeys("1234");
+        loginContrasena.sendKeys("1234");
         buttonLogVet.click();
 
         // conseguir la lista de mascotasa antes de crear macota
@@ -182,10 +184,10 @@ public class registrarMascotaTest {
         Assertions.assertThat(nombresMascotasFinal.size()).isEqualTo(nombresMascotas.size() + 1);
 
         // volver a la landing page
-        WebElement VOlverLanding = driver.findElement(By.id("logogato"));
+        WebElement VOlverLanding = driver.findElement(By.id("logOut"));
         VOlverLanding.click();
 
-        loginButton = driver.findElement(By.id("Loginbutton"));
+        loginButton = driver.findElement(By.id("loginCli"));
         loginButton.click();
 
         // entrar como cliente
@@ -260,8 +262,8 @@ public class registrarMascotaTest {
         WebElement buttonLogVet = driver.findElement(By.className("btn"));
 
         // entrar con credenciales valdias
-        loginCedula.sendKeys("123");
-        loginContrasena.sendKeys("123");
+        loginCedula.sendKeys("1234");
+        loginContrasena.sendKeys("1234");
         buttonLogVet.click();
 
         // conseguir la lista de mascotasa
@@ -389,8 +391,8 @@ public class registrarMascotaTest {
         WebElement loginUsername = driver.findElement(By.id("username"));
         WebElement loginContra = driver.findElement(By.id("contra"));
         WebElement buttonLogAdmin = driver.findElement(By.className("btn"));
-        loginUsername.sendKeys("123");
-        loginContra.sendKeys("123");
+        loginUsername.sendKeys("123456");
+        loginContra.sendKeys("123456");
         buttonLogAdmin.click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("buttonSidenav")));
         // Abrir la sidenav
