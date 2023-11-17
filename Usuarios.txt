@@ -1,0 +1,5 @@
+Cliente: 5602222623501237
+Cliente 2:5610426064728825
+Veterinario: usuario:1234 contraseña:1234
+Veterinario2: usuario:9045730128 contraseña:nH6?tI)#e
+Admin: usuario: 123456 contraseña:123456
