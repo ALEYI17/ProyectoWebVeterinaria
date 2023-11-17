@@ -22,7 +22,7 @@ import com.vetcare.proyecto.repository.TratamientoRepositorio;
 import com.vetcare.proyecto.service.TratamientoServicioimpl;
 
 
-@ActiveProfiles("test")
+@ActiveProfiles("test2")
 @ExtendWith(MockitoExtension.class)
 public class TrataminetoServiceTestMock {
 

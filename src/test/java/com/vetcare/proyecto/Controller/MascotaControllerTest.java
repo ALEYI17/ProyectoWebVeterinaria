@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(controllers = MascotaController.class)
-@ActiveProfiles("test")
+@ActiveProfiles("test2")
 @RunWith(SpringRunner.class)
 public class MascotaControllerTest {
     

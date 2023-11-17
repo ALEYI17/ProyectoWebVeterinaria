@@ -35,3 +35,9 @@ build/
 ### base de datos ###
 
 mydatabase.mv.db
+
+testdb2.mv.db
+testdb2.trace.db
+
+testdb.mv.db
+testdb.trace.db
